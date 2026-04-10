@@ -1,0 +1,161 @@
+{
+  "judul": "Ilmu Nahwu - Jurumiyah",
+  "deskripsi": "Pengantar ilmu nahwu berdasarkan kitab Jurumiyah",
+  "bab": [
+    {
+      "id": 1,
+      "judul": "Pengertian Kalam",
+      "icon": "📖",
+      "teks_inti": {
+        "arab": "الْكَلَامُ هُوَ اللَّفْظُ الْمُرَكَّبُ الْمُفِيدُ بِالْوَضْعِ",
+        "latin": "Al-kalāmu huwa al-lafẓu al-murakkab al-mufīdu bil-waḍ'i",
+        "terjemahan": "Kalam adalah lafaz yang tersusun, memberikan faedah, dan diucapkan dengan sengaja.",
+        "penjelasan": "Kalam dalam ilmu nahwu memiliki tiga syarat: (1) Lafaz (ucapan), (2) Murakkab (tersusun dari dua kata atau lebih), dan (3) Mufid (memberikan faedah/makna yang sempurna). Contoh: 'Zaid berdiri' adalah kalam karena memberikan makna lengkap."
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "pertanyaan": "Apakah 'الْكَلَامُ' dalam ilmu nahwu harus tersusun dari dua kata atau lebih?",
+          "jawaban": true,
+          "penjelasan": "Benar! Kalam harus 'murakkab' yaitu tersusun dari dua kata atau lebih agar bisa memberikan makna yang sempurna."
+        },
+        {
+          "id": 2,
+          "pertanyaan": "Apakah satu kata saja sudah cukup untuk disebut kalam dalam ilmu nahwu?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Satu kata saja belum bisa disebut kalam karena tidak memenuhi syarat murakkab (tersusun) dan mufid (memberikan faedah yang sempurna)."
+        },
+        {
+          "id": 3,
+          "pertanyaan": "Apakah 'قَامَ زَيْدٌ' (Zaid berdiri) termasuk kalam?",
+          "jawaban": true,
+          "penjelasan": "Benar! Kalimat 'Qāma Zaidun' memenuhi syarat kalam: tersusun dari dua kata, memberikan makna sempurna, dan diucapkan dengan sengaja."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "judul": "Pembagian Kalam",
+      "icon": "📚",
+      "teks_inti": {
+        "arab": "أَقْسَامُهُ ثَلَاثَةٌ: اِسْمٌ، وَفِعْلٌ، وَحَرْفٌ",
+        "latin": "Aqsāmuhu tsalātsatun: ismun, wa fi'lun, wa harfun",
+        "terjemahan": "Bagian-bagiannya ada tiga: isim (kata benda), fi'il (kata kerja), dan harf (kata tugas).",
+        "penjelasan": "Kalam dalam bahasa Arab dibagi menjadi tiga bagian utama: (1) Isim - kata yang menunjukkan makna pada dirinya sendiri dan tidak terikat waktu, (2) Fi'il - kata yang menunjukkan makna pada dirinya sendiri dan terikat dengan waktu, (3) Harf - kata yang hanya memiliki makna ketika berhubungan dengan kata lain."
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "pertanyaan": "Apakah isim adalah kata yang terikat dengan waktu?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Isim adalah kata yang menunjukkan makna pada dirinya sendiri dan TIDAK terikat waktu. Yang terikat waktu adalah fi'il."
+        },
+        {
+          "id": 2,
+          "pertanyaan": "Apakah fi'il menunjukkan makna yang terikat dengan waktu tertentu?",
+          "jawaban": true,
+          "penjelasan": "Benar! Fi'il adalah kata yang menunjukkan makna pada dirinya sendiri dan terikat dengan waktu (lampau, sekarang, atau yang akan datang)."
+        },
+        {
+          "id": 3,
+          "pertanyaan": "Apakah harf memiliki makna yang berdiri sendiri tanpa kata lain?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Harf hanya memiliki makna ketika berhubungan dengan kata lain (isim atau fi'il). Ia tidak memiliki makna yang lengkap bila berdiri sendiri."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "judul": "Tanda-tanda Isim",
+      "icon": "🔤",
+      "teks_inti": {
+        "arab": "فَالِاسْمُ يُعْرَفُ بِالْخَفْضِ وَالتَّنْوِينِ وَدُخُولِ الْأَلِفِ وَاللَّامِ",
+        "latin": "Fal-ismu yu'rafu bil-khafḍi wat-tanwīni wa dukhūlil-alif wal-lāmi",
+        "terjemahan": "Isim dapat dikenal dengan tanda khafadh (jarr), tanwin, dan masuknya alif lam (ال).",
+        "penjelasan": "Ada tiga tanda utama untuk mengenali isim: (1) Khafadh/Jarr - bisa dikasihi huruf jarr seperti مِنْ, إلى, عَنْ dll. (2) Tanwin - bisa menerima tanda tanwin (ً ٍ ٌ). (3) Al - bisa didahului alif lam (ال). Jika suatu kata memiliki salah satu tanda ini, maka ia adalah isim."
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "pertanyaan": "Apakah kata 'الْكِتَابُ' (Al-Kitābu) termasuk isim?",
+          "jawaban": true,
+          "penjelasan": "Benar! Kata 'Al-Kitābu' adalah isim karena diawali dengan alif lam (ال), yang merupakan salah satu tanda isim."
+        },
+        {
+          "id": 2,
+          "pertanyaan": "Apakah fi'il bisa menerima tanwin?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Tanwin adalah salah satu tanda khusus isim. Fi'il tidak dapat menerima tanwin."
+        },
+        {
+          "id": 3,
+          "pertanyaan": "Apakah 'مِنْ' (dari) termasuk salah satu huruf jarr yang bisa masuk pada isim?",
+          "jawaban": true,
+          "penjelasan": "Benar! 'مِنْ' adalah salah satu huruf jarr yang hanya bisa masuk pada isim, sehingga kehadiran huruf jarr adalah tanda bahwa kata setelahnya adalah isim."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "judul": "Tanda-tanda Fi'il",
+      "icon": "⚡",
+      "teks_inti": {
+        "arab": "وَالْفِعْلُ يُعْرَفُ بِـ'قَدْ' وَالسِّينِ وَسَوْفَ وَتَاءِ التَّأْنِيثِ السَّاكِنَةِ",
+        "latin": "Wal-fi'lu yu'rafu bi-'qad' was-sīni wa sawfa wa tā'it-ta'nīts as-sākinati",
+        "terjemahan": "Fi'il dapat dikenal dengan 'qad', sin (س), saufa (سَوْفَ), dan ta' ta'nits yang mati.",
+        "penjelasan": "Tanda-tanda fi'il: (1) Qad (قَدْ) - bisa didahului qad, contoh: قَدْ قَامَ (sungguh telah berdiri). (2) Sin (س) dan Saufa (سَوْفَ) - untuk fi'il mudhari', menunjukkan makna akan datang. (3) Ta' ta'nits (تْ) - bisa diakhiri ta' mati untuk menunjukkan subjek perempuan, contoh: قَامَتْ."
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "pertanyaan": "Apakah kata 'قَامَ' (berdiri) bisa didahului oleh 'قَدْ'?",
+          "jawaban": true,
+          "penjelasan": "Benar! 'قَامَ' adalah fi'il madhi (kata kerja lampau) yang bisa didahului oleh 'قَدْ' menjadi 'قَدْ قَامَ' artinya 'sungguh telah berdiri'."
+        },
+        {
+          "id": 2,
+          "pertanyaan": "Apakah huruf sin (س) bisa masuk pada isim?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Huruf sin (س) sebagai tanda akan datang hanya bisa masuk pada fi'il mudhari', bukan pada isim."
+        },
+        {
+          "id": 3,
+          "pertanyaan": "Apakah 'قَامَتْ' menunjukkan bahwa subjeknya adalah perempuan?",
+          "jawaban": true,
+          "penjelasan": "Benar! Ta' mati (تْ) di akhir fi'il madhi adalah tanda ta'nits (feminim), menunjukkan bahwa pelakunya adalah perempuan."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "judul": "Isim Mu'rab dan Mabni",
+      "icon": "🏗️",
+      "teks_inti": {
+        "arab": "الِاسْمُ إِمَّا مُعْرَبٌ وَإِمَّا مَبْنِيٌّ",
+        "latin": "Al-ismu immā mu'rabun wa immā mabniyyun",
+        "terjemahan": "Isim ada yang mu'rab (berubah harakatnya) dan ada yang mabni (tetap harakatnya).",
+        "penjelasan": "Isim mu'rab adalah isim yang harakat akhirnya berubah sesuai posisinya dalam kalimat (rafa', nashab, atau jarr). Sedangkan isim mabni adalah isim yang harakat akhirnya tidak berubah meskipun posisinya berubah. Contoh mabni: dhamir (kata ganti), isim isyarah (kata tunjuk), isim maushul, dan sebagian isim-isim lain."
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "pertanyaan": "Apakah isim mu'rab berubah harakatnya sesuai posisi dalam kalimat?",
+          "jawaban": true,
+          "penjelasan": "Benar! Isim mu'rab adalah isim yang harakat akhirnya berubah sesuai kedudukannya: dhammah ketika rafa', fathah ketika nashab, dan kasrah ketika jarr."
+        },
+        {
+          "id": 2,
+          "pertanyaan": "Apakah kata ganti (dhamir) seperti 'هُوَ' termasuk isim mu'rab?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Dhamir (kata ganti) seperti 'هُوَ' termasuk isim mabni, yaitu harakatnya tetap tidak berubah meskipun posisinya berbeda dalam kalimat."
+        },
+        {
+          "id": 3,
+          "pertanyaan": "Apakah isim mabni harakatnya bisa berubah sesuai kedudukannya?",
+          "jawaban": false,
+          "penjelasan": "Tidak benar. Isim mabni adalah isim yang harakatnya TETAP (tidak berubah) meskipun kedudukannya dalam kalimat berubah."
+        }
+      ]
+    }
+  ]
+}
