@@ -10,7 +10,36 @@
         "arab": "الْكَلَامُ هُوَ اللَّفْظُ الْمُرَكَّبُ الْمُفِيدُ بِالْوَضْعِ",
         "latin": "Al-kalāmu huwa al-lafẓu al-murakkab al-mufīdu bil-waḍ'i",
         "terjemahan": "Kalam adalah lafaz yang tersusun, memberikan faedah, dan diucapkan dengan sengaja.",
-        "penjelasan": "Kalam dalam ilmu nahwu memiliki tiga syarat: (1) Lafaz (ucapan), (2) Murakkab (tersusun dari dua kata atau lebih), dan (3) Mufid (memberikan faedah/makna yang sempurna). Contoh: 'Zaid berdiri' adalah kalam karena memberikan makna lengkap."
+        "penjelasan": {
+          "pengantar": "Dalam ilmu Nahwu, sebuah ungkapan baru bisa disebut sebagai Kalam apabila memenuhi empat syarat utama yang terkandung dalam definisi di atas:",
+          "poin_poin": [
+            {
+              "icon": "record_voice_over",
+              "judul": "1. Al-Lafzhu (Lafadz)",
+              "teks": "Suara yang mengandung sebagian huruf-huruf hijaiyah. Tulisan tanpa suara atau isyarat tidak disebut kalam secara istilah nahwu."
+            },
+            {
+              "icon": "layers",
+              "judul": "2. Al-Murakkab (Tersusun)",
+              "teks": "Tersusun dari dua kata atau lebih, baik secara nyata (zhahiran) maupun secara perkiraan (taqdiran)."
+            },
+            {
+              "icon": "check_circle",
+              "judul": "3. Al-Mufid (Berfaedah)",
+              "teks": "Memberikan pemahaman yang sempurna kepada pendengar, sehingga pendengar tidak lagi menunggu kelanjutan kalimat."
+            },
+            {
+              "icon": "edit_note",
+              "judul": "4. Bil-Wadh'i (Disengaja)",
+              "teks": "Diucapkan dalam keadaan sadar (bukan mengigau) dan menggunakan kaidah bahasa Arab yang berlaku."
+            }
+          ],
+          "contoh": {
+            "arab": "قَامَ زَيْدٌ",
+            "arti": "Zaid telah berdiri",
+            "catatan": "*Kalimat di atas disebut kalam karena memenuhi keempat unsur: lafadz, tersusun (dua kata), mufid (berita lengkap), dan sengaja."
+          }
+        }
       },
       "latihan": [
         {
@@ -38,10 +67,34 @@
       "judul": "Pembagian Kalam",
       "icon": "📚",
       "teks_inti": {
-        "arab": "أَقْسَامُهُ ثَلَاثَةٌ: اِسْمٌ، وَفِعْلٌ، وَحَرْفٌ",
-        "latin": "Aqsāmuhu tsalātsatun: ismun, wa fi'lun, wa harfun",
-        "terjemahan": "Bagian-bagiannya ada tiga: isim (kata benda), fi'il (kata kerja), dan harf (kata tugas).",
-        "penjelasan": "Kalam dalam bahasa Arab dibagi menjadi tiga bagian utama: (1) Isim - kata yang menunjukkan makna pada dirinya sendiri dan tidak terikat waktu, (2) Fi'il - kata yang menunjukkan makna pada dirinya sendiri dan terikat dengan waktu, (3) Harf - kata yang hanya memiliki makna ketika berhubungan dengan kata lain."
+        "arab": "أَقْسَامُهُ ثَلَاثَةٌ: اِسْمٌ، وَفِعْلٌ، وَحَرْفٌ جَاءَ لِمَعْنًى",
+        "latin": "Aqsāmuhu tsalātsatun: ismun, wa fi'lun, wa harfun jā'a li-ma'nan",
+        "terjemahan": "Bagian-bagiannya ada tiga: isim (kata benda), fi'il (kata kerja), dan harf (kata depan/tugas) yang bermakna.",
+        "penjelasan": {
+          "pengantar": "Kata (Kalimah) dalam struktur bahasa Arab terbagi menjadi tiga jenis utama, yang masing-masing memainkan peran yang sangat kuat dalam kalimat:",
+          "poin_poin": [
+            {
+              "icon": "pentagon",
+              "judul": "1. Isim (Kata Benda)",
+              "teks": "Kata yang menunjukkan makna pada dirinya sendiri namun tidak terikat oleh waktu (lampau, sekarang, atau akan datang)."
+            },
+            {
+              "icon": "bolt",
+              "judul": "2. Fi'il (Kata Kerja)",
+              "teks": "Kata yang menunjukkan perbuatan, keadaan, atau peristiwa dan selalu terikat oleh keterangan waktu pelaksanaannya."
+            },
+            {
+              "icon": "link",
+              "judul": "3. Harf (Kata Tugas)",
+              "teks": "Kata sambung atau tugas yang tidak menunjukkan makna mandiri yang memahamkan secara sempurna melainkan hanya bermakna jika dirangkai dengan kata lain."
+            }
+          ],
+          "contoh": {
+            "arab": "ذَهَبَ زَيْدٌ إِلَى الْمَسْجِدِ",
+            "arti": "Zaid pergi ke Masjid",
+            "catatan": "*'ذَهَبَ' adalah Fi'il (kerja), 'زَيْدٌ' & 'الْمَسْجِدِ' adalah Isim, sedangkan 'إِلَى' adalah Harf penunjuk arah."
+          }
+        }
       },
       "latihan": [
         {
@@ -71,8 +124,32 @@
       "teks_inti": {
         "arab": "فَالِاسْمُ يُعْرَفُ بِالْخَفْضِ وَالتَّنْوِينِ وَدُخُولِ الْأَلِفِ وَاللَّامِ",
         "latin": "Fal-ismu yu'rafu bil-khafḍi wat-tanwīni wa dukhūlil-alif wal-lāmi",
-        "terjemahan": "Isim dapat dikenal dengan tanda khafadh (jarr), tanwin, dan masuknya alif lam (ال).",
-        "penjelasan": "Ada tiga tanda utama untuk mengenali isim: (1) Khafadh/Jarr - bisa dikasihi huruf jarr seperti مِنْ, إلى, عَنْ dll. (2) Tanwin - bisa menerima tanda tanwin (ً ٍ ٌ). (3) Al - bisa didahului alif lam (ال). Jika suatu kata memiliki salah satu tanda ini, maka ia adalah isim."
+        "terjemahan": "Isim dapat dikenali dengan adanya kasrah (khafadh), tanwin, dan masuknya alif lam (ال).",
+        "penjelasan": {
+          "pengantar": "Sebuah kata dapat kita pastikan identitasnya sebagai Isim (kata benda) apabila memiliki salah satu atau beberapa tanda khusus fisik berikut ini:",
+          "poin_poin": [
+            {
+              "icon": "keyboard_arrow_down",
+              "judul": "1. Khafadh (Kasrah)",
+              "teks": "Tanda baris di bawah (kasrah) yang posisinya di urutan akhir akibat adanya amil atau huruf jar. Fi'il tidak pernah berharakat kasrah sejati."
+            },
+            {
+              "icon": "done_all",
+              "judul": "2. Tanwin",
+              "teks": "Suara nun mati (sukun) di akhir kata yang bisa dibaca dan dituturkan tetapi tidak ditulis secara rill. Cirinya tanda dobel ganda (-un, -an, -in)."
+            },
+            {
+              "icon": "text_format",
+              "judul": "3. Masuknya Alif Lam (ال)",
+              "teks": "Masuknya awalan huruf 'Al' di depan kata tersebut yang akan membuang status tanwin dan menegaskan definisi khusus."
+            }
+          ],
+          "contoh": {
+            "arab": "الْكِتَابُ",
+            "arti": "Buku itu",
+            "catatan": "*Diketahui pasti sebagai isim karena adanya ciri spesifik alif lam (ال) yang mendahului kalimatnya."
+          }
+        }
       },
       "latihan": [
         {
@@ -100,10 +177,34 @@
       "judul": "Tanda-tanda Fi'il",
       "icon": "⚡",
       "teks_inti": {
-        "arab": "وَالْفِعْلُ يُعْرَفُ بِـ'قَدْ' وَالسِّينِ وَسَوْفَ وَتَاءِ التَّأْنِيثِ السَّاكِنَةِ",
-        "latin": "Wal-fi'lu yu'rafu bi-'qad' was-sīni wa sawfa wa tā'it-ta'nīts as-sākinati",
-        "terjemahan": "Fi'il dapat dikenal dengan 'qad', sin (س), saufa (سَوْفَ), dan ta' ta'nits yang mati.",
-        "penjelasan": "Tanda-tanda fi'il: (1) Qad (قَدْ) - bisa didahului qad, contoh: قَدْ قَامَ (sungguh telah berdiri). (2) Sin (س) dan Saufa (سَوْفَ) - untuk fi'il mudhari', menunjukkan makna akan datang. (3) Ta' ta'nits (تْ) - bisa diakhiri ta' mati untuk menunjukkan subjek perempuan, contoh: قَامَتْ."
+        "arab": "وَالْفِعْلُ يُعْرَفُ بِقَدْ وَالسِّينِ وَسَوْفَ وَتَاءِ التَّأْنِيثِ السَّاكِنَةِ",
+        "latin": "Wal-fi'lu yu'rafu biqad was-sīni wa sawfa wa tā'it-ta'nīts as-sākinati",
+        "terjemahan": "Fi'il dapat dikenali dengan masuknya huruf 'qad', sin (س), saufa (سَوْفَ), dan adanya ta' ta'nits yang dimatikan.",
+        "penjelasan": {
+          "pengantar": "Berbeda dengan Isim yang menolak, kata kerja (Fi'il) juga punya sinyal dan ikatan ciri mutlak khusus bila ditelaah dari imbuhannya:",
+          "poin_poin": [
+            {
+              "icon": "verified",
+              "judul": "1. Qad (قَدْ)",
+              "teks": "Partikel yang sangat khas fi'il yang bisa masuk pada masa madhi yang bermakna 'sungguh' atau fi'il mudhari' bermakna 'terkadang'."
+            },
+            {
+              "icon": "fast_forward",
+              "judul": "2. Sin (س) & Saufa (سَوْفَ)",
+              "teks": "Hanya khusus bisa disematkan untuk fi'il berstatus mudhari' (masa kini). Memberikan fungsi tafadal berarti 'segera/akan' tiba."
+            },
+            {
+              "icon": "woman_2",
+              "judul": "3. Ta' Ta'nits Sakinah (تْ)",
+              "teks": "Huruf ta' yang dimatikan statusnya di belakang ekor fi'il madhi yang ekslusif berfungsi menyatakan figur pelaku (Fa'il) bergender perempuan (Muannats)."
+            }
+          ],
+          "contoh": {
+            "arab": "قَدْ قَامَتْ هِنْدٌ",
+            "arti": "Sungguh Hindun telah berdiri",
+            "catatan": "*Mengandung dua jejak tanda keaslian fi'il yaitu didahului huruf 'قَدْ' dan diakhiri ta' ta'nits (تْ)."
+          }
+        }
       },
       "latihan": [
         {
@@ -128,13 +229,32 @@
     },
     {
       "id": 5,
-      "judul": "Isim Mu'rab dan Mabni",
+      "judul": "Isim Mu'rab & Mabni",
       "icon": "🏗️",
       "teks_inti": {
         "arab": "الِاسْمُ إِمَّا مُعْرَبٌ وَإِمَّا مَبْنِيٌّ",
         "latin": "Al-ismu immā mu'rabun wa immā mabniyyun",
-        "terjemahan": "Isim ada yang mu'rab (berubah harakatnya) dan ada yang mabni (tetap harakatnya).",
-        "penjelasan": "Isim mu'rab adalah isim yang harakat akhirnya berubah sesuai posisinya dalam kalimat (rafa', nashab, atau jarr). Sedangkan isim mabni adalah isim yang harakat akhirnya tidak berubah meskipun posisinya berubah. Contoh mabni: dhamir (kata ganti), isim isyarah (kata tunjuk), isim maushul, dan sebagian isim-isim lain."
+        "terjemahan": "Isim secara konstan ada kalanya itu bersifat mu'rab (dapat berubah baris akhirnya) dan ada juga kalanya bersifat mabni (statis tak bisa berubah).",
+        "penjelasan": {
+          "pengantar": "Kata Benda dari sisi daya dinamis dan kepekaannya menerima ragam kedudukan dibagi menjadi elemen berikut:",
+          "poin_poin": [
+            {
+              "icon": "swap_horiz",
+              "judul": "1. Isim Mu'rab (Dinamis)",
+              "teks": "Isim yang bisa fleksibel berubah status harakat belakangnya baik rafa', nashab, atau jar lantaran masuknya sebuah amil pendahulu dalam kalimat."
+            },
+            {
+              "icon": "lock",
+              "judul": "2. Isim Mabni (Statis)",
+              "teks": "Isim yang harakat di penghujung karakternya mutlak tetap, konstan dan tak akan bergeser walaupun ia berdiri memikul ragam posisi subjek/objek yang berlainan."
+            }
+          ],
+          "contoh": {
+            "arab": "جَاءَ هَذَا, رَأَيْتُ هَذَا",
+            "arti": "Orang ini telah datang, Aku melihat orang ini",
+            "catatan": "*Kata 'هَذَا' merupakan Isim Mabni statis yang tidak mengubah rupa akhirnya walaupun menjadi subjek atau objek."
+          }
+        }
       },
       "latihan": [
         {
