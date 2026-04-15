@@ -44,21 +44,99 @@
       "latihan": [
         {
           "id": 1,
+          "tipe": "benar_salah",
           "pertanyaan": "Apakah 'الْكَلَامُ' dalam ilmu nahwu harus tersusun dari dua kata atau lebih?",
           "jawaban": true,
           "penjelasan": "Benar! Kalam harus 'murakkab' yaitu tersusun dari dua kata atau lebih agar bisa memberikan makna yang sempurna."
         },
         {
           "id": 2,
+          "tipe": "benar_salah",
           "pertanyaan": "Apakah satu kata saja sudah cukup untuk disebut kalam dalam ilmu nahwu?",
           "jawaban": false,
           "penjelasan": "Tidak benar. Satu kata saja belum bisa disebut kalam karena tidak memenuhi syarat murakkab (tersusun) dan mufid (memberikan faedah yang sempurna)."
         },
         {
           "id": 3,
+          "tipe": "benar_salah",
           "pertanyaan": "Apakah 'قَامَ زَيْدٌ' (Zaid berdiri) termasuk kalam?",
           "jawaban": true,
           "penjelasan": "Benar! Kalimat 'Qāma Zaidun' memenuhi syarat kalam: tersusun dari dua kata, memberikan makna sempurna, dan diucapkan dengan sengaja."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Berapa syarat yang harus dipenuhi agar sebuah ungkapan disebut 'Kalam'?",
+          "opsi": [
+            "Dua syarat",
+            "Tiga syarat",
+            "Empat syarat",
+            "Lima syarat"
+          ],
+          "jawaban_benar_index": 2,
+          "penjelasan": "Kalam harus memenuhi 4 syarat: Lafzhu (suara), Murakkab (tersusun), Mufid (berfaedah), dan Bil-Wadh'i (disengaja)."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah yang BUKAN termasuk syarat kalam?",
+          "opsi": [
+            "Al-Lafzhu (Lafadz)",
+            "Al-Mujarrad (Abstrak)",
+            "Al-Murakkab (Tersusun)",
+            "Bil-Wadh'i (Disengaja)"
+          ],
+          "jawaban_benar_index": 1,
+          "penjelasan": "Al-Mujarrad bukan syarat kalam. Empat syarat kalam adalah: Al-Lafzhu, Al-Murakkab, Al-Mufid, dan Bil-Wadh'i."
+        },
+        {
+          "id": 6,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah yang termasuk contoh kalam yang benar?",
+          "opsi": [
+            "زَيْدٌ",
+            "قَامَ",
+            "قَامَ زَيْدٌ",
+            "فِي"
+          ],
+          "jawaban_benar_index": 2,
+          "penjelasan": "'قَامَ زَيْدٌ' memenuhi syarat kalam."
+        },
+        {
+          "id": 7,
+          "tipe": "benar_salah",
+          "pertanyaan": "Kalimat yang tidak memberikan makna sempurna tidak disebut kalam.",
+          "jawaban": true,
+          "penjelasan": "Benar! Harus mufid."
+        },
+        {
+          "id": 8,
+          "tipe": "isian",
+          "pertanyaan": "Kalam minimal terdiri dari ___ kata.",
+          "jawaban": "dua"
+        },
+        {
+          "id": 9,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Yang dimaksud 'mufid' adalah...",
+          "opsi": [
+            "Memiliki huruf",
+            "Tersusun",
+            "Memberikan makna sempurna",
+            "Mengandung fi'il"
+          ],
+          "jawaban_benar_index": 2
+        },
+        {
+          "id": 10,
+          "tipe": "cocokkan",
+          "pertanyaan": "Cocokkan istilah",
+          "pasangan": {
+            "Lafzh": "Suara",
+            "Murakkab": "Tersusun",
+            "Mufid": "Makna sempurna",
+            "Bil-wadh'i": "Disengaja"
+          }
         }
       ]
     },
@@ -114,6 +192,52 @@
           "pertanyaan": "Apakah harf memiliki makna yang berdiri sendiri tanpa kata lain?",
           "jawaban": false,
           "penjelasan": "Tidak benar. Harf hanya memiliki makna ketika berhubungan dengan kata lain (isim atau fi'il). Ia tidak memiliki makna yang lengkap bila berdiri sendiri."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Berapa pembagian kalimah?",
+          "opsi": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "jawaban_benar_index": 1
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "'ذَهَبَ' termasuk?",
+          "opsi": [
+            "Isim",
+            "Fi'il",
+            "Harf",
+            "Jumlah"
+          ],
+          "jawaban_benar_index": 1
+        },
+        {
+          "id": 6,
+          "tipe": "benar_salah",
+          "pertanyaan": "Harf bisa berdiri sendiri.",
+          "jawaban": false
+        },
+        {
+          "id": 7,
+          "tipe": "isian",
+          "pertanyaan": "Isim tidak terikat ___",
+          "jawaban": "waktu"
+        },
+        {
+          "id": 8,
+          "tipe": "cocokkan",
+          "pertanyaan": "Cocokkan jenis",
+          "pasangan": {
+            "Isim": "Tidak terikat waktu",
+            "Fi'il": "Terikat waktu",
+            "Harf": "Tidak bermakna sendiri"
+          }
         }
       ]
     },
@@ -169,6 +293,42 @@
           "pertanyaan": "Apakah 'مِنْ' (dari) termasuk salah satu huruf jarr yang bisa masuk pada isim?",
           "jawaban": true,
           "penjelasan": "Benar! 'مِنْ' adalah salah satu huruf jarr yang hanya bisa masuk pada isim, sehingga kehadiran huruf jarr adalah tanda bahwa kata setelahnya adalah isim."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah tanda isim?",
+          "opsi": [
+            "Tanwin",
+            "س",
+            "قَدْ",
+            "سَوْفَ"
+          ],
+          "jawaban_benar_index": 0
+        },
+        {
+          "id": 5,
+          "tipe": "benar_salah",
+          "pertanyaan": "Alif lam adalah tanda isim.",
+          "jawaban": true
+        },
+        {
+          "id": 6,
+          "tipe": "isian",
+          "pertanyaan": "Tanwin berbunyi ___",
+          "jawaban": "nun"
+        },
+        {
+          "id": 7,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah isim?",
+          "opsi": [
+            "يَكْتُبُ",
+            "الْبَيْتُ",
+            "سَيَذْهَبُ",
+            "قَدْ كَتَبَ"
+          ],
+          "jawaban_benar_index": 1
         }
       ]
     },
@@ -224,6 +384,41 @@
           "pertanyaan": "Apakah 'قَامَتْ' menunjukkan bahwa subjeknya adalah perempuan?",
           "jawaban": true,
           "penjelasan": "Benar! Ta' mati (تْ) di akhir fi'il madhi adalah tanda ta'nits (feminim), menunjukkan bahwa pelakunya adalah perempuan."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Huruf 'س' menunjukkan...",
+          "opsi": [
+            "Lampau",
+            "Sekarang",
+            "Akan datang",
+            "Tidak tahu"
+          ],
+          "jawaban_benar_index": 2
+        },
+        {
+          "id": 5,
+          "tipe": "benar_salah",
+          "pertanyaan": "'قَدْ' masuk isim.",
+          "jawaban": false
+        },
+        {
+          "id": 6,
+          "tipe": "isian",
+          "pertanyaan": "Ta' ta'nits untuk ___",
+          "jawaban": "perempuan"
+        },
+        {
+          "id": 7,
+          "tipe": "cocokkan",
+          "pertanyaan": "Cocokkan",
+          "pasangan": {
+            "قَدْ": "Penegas",
+            "س": "Akan",
+            "سَوْفَ": "Akan (lama)",
+            "تْ": "Perempuan"
+          }
         }
       ]
     },
@@ -274,6 +469,42 @@
           "pertanyaan": "Apakah isim mabni harakatnya bisa berubah sesuai kedudukannya?",
           "jawaban": false,
           "penjelasan": "Tidak benar. Isim mabni adalah isim yang harakatnya TETAP (tidak berubah) meskipun kedudukannya dalam kalimat berubah."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Isim mabni adalah...",
+          "opsi": [
+            "Berubah",
+            "Tetap",
+            "Kasrah",
+            "Dhammah"
+          ],
+          "jawaban_benar_index": 1
+        },
+        {
+          "id": 5,
+          "tipe": "benar_salah",
+          "pertanyaan": "Isim mu'rab tetap.",
+          "jawaban": false
+        },
+        {
+          "id": 6,
+          "tipe": "isian",
+          "pertanyaan": "Isim berubah disebut ___",
+          "jawaban": "mu'rab"
+        },
+        {
+          "id": 7,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Contoh mabni?",
+          "opsi": [
+            "زَيْدٌ",
+            "كِتَابٌ",
+            "هَذَا",
+            "مُسْلِمٌ"
+          ],
+          "jawaban_benar_index": 2
         }
       ]
     }

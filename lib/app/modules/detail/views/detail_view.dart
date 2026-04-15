@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
@@ -42,6 +43,8 @@ class DetailView extends GetView<DetailController> {
                       _buildExplanationSection(),
                       const SizedBox(height: 32),
                     ],
+                    _buildFlashcardButton(),
+                    const SizedBox(height: 24),
                     _buildProgressVisualizer(),
                   ]),
                 ),
@@ -116,25 +119,33 @@ class DetailView extends GetView<DetailController> {
               ),
             ],
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(24),
-                onTap: () {},
-                hoverColor: surfaceVariant,
-                highlightColor: primaryContainer,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.bookmark_outline_rounded, color: primary),
+          // Bookmark button — now functional
+          Obx(() => Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(24),
                 ),
-              ),
-            ),
-          ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(24),
+                    onTap: controller.toggleBookmark,
+                    hoverColor: surfaceVariant,
+                    highlightColor: primaryContainer,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        controller.isBookmarked.value
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_outline_rounded,
+                        color: controller.isBookmarked.value
+                            ? secondary
+                            : primary,
+                      ),
+                    ),
+                  ),
+                ),
+              )),
         ],
       ),
     );
@@ -191,7 +202,53 @@ class DetailView extends GetView<DetailController> {
                       ),
                     ),
                   ),
-                  const Icon(Icons.auto_stories_rounded, color: secondary, size: 20),
+                  // TTS Button
+                  Obx(() => Row(
+                        children: [
+                          GestureDetector(
+                            onTap: controller.toggleSpeed,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                controller.speedLabel,
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: onPrimaryContainer,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          GestureDetector(
+                            onTap: () =>
+                                controller.speakArabic(teksInti.arab!),
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: controller.isSpeaking.value
+                                    ? secondary
+                                    : Colors.white.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(
+                                controller.isSpeaking.value
+                                    ? Icons.stop_rounded
+                                    : Icons.volume_up_rounded,
+                                color: controller.isSpeaking.value
+                                    ? onBackground
+                                    : onPrimaryContainer,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
                 ],
               ),
               const SizedBox(height: 32),
@@ -212,7 +269,9 @@ class DetailView extends GetView<DetailController> {
                   width: double.infinity,
                   padding: const EdgeInsets.only(top: 16),
                   decoration: BoxDecoration(
-                    border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.1))),
+                    border: Border(
+                        top: BorderSide(
+                            color: Colors.white.withValues(alpha: 0.1))),
                   ),
                   child: Text(
                     '"${teksInti.latin!}"',
@@ -323,7 +382,6 @@ class DetailView extends GetView<DetailController> {
   }
 
   Widget _buildPoinCard(dynamic poin) {
-    // Determine icon based on string name - fallback to a default if not found mapping
     IconData iconData = Icons.label_important_rounded;
     if (poin.icon == 'record_voice_over') iconData = Icons.record_voice_over_rounded;
     if (poin.icon == 'layers') iconData = Icons.layers_rounded;
@@ -401,17 +459,36 @@ class DetailView extends GetView<DetailController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.lightbulb_rounded, color: secondary, size: 20),
-              const SizedBox(width: 10),
-              Text(
-                'Contoh Kalimat',
-                style: GoogleFonts.manrope(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: primary,
-                ),
+              Row(
+                children: [
+                  const Icon(Icons.lightbulb_rounded, color: secondary, size: 20),
+                  const SizedBox(width: 10),
+                  Text(
+                    'Contoh Kalimat',
+                    style: GoogleFonts.manrope(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: primary,
+                    ),
+                  ),
+                ],
               ),
+              // TTS untuk contoh
+              if (contoh.arab != null)
+                GestureDetector(
+                  onTap: () => controller.speakArabic(contoh.arab!),
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: surfaceContainerLow,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const Icon(Icons.volume_up_rounded,
+                        color: primary, size: 16),
+                  ),
+                ),
             ],
           ),
           const SizedBox(height: 16),
@@ -461,6 +538,59 @@ class DetailView extends GetView<DetailController> {
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  /// Tombol untuk masuk ke mode Flashcard
+  Widget _buildFlashcardButton() {
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.FLASHCARD, arguments: controller.bab),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: secondaryContainer.withValues(alpha: 0.3),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: secondaryContainer, width: 1),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: secondary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Text('🃏', style: TextStyle(fontSize: 24)),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Mode Flashcard',
+                    style: GoogleFonts.manrope(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: primary,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Hafal istilah-istilah penting dengan kartu bolak-balik',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      color: onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: secondary),
+          ],
+        ),
       ),
     );
   }
@@ -530,7 +660,7 @@ class DetailView extends GetView<DetailController> {
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: bgBackground.withValues(alpha: 0.8),
-          border: Border(
+          border: const Border(
             top: BorderSide(color: Colors.transparent),
           ),
         ),

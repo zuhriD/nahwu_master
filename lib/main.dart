@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'app/data/local/storage_service.dart';
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Inisialisasi Hive storage
+  final storageService = StorageService();
+  await storageService.init();
+  Get.put(storageService, permanent: true);
+
+  // Update daily streak
+  storageService.updateDailyStreak();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

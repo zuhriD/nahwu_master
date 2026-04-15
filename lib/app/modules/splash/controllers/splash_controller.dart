@@ -16,6 +16,6 @@ class SplashController extends GetxController {
     print("🔥 PINDAH KE HOME");
 
     // Gunakan named route agar konsisten dengan konfigurasi getPages
-    Get.offAllNamed(Routes.HOME);
+    Get.offAllNamed(Routes.MAIN_WRAPPER);
   }
 }

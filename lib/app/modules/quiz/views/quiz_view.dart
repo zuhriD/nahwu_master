@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../controllers/quiz_controller.dart';
 
 class QuizView extends GetView<QuizController> {
   const QuizView({super.key});
 
+  static const Color bgBackground = Color(0xFFFBF9F5);
+  static const Color onBackground = Color(0xFF1B1C1A);
+  static const Color primary = Color(0xFF003526);
+  static const Color primaryContainer = Color(0xFF054D3A);
+  static const Color onPrimaryContainer = Color(0xFF7FBDA5);
+  static const Color secondary = Color(0xFF725C00);
+  static const Color secondaryContainer = Color(0xFFFDD755);
+  static const Color surfaceVariant = Color(0xFFE4E2DE);
+  static const Color onSurfaceVariant = Color(0xFF3F4945);
+  static const Color surfaceContainerLow = Color(0xFFF5F3EF);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF0F4FF),
+      backgroundColor: bgBackground,
       body: SafeArea(
         child: Obx(() {
           if (controller.isFinished.value) return _buildResultScreen();
@@ -27,323 +40,126 @@ class QuizView extends GetView<QuizController> {
     return Column(
       children: [
         _buildHeader(),
-        const SizedBox(height: 12),
         _buildProgressSection(),
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+            padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
             child: Column(
               children: [
                 _buildQuestionCard(),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 Obx(() => controller.showFeedback.value
                     ? _buildFeedbackCard()
-                    : const SizedBox.shrink()),
-                const SizedBox(height: 16),
-                Obx(() => controller.showFeedback.value
-                    ? _buildNextButton()
-                    : _buildAnswerButtons()),
+                    : _buildAnswerArea()),
               ],
             ),
           ),
         ),
+        _buildFooterInfo(),
       ],
     );
   }
 
-  // ─── HEADER ──────────────────────────────────────────────────
-
   Widget _buildHeader() {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () => Get.back(),
-            child: Container(
-              padding: const EdgeInsets.all(8),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () => Get.back(),
+                child: const Icon(Icons.arrow_back_rounded, color: primary),
+              ),
+              const SizedBox(width: 16),
+              Text(
+                'Latihan: Bab ${controller.bab.id}',
+                style: GoogleFonts.manrope(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: primary,
+                ),
+              ),
+            ],
+          ),
+          Obx(() {
+            final current = controller.currentQuestionIndex.value + 1;
+            final total = controller.totalQuestions;
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: const Color(0xFFF0F4FF),
-                borderRadius: BorderRadius.circular(10),
+                color: secondaryContainer,
+                borderRadius: BorderRadius.circular(20),
               ),
-              child: const Icon(Icons.arrow_back_ios_new,
-                  size: 16, color: Color(0xFF1A237E)),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  controller.bab.judul ?? 'Latihan',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF1A237E),
+              child: Row(
+                children: [
+                  const Icon(Icons.star_rounded, color: secondary, size: 16),
+                  const SizedBox(width: 6),
+                  Text(
+                    '$current/$total',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: secondary,
+                    ),
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Text(
-                  'Latihan Soal',
-                  style: TextStyle(fontSize: 11, color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-          // Score badge
-          Obx(() => Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF1A237E), Color(0xFF3949AB)],
+                ],
               ),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF1A237E).withValues(alpha: 0.3),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('⭐', style: TextStyle(fontSize: 13)),
-                const SizedBox(width: 5),
-                Text(
-                  '${controller.score.value}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ],
-            ),
-          )),
+            );
+          }),
         ],
       ),
     );
   }
 
-  // ─── PROGRESS SECTION ────────────────────────────────────────
-
   Widget _buildProgressSection() {
     return Obx(() {
-      final current = controller.currentQuestionIndex.value + 1;
+      final current = controller.currentQuestionIndex.value;
       final total = controller.totalQuestions;
-      final progress = current / total;
+      final progress = total > 0 ? current / total : 0.0;
 
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Pertanyaan $current dari $total',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A237E),
-                  ),
-                ),
-                Text(
-                  '${(progress * 100).toInt()}%',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.grey.shade500,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: LinearProgressIndicator(
-                value: progress,
-                minHeight: 6,
-                backgroundColor: Colors.grey.shade200,
-                valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF3949AB)),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Container(
+          height: 8,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: surfaceVariant,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: FractionallySizedBox(
+            alignment: Alignment.centerLeft,
+            widthFactor: progress,
+            child: Container(
+              decoration: BoxDecoration(
+                color: secondary,
+                borderRadius: BorderRadius.circular(4),
               ),
             ),
-          ],
+          ),
         ),
       );
     });
   }
-
-  // ─── QUESTION CARD ───────────────────────────────────────────
 
   Widget _buildQuestionCard() {
     return Obx(() {
       final question = controller.currentQuestion;
       if (question == null) return const SizedBox.shrink();
 
+      final Map<String, dynamic> typeInfo = _getTypeInfo(question.tipe);
+
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF1A237E).withValues(alpha: 0.08),
-              blurRadius: 20,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            // Icon soal
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF1A237E), Color(0xFF3949AB)],
-                ),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Center(
-                child: Text('❓', style: TextStyle(fontSize: 24)),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Label pertanyaan
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                color: const Color(0xFF1A237E).withValues(alpha: 0.07),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Text(
-                'P E R T A N Y A A N',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Color(0xFF1A237E),
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1.5,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              question.pertanyaan ?? '',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF1A237E),
-                height: 1.65,
-              ),
-            ),
-            const SizedBox(height: 8),
-            // Hint
-            Text(
-              'Pilih jawaban yang tepat ↓',
-              style: TextStyle(
-                fontSize: 11,
-                color: Colors.grey.shade400,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ],
-        ),
-      );
-    });
-  }
-
-  // ─── ANSWER BUTTONS ──────────────────────────────────────────
-
-  Widget _buildAnswerButtons() {
-    return Row(
-      children: [
-        Expanded(child: _buildAnswerButton(isBenar: true)),
-        const SizedBox(width: 12),
-        Expanded(child: _buildAnswerButton(isBenar: false)),
-      ],
-    );
-  }
-
-  Widget _buildAnswerButton({required bool isBenar}) {
-    final color = isBenar ? const Color(0xFF1B5E20) : const Color(0xFFB71C1C);
-    final icon = isBenar ? '✅' : '❌';
-    final label = isBenar ? 'BENAR' : 'SALAH';
-    final lightColor = isBenar ? const Color(0xFFE8F5E9) : const Color(0xFFFFEBEE);
-
-    return GestureDetector(
-      onTap: () => controller.answerQuestion(isBenar),
-      child: Container(
-        height: 72,
-        decoration: BoxDecoration(
-          color: lightColor,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: color.withValues(alpha: 0.3), width: 1.5),
-          boxShadow: [
-            BoxShadow(
-              color: color.withValues(alpha: 0.15),
+              color: onBackground.withValues(alpha: 0.02),
               blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(icon, style: const TextStyle(fontSize: 26)),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                color: color,
-                fontSize: 13,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // ─── FEEDBACK CARD ───────────────────────────────────────────
-
-  Widget _buildFeedbackCard() {
-    return Obx(() {
-      final isCorrect = controller.answerStatus.value == AnswerStatus.correct;
-      final color = isCorrect ? const Color(0xFF1B5E20) : const Color(0xFFC62828);
-      final bgColor = isCorrect ? const Color(0xFFE8F5E9) : const Color(0xFFFFEBEE);
-      final emoji = isCorrect ? '🎉' : '💭';
-      final title = isCorrect ? 'Jawaban Benar!' : 'Jawaban Kurang Tepat';
-
-      return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: color.withValues(alpha: 0.25)),
-          boxShadow: [
-            BoxShadow(
-              color: color.withValues(alpha: 0.08),
-              blurRadius: 12,
               offset: const Offset(0, 4),
             ),
           ],
@@ -351,34 +167,581 @@ class QuizView extends GetView<QuizController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              decoration: BoxDecoration(
+                color: typeInfo['color'] as Color,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(typeInfo['icon'] as IconData, color: Colors.white, size: 12),
+                  const SizedBox(width: 6),
+                  Text(
+                    typeInfo['label'] as String,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              question.pertanyaan ?? '',
+              style: GoogleFonts.manrope(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                height: 1.4,
+                color: primary,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  Map<String, dynamic> _getTypeInfo(String tipe) {
+    switch (tipe) {
+      case 'pilihan_ganda':
+        return {'label': 'PILIHAN GANDA', 'color': secondary, 'icon': Icons.list_rounded};
+      case 'benar_salah':
+        return {'label': 'BENAR / SALAH', 'color': primaryContainer, 'icon': Icons.check_circle_outline_rounded};
+      case 'isian':
+        return {'label': 'ISIAN', 'color': const Color(0xFF1565C0), 'icon': Icons.edit_rounded};
+      case 'cocokkan':
+        return {'label': 'COCOKKAN', 'color': const Color(0xFF6A1B9A), 'icon': Icons.compare_arrows_rounded};
+      default:
+        return {'label': tipe.toUpperCase(), 'color': onSurfaceVariant, 'icon': Icons.help_outline_rounded};
+    }
+  }
+
+  /// Menentukan area jawaban berdasarkan tipe soal
+  Widget _buildAnswerArea() {
+    return Obx(() {
+      final question = controller.currentQuestion;
+      if (question == null) return const SizedBox.shrink();
+
+      switch (question.tipe) {
+        case 'pilihan_ganda':
+          return _buildMultipleChoiceOptions();
+        case 'benar_salah':
+          return _buildAnswerButtons();
+        case 'isian':
+          return _buildIsianInput();
+        case 'cocokkan':
+          return _buildCocokkanArea();
+        default:
+          return const SizedBox.shrink();
+      }
+    });
+  }
+
+  // ── Jawaban Isian ──
+
+  Widget _buildIsianInput() {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: surfaceContainerLow,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Tulis jawaban Anda:',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: controller.isianController,
+                textCapitalization: TextCapitalization.none,
+                style: GoogleFonts.manrope(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: primary,
+                ),
+                decoration: InputDecoration(
+                  hintText: 'Ketik jawaban...',
+                  hintStyle: GoogleFonts.plusJakartaSans(
+                    fontSize: 16,
+                    color: onSurfaceVariant.withValues(alpha: 0.4),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(color: surfaceVariant),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(color: surfaceVariant),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: const BorderSide(color: primary, width: 2),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          height: 56,
+          child: ElevatedButton(
+            onPressed: () => controller.submitIsian(),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF1565C0),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(emoji, style: const TextStyle(fontSize: 22)),
+                const Icon(Icons.check_rounded, size: 20),
                 const SizedBox(width: 8),
                 Text(
-                  title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    color: color,
-                    fontSize: 16,
+                  'Periksa Jawaban',
+                  style: GoogleFonts.manrope(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // ── Jawaban Cocokkan ──
+
+  Widget _buildCocokkanArea() {
+    return Obx(() {
+      final question = controller.currentQuestion;
+      if (question?.pasangan == null) return const SizedBox.shrink();
+
+      final leftItems = question!.pasangan!.keys.toList();
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Instruksi
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF6A1B9A).withValues(alpha: 0.06),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: const Color(0xFF6A1B9A).withValues(alpha: 0.15)),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.touch_app_rounded, color: Color(0xFF6A1B9A), size: 20),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    'Tap istilah kiri, lalu tap jawaban kanan yang sesuai',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      color: const Color(0xFF6A1B9A),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Kolom kiri dan kanan
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Kolom KIRI — istilah
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        'ISTILAH',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: onSurfaceVariant,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ),
+                    ...leftItems.map((item) => _buildLeftMatchItem(item)),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              // Kolom KANAN — definisi
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        'DEFINISI',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: onSurfaceVariant,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ),
+                    ...controller.shuffledRightItems.map((item) => _buildRightMatchItem(item)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    });
+  }
+
+  Widget _buildLeftMatchItem(String item) {
+    return Obx(() {
+      final isSelected = controller.selectedLeftItem.value == item;
+      final isMatched = controller.matchedPairs.containsKey(item);
+      final matchedWith = controller.matchedPairs[item];
+
+      return GestureDetector(
+        onTap: () {
+          if (isMatched) {
+            controller.unmatchPair(item);
+          } else {
+            controller.selectLeftItem(item);
+          }
+        },
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: isMatched
+                ? const Color(0xFF6A1B9A).withValues(alpha: 0.1)
+                : isSelected
+                    ? primaryContainer
+                    : Colors.white,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: isMatched
+                  ? const Color(0xFF6A1B9A)
+                  : isSelected
+                      ? primaryContainer
+                      : surfaceVariant,
+              width: isSelected || isMatched ? 2 : 1,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                item,
+                style: GoogleFonts.manrope(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: isSelected ? Colors.white : primary,
+                ),
+              ),
+              if (isMatched) ...[
+                const SizedBox(height: 4),
+                Text(
+                  '→ $matchedWith',
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 10,
+                    color: const Color(0xFF6A1B9A),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    });
+  }
+
+  Widget _buildRightMatchItem(String item) {
+    return Obx(() {
+      final isAvailable = controller.availableRightItems.contains(item);
+      final isMatched = !isAvailable;
+
+      return GestureDetector(
+        onTap: isAvailable ? () => controller.selectRightItem(item) : null,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: isMatched ? 0.35 : 1.0,
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: isMatched ? surfaceContainerLow : Colors.white,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: isMatched ? surfaceVariant : const Color(0xFF6A1B9A).withValues(alpha: 0.3),
+                width: 1,
+              ),
+            ),
+            child: Text(
+              item,
+              style: GoogleFonts.plusJakartaSans(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: isMatched ? onSurfaceVariant : primary,
+                decoration: isMatched ? TextDecoration.lineThrough : null,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  // ── Jawaban Benar/Salah ──
+
+  Widget _buildAnswerButtons() {
+    return Row(
+      children: [
+        Expanded(child: _buildAnswerButton(isBenar: true)),
+        const SizedBox(width: 16),
+        Expanded(child: _buildAnswerButton(isBenar: false)),
+      ],
+    );
+  }
+
+  Widget _buildAnswerButton({required bool isBenar}) {
+    final label = isBenar ? 'Benar' : 'Salah';
+    final iconData = isBenar ? Icons.check_rounded : Icons.close_rounded;
+    final iconBgColor = isBenar ? primaryContainer : surfaceVariant;
+    final iconColor = isBenar ? Colors.white : onSurfaceVariant;
+
+    return GestureDetector(
+      onTap: () => controller.answerQuestion(isBenar),
+      child: Container(
+        height: 140,
+        decoration: BoxDecoration(
+          color: surfaceContainerLow,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             Container(
-              width: double.infinity,
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: iconBgColor,
+              ),
+              child: Icon(iconData, color: iconColor, size: 28),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              label,
+              style: GoogleFonts.manrope(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: primary,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ── Jawaban Pilihan Ganda ──
+
+  Widget _buildMultipleChoiceOptions() {
+    return Obx(() {
+      final question = controller.currentQuestion;
+      if (question == null || question.opsi == null) {
+        return const SizedBox.shrink();
+      }
+
+      return Column(
+        children: List.generate(question.opsi!.length, (index) {
+          final label = String.fromCharCode(65 + index); // A, B, C, D
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: GestureDetector(
+              onTap: () => controller.answerMultipleChoice(index),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: surfaceContainerLow,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: surfaceVariant,
+                    width: 1,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: primaryContainer.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
+                        child: Text(
+                          label,
+                          style: GoogleFonts.manrope(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: primaryContainer,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        question.opsi![index],
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: onBackground,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }),
+      );
+    });
+  }
+
+  Widget _buildFeedbackCard() {
+    return Obx(() {
+      final isCorrect = controller.answerStatus.value == AnswerStatus.correct;
+      final bgColor =
+          isCorrect ? const Color(0xFFE2E9E6) : const Color(0xFFFCE8E8);
+      final title = isCorrect ? 'Tepat sekali!' : 'Kurang Tepat';
+      final iconBg =
+          isCorrect ? primaryContainer : const Color(0xFFB3261E);
+      final iconData =
+          isCorrect ? Icons.emoji_events_rounded : Icons.info_rounded;
+
+      // Untuk pilihan ganda, tampilkan jawaban benar
+      final question = controller.currentQuestion;
+      String? correctAnswerText;
+      if (!isCorrect &&
+          question != null &&
+          question.tipe == 'pilihan_ganda' &&
+          question.opsi != null &&
+          question.jawabanBenarIndex != null) {
+        correctAnswerText =
+            'Jawaban benar: ${String.fromCharCode(65 + question.jawabanBenarIndex!)}. ${question.opsi![question.jawabanBenarIndex!]}';
+      }
+
+      return Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.6),
+                color: iconBg,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Text(
-                controller.feedbackMessage.value,
-                style: TextStyle(
-                  color: color.withValues(alpha: 0.85),
-                  fontSize: 13,
-                  height: 1.6,
+              child: Icon(iconData, color: Colors.white, size: 24),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              title,
+              style: GoogleFonts.manrope(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: primary,
+              ),
+            ),
+            if (correctAnswerText != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                correctAnswerText,
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFFB3261E),
+                ),
+              ),
+            ],
+            const SizedBox(height: 8),
+            Text(
+              controller.feedbackMessage.value,
+              style: GoogleFonts.plusJakartaSans(
+                fontSize: 14,
+                height: 1.6,
+                color: onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              child: ElevatedButton(
+                onPressed: controller.nextQuestion,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primary,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16, horizontal: 24),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  elevation: 0,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Lanjut',
+                      style: GoogleFonts.manrope(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    const Icon(Icons.arrow_forward_rounded, size: 18),
+                  ],
                 ),
               ),
             ),
@@ -388,55 +751,69 @@ class QuizView extends GetView<QuizController> {
     });
   }
 
-  // ─── NEXT BUTTON ─────────────────────────────────────────────
-
-  Widget _buildNextButton() {
-    return Obx(() {
-      final isLast = controller.currentQuestionIndex.value == controller.totalQuestions - 1;
-      return Container(
-        width: double.infinity,
-        height: 54,
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF1A237E), Color(0xFF3949AB)],
-          ),
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF1A237E).withValues(alpha: 0.4),
-              blurRadius: 14,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(18),
-            onTap: controller.nextQuestion,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  isLast ? Icons.flag_rounded : Icons.arrow_forward_rounded,
-                  color: Colors.white,
-                  size: 22,
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  isLast ? 'Lihat Hasil' : 'Soal Selanjutnya',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+  Widget _buildFooterInfo() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const CircleAvatar(
+                radius: 18,
+                backgroundColor: primaryContainer,
+                child: Icon(Icons.person, color: Colors.white, size: 20),
+              ),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'LEVEL PELAJAR',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: secondary,
+                      letterSpacing: 0.5,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                  Text(
+                    'Al-Mubtadi',
+                    style: GoogleFonts.manrope(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: primary,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ),
-      );
-    });
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'BAB TERAKHIR',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: secondary,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              Text(
+                controller.bab.judul ?? 'Materi',
+                style: GoogleFonts.manrope(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: primary,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   // ══════════════════════════════════════════════════════════════
@@ -446,18 +823,26 @@ class QuizView extends GetView<QuizController> {
   Widget _buildResultScreen() {
     return Column(
       children: [
-        _buildResultHeader(),
+        _buildHeader(),
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(24),
             child: Column(
               children: [
                 _buildScoreCard(),
-                const SizedBox(height: 16),
-                _buildResultStats(),
+                const SizedBox(height: 24),
+                _buildXpEarned(),
                 const SizedBox(height: 16),
                 _buildResultMessage(),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
+                // Achievement unlocked
+                Obx(() {
+                  if (controller.newAchievements.isEmpty) {
+                    return const SizedBox.shrink();
+                  }
+                  return _buildNewAchievements();
+                }),
+                const SizedBox(height: 32),
                 _buildResultActions(),
               ],
             ),
@@ -467,134 +852,60 @@ class QuizView extends GetView<QuizController> {
     );
   }
 
-  Widget _buildResultHeader() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(20, 24, 20, 24),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF0D1B6E), Color(0xFF1A237E), Color(0xFF3949AB)],
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () => Get.back(),
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 16),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            controller.bab.judul ?? '',
-            style: const TextStyle(color: Colors.white60, fontSize: 13),
-          ),
-          const SizedBox(height: 4),
-          const Text(
-            '🏆 Hasil Latihan',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildScoreCard() {
     return Obx(() {
       final score = controller.score.value;
       final total = controller.totalQuestions;
-      final pct = ((score / total) * 100).toInt();
-      final color = controller.resultColor;
 
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(28),
+        padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(28),
+          color: primaryContainer,
+          borderRadius: BorderRadius.circular(32),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.15),
+              color: primaryContainer.withValues(alpha: 0.3),
               blurRadius: 24,
-              offset: const Offset(0, 8),
+              offset: const Offset(0, 12),
             ),
           ],
         ),
         child: Column(
           children: [
-            // Circular score
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: 140,
-                  height: 140,
-                  child: CircularProgressIndicator(
-                    value: score / total,
-                    strokeWidth: 10,
-                    backgroundColor: color.withValues(alpha: 0.12),
-                    valueColor: AlwaysStoppedAnimation<Color>(color),
-                    strokeCap: StrokeCap.round,
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '$score',
-                      style: TextStyle(
-                        fontSize: 44,
-                        fontWeight: FontWeight.w900,
-                        color: color,
-                        height: 1,
-                      ),
-                    ),
-                    Text(
-                      '/ $total',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: color.withValues(alpha: 0.6),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
             Text(
-              controller.resultLabel,
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w800,
-                color: color,
+              'SKOR AKHIR',
+              style: GoogleFonts.plusJakartaSans(
+                color: onPrimaryContainer,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 16),
+            Text(
+              '$score/$total',
+              style: GoogleFonts.manrope(
+                fontSize: 64,
+                fontWeight: FontWeight.w800,
+                color: Colors.white,
+                height: 1,
+              ),
+            ),
+            const SizedBox(height: 16),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
+                color: secondary,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                '$pct% Jawaban Benar',
-                style: TextStyle(
+                controller.resultLabel,
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 14,
-                  color: color,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -604,74 +915,25 @@ class QuizView extends GetView<QuizController> {
     });
   }
 
-  Widget _buildResultStats() {
-    return Obx(() => Row(
-      children: [
-        Expanded(
-          child: _buildStatCard(
-            label: 'Benar',
-            value: '${controller.score.value}',
-            emoji: '✅',
-            color: const Color(0xFF1B5E20),
-            bgColor: const Color(0xFFE8F5E9),
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _buildStatCard(
-            label: 'Salah',
-            value: '${controller.totalQuestions - controller.score.value}',
-            emoji: '❌',
-            color: const Color(0xFFB71C1C),
-            bgColor: const Color(0xFFFFEBEE),
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _buildStatCard(
-            label: 'Total',
-            value: '${controller.totalQuestions}',
-            emoji: '📝',
-            color: const Color(0xFF1A237E),
-            bgColor: const Color(0xFFF0F4FF),
-          ),
-        ),
-      ],
-    ));
-  }
-
-  Widget _buildStatCard({
-    required String label,
-    required String value,
-    required String emoji,
-    required Color color,
-    required Color bgColor,
-  }) {
+  Widget _buildXpEarned() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: color.withValues(alpha: 0.15)),
+        color: secondaryContainer.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 24)),
-          const SizedBox(height: 6),
+          const Text('⚡', style: TextStyle(fontSize: 20)),
+          const SizedBox(width: 8),
           Text(
-            value,
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w900,
-              color: color,
-            ),
-          ),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              color: color.withValues(alpha: 0.7),
-              fontWeight: FontWeight.w600,
+            '+${controller.earnedXp} XP didapatkan!',
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: secondary,
             ),
           ),
         ],
@@ -679,50 +941,101 @@ class QuizView extends GetView<QuizController> {
     );
   }
 
+  Widget _buildNewAchievements() {
+    return Column(
+      children: controller.newAchievements.map((achievement) {
+        return Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: secondaryContainer,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: secondaryContainer.withValues(alpha: 0.4),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Text(
+                achievement['icon'] as String? ?? '🏆',
+                style: const TextStyle(fontSize: 32),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '🎉 Achievement Baru!',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: secondary,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    Text(
+                      achievement['name'] as String? ?? '',
+                      style: GoogleFonts.manrope(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: onBackground,
+                      ),
+                    ),
+                    Text(
+                      achievement['desc'] as String? ?? '',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 12,
+                        color: onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
+
   Widget _buildResultMessage() {
     return Obx(() {
       final pct = (controller.score.value / controller.totalQuestions) * 100;
-      String msg;
-      String emoji;
+      String msg = '';
       if (pct == 100) {
-        emoji = '🌟';
-        msg = 'Sempurna! Kamu telah menguasai materi ini dengan sangat baik. Teruskan semangat belajarmu!';
+        msg =
+            'Sempurna! Kamu telah menguasai materi ini dengan sangat baik. Teruskan semangat belajarmu!';
       } else if (pct >= 66) {
-        emoji = '💪';
-        msg = 'Bagus! Kamu sudah memahami sebagian besar materi. Ulangi lagi untuk hasil yang lebih sempurna.';
+        msg =
+            'Bagus! Kamu sudah memahami sebagian besar materi. Ulangi lagi untuk hasil yang lebih sempurna.';
       } else if (pct >= 33) {
-        emoji = '📚';
-        msg = 'Terus berlatih! Baca kembali penjelasan materi dan coba lagi untuk meningkatkan skor.';
+        msg =
+            'Terus berlatih! Baca kembali penjelasan materi dan coba lagi untuk meningkatkan skor.';
       } else {
-        emoji = '🔄';
-        msg = 'Jangan menyerah! Pelajari kembali teks inti dan penjelasannya, lalu coba ulangi latihan ini.';
+        msg =
+            'Jangan menyerah! Pelajari kembali teks inti dan penjelasannya, lalu coba ulangi latihan ini.';
       }
 
       return Container(
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFFFFF8E1), Color(0xFFFFFDE7)],
-          ),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFFFCC02).withValues(alpha: 0.4)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: 28)),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                msg,
-                style: const TextStyle(
-                  fontSize: 13,
-                  height: 1.6,
-                  color: Color(0xFF5D4037),
-                ),
-              ),
-            ),
-          ],
+        child: Text(
+          msg,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.plusJakartaSans(
+            fontSize: 15,
+            height: 1.6,
+            color: onSurfaceVariant,
+          ),
         ),
       );
     });
@@ -731,62 +1044,90 @@ class QuizView extends GetView<QuizController> {
   Widget _buildResultActions() {
     return Column(
       children: [
-        // Ulangi
-        Container(
+        SizedBox(
           width: double.infinity,
-          height: 54,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF1A237E), Color(0xFF3949AB)],
+          height: 56,
+          child: ElevatedButton(
+            onPressed: controller.restartQuiz,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primary,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 0,
             ),
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF1A237E).withValues(alpha: 0.4),
-                blurRadius: 14,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(18),
-              onTap: controller.restartQuiz,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.replay_rounded, color: Colors.white, size: 22),
-                  SizedBox(width: 10),
-                  Text(
-                    'Ulangi Latihan',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.replay_rounded, size: 20),
+                const SizedBox(width: 12),
+                Text(
+                  'Ulangi Latihan',
+                  style: GoogleFonts.manrope(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
         const SizedBox(height: 12),
-        // Kembali
         SizedBox(
           width: double.infinity,
-          height: 54,
-          child: OutlinedButton.icon(
-            onPressed: () => Get.back(),
-            icon: const Icon(Icons.arrow_back_rounded),
-            label: const Text(
-              'Kembali ke Materi',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-            ),
+          height: 56,
+          child: OutlinedButton(
+            onPressed: () {
+              final score = controller.score.value;
+              final total = controller.totalQuestions;
+              final bab = controller.bab.judul ?? '';
+              Share.share(
+                '🌟 Saya mendapat skor $score/$total di Bab "$bab" pada aplikasi Nahwu Master! Ayo belajar ilmu Nahwu bersama! 📚',
+              );
+            },
             style: OutlinedButton.styleFrom(
-              foregroundColor: const Color(0xFF1A237E),
-              side: const BorderSide(color: Color(0xFF1A237E), width: 1.5),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+              foregroundColor: secondary,
+              side: const BorderSide(color: secondaryContainer, width: 2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.share_rounded, size: 20),
+                const SizedBox(width: 12),
+                Text(
+                  'Bagikan Skor',
+                  style: GoogleFonts.manrope(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        SizedBox(
+          width: double.infinity,
+          height: 56,
+          child: OutlinedButton(
+            onPressed: () => Get.back(),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: primary,
+              side: const BorderSide(color: surfaceVariant, width: 2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            child: Text(
+              'Kembali ke Materi',
+              style: GoogleFonts.manrope(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
