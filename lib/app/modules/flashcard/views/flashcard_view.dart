@@ -63,7 +63,9 @@ class FlashcardView extends GetView<FlashcardController> {
                     ),
                   ),
                   Text(
-                    'Bab ${controller.bab.id}: ${controller.bab.judul ?? ""}',
+                    controller.isBab
+                        ? 'Bab ${controller.data.id}: ${controller.data.judul ?? ""}'
+                        : 'Sub Bab ${controller.data.id}: ${controller.data.judul ?? ""}',
                     style: GoogleFonts.manrope(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

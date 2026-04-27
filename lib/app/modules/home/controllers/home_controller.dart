@@ -80,7 +80,7 @@ class HomeController extends GetxController {
     // ignore: unused_local_variable
     final _ = _refreshTrigger.value; // Subscribe ke Obx
     if (bab.id == null) return true;
-    return _storage.isBabUnlocked(bab.id!, bab.latihan?.length ?? 0);
+    return _storage.isBabUnlocked(bab.id!, bab.totalLatihan);
   }
 
   /// Cek apakah bab sudah dibaca
@@ -109,7 +109,7 @@ class HomeController extends GetxController {
     int total = 0;
     for (final bab in babList) {
       if (isBabUnlocked(bab)) {
-        total += bab.latihan?.length ?? 0;
+        total += bab.totalLatihan;
       }
     }
     return total;

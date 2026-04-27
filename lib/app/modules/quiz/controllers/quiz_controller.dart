@@ -4,12 +4,17 @@ import 'package:get/get.dart';
 import '../../../data/local/storage_service.dart';
 import '../../../data/models/bab_model.dart';
 import '../../../data/models/latihan_model.dart';
+import '../../../data/models/sub_bab_model.dart';
 import '../../home/controllers/home_controller.dart';
 
 enum AnswerStatus { none, correct, incorrect }
 
 class QuizController extends GetxController {
-  late final Bab bab;
+  // Bisa terima Bab atau SubBab
+  dynamic data;
+  bool get isBab => data is Bab;
+  bool get isSubBab => data is SubBab;
+
   final StorageService _storage = Get.find<StorageService>();
 
   final RxInt currentQuestionIndex = 0.obs;
@@ -35,7 +40,20 @@ class QuizController extends GetxController {
   // Achievement popup
   final RxList<Map<String, dynamic>> newAchievements = <Map<String, dynamic>>[].obs;
 
-  List<Latihan> get questions => bab.latihan ?? [];
+  List<Latihan> get questions {
+    if (isBab) {
+      final bab = data as Bab;
+      final result = <Latihan>[];
+      for (final sub in bab.subBab ?? []) {
+        result.addAll(sub.latihan ?? []);
+      }
+      return result;
+    } else if (isSubBab) {
+      return (data as SubBab).latihan ?? [];
+    }
+    return [];
+  }
+
   Latihan? get currentQuestion =>
       questions.isNotEmpty ? questions[currentQuestionIndex.value] : null;
   int get totalQuestions => questions.length;
@@ -43,7 +61,7 @@ class QuizController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    bab = Get.arguments as Bab;
+    data = Get.arguments;
     _prepareCurrentQuestion();
   }
 
@@ -230,12 +248,21 @@ class QuizController extends GetxController {
   void _finishQuiz() {
     isFinished.value = true;
 
-    // Simpan hasil ke storage
-    if (bab.id != null) {
+    // Simpan hasil ke storage berdasarkan tipe data
+    final int? dataId;
+    if (isBab) {
+      dataId = (data as Bab).id;
+    } else if (isSubBab) {
+      dataId = (data as SubBab).id;
+    } else {
+      dataId = null;
+    }
+
+    if (dataId != null) {
       // Snapshot achievements sebelum save
       final beforeUnlocked = _storage.getUnlockedAchievements().toSet();
 
-      _storage.saveQuizResult(bab.id!, score.value, totalQuestions);
+      _storage.saveQuizResult(dataId, score.value, totalQuestions);
 
       // Cek achievement baru
       final afterUnlocked = _storage.getUnlockedAchievements().toSet();

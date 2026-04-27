@@ -14,6 +14,10 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/flashcard/bindings/flashcard_binding.dart';
 import '../modules/flashcard/views/flashcard_view.dart';
+import '../modules/sub_bab/bindings/sub_bab_binding.dart';
+import '../modules/sub_bab/views/sub_bab_view.dart';
+import '../modules/lagu_matan/bindings/lagu_matan_binding.dart';
+import '../modules/lagu_matan/views/lagu_matan_view.dart';
 
 part 'app_routes.dart';
 
@@ -37,6 +41,16 @@ class AppPages {
       name: _Paths.DETAIL,
       page: () => const DetailView(),
       binding: DetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUB_BAB,
+      page: () => const SubBabView(),
+      binding: SubBabBinding(),
+    ),
+    GetPage(
+      name: _Paths.LAGU_MATAN,
+      page: () => const LaguMatanView(),
+      binding: LaguMatanBinding(),
     ),
     GetPage(
       name: _Paths.QUIZ,

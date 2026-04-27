@@ -68,7 +68,7 @@ class SplashView extends GetView<SplashController> {
 
                   // Title
                   Text(
-                    'Nahwu Master',
+                    'Nahwu Tutor',
                     style: GoogleFonts.manrope(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,

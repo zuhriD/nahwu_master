@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../data/models/bab_model.dart';
+import '../../../data/models/sub_bab_model.dart';
 import '../../../routes/app_pages.dart';
-import '../controllers/detail_controller.dart';
 
-class DetailView extends GetView<DetailController> {
+class DetailView extends StatefulWidget {
   const DetailView({super.key});
 
   static const Color bgBackground = Color(0xFFFBF9F5);
@@ -18,274 +20,168 @@ class DetailView extends GetView<DetailController> {
   static const Color surfaceVariant = Color(0xFFE4E2DE);
   static const Color onSurfaceVariant = Color(0xFF3F4945);
   static const Color surfaceContainerLow = Color(0xFFF5F3EF);
+  static const Color surfaceContainerHigh = Color(0xFFEAE8E4);
+
+  @override
+  State<DetailView> createState() => _DetailViewState();
+}
+
+class _DetailViewState extends State<DetailView> {
+  late final Bab bab;
+  WebViewController? _webViewController;
+  bool _isVideoLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    bab = Get.arguments as Bab;
+    if (bab.hasYoutube) {
+      _initWebView();
+    }
+  }
+
+  void _initWebView() {
+    final embedHtml = '''
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; overflow: hidden; }
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/${bab.youtubeId}?playsinline=1&rel=0&modestbranding=1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</body>
+</html>
+''';
+
+    _webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0xFF000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageFinished: (_) {
+            if (mounted) setState(() => _isVideoLoading = false);
+          },
+          onWebResourceError: (error) {
+            if (mounted) setState(() => _isVideoLoading = false);
+            debugPrint('WebView error: ${error.description}');
+          },
+        ),
+      )
+      ..loadHtmlString(embedHtml);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final bab = controller.bab;
     return Scaffold(
-      backgroundColor: bgBackground,
+      backgroundColor: DetailView.bgBackground,
       body: Stack(
         children: [
           CustomScrollView(
             slivers: [
-              _buildSliverAppBar(),
+              _buildSliverAppBar(bab),
               SliverPadding(
                 padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 120),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    _buildMatanCard(),
-                    const SizedBox(height: 24),
-                    if (bab.teksInti?.terjemahan != null) ...[
-                      _buildTranslationSection(),
-                      const SizedBox(height: 32),
+                    _buildBabHeader(bab),
+                    if (bab.hasYoutube) ...[
+                      const SizedBox(height: 24),
+                      _buildYoutubeSection(),
                     ],
-                    if (bab.teksInti?.penjelasan != null) ...[
-                      _buildExplanationSection(),
-                      const SizedBox(height: 32),
-                    ],
-                    _buildFlashcardButton(),
-                    const SizedBox(height: 24),
-                    _buildProgressVisualizer(),
+                    const SizedBox(height: 32),
+                    _buildSubBabList(bab),
                   ]),
                 ),
               ),
             ],
           ),
-          _buildBottomActionBar(),
         ],
       ),
     );
   }
 
-  Widget _buildSliverAppBar() {
+  Widget _buildSliverAppBar(Bab bab) {
     return SliverAppBar(
       pinned: true,
       elevation: 0,
       scrolledUnderElevation: 8,
-      shadowColor: onBackground.withValues(alpha: 0.1),
+      shadowColor: DetailView.onBackground.withValues(alpha: 0.1),
       surfaceTintColor: Colors.transparent,
-      backgroundColor: bgBackground.withValues(alpha: 0.8),
+      backgroundColor: DetailView.bgBackground.withValues(alpha: 0.8),
       toolbarHeight: 72,
       automaticallyImplyLeading: false,
       titleSpacing: 24,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(24),
-                    onTap: () => Get.back(),
-                    hoverColor: surfaceVariant,
-                    highlightColor: primaryContainer,
-                    child: const Padding(
-                      padding: EdgeInsets.only(top: 8, bottom: 8, right: 16),
-                      child: Icon(Icons.arrow_back_rounded, color: primary),
-                    ),
-                  ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(24),
+                onTap: () => Get.back(),
+                hoverColor: DetailView.surfaceVariant,
+                highlightColor: DetailView.primaryContainer,
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 8, bottom: 8, right: 16),
+                  child: Icon(Icons.arrow_back_rounded, color: DetailView.primary),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'BAB ${controller.bab.id ?? ""}',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2.0,
-                      color: secondary,
-                    ),
-                  ),
-                  Text(
-                    controller.bab.judul ?? 'Detail Materi',
-                    style: GoogleFonts.manrope(
-                      fontWeight: FontWeight.bold,
-                      color: primary,
-                      fontSize: 18,
-                      height: 1.2,
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          // Bookmark button — now functional
-          Obx(() => Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(24),
-                    onTap: controller.toggleBookmark,
-                    hoverColor: surfaceVariant,
-                    highlightColor: primaryContainer,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        controller.isBookmarked.value
-                            ? Icons.bookmark_rounded
-                            : Icons.bookmark_outline_rounded,
-                        color: controller.isBookmarked.value
-                            ? secondary
-                            : primary,
-                      ),
-                    ),
-                  ),
-                ),
-              )),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMatanCard() {
-    final teksInti = controller.bab.teksInti;
-    if (teksInti == null || teksInti.arab == null) return const SizedBox.shrink();
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        color: primaryContainer,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: primaryContainer.withValues(alpha: 0.3),
-            blurRadius: 24,
-            offset: const Offset(0, 12),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            right: -20,
-            top: -40,
-            child: Icon(
-              Icons.format_quote_rounded,
-              size: 140,
-              color: Colors.white.withValues(alpha: 0.05),
             ),
           ),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: secondary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      'MATAN AL-JURUMIYAH',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: onBackground,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: -0.5,
-                      ),
-                    ),
-                  ),
-                  // TTS Button
-                  Obx(() => Row(
-                        children: [
-                          GestureDetector(
-                            onTap: controller.toggleSpeed,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                controller.speedLabel,
-                                style: GoogleFonts.plusJakartaSans(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: onPrimaryContainer,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          GestureDetector(
-                            onTap: () =>
-                                controller.speakArabic(teksInti.arab!),
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: controller.isSpeaking.value
-                                    ? secondary
-                                    : Colors.white.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Icon(
-                                controller.isSpeaking.value
-                                    ? Icons.stop_rounded
-                                    : Icons.volume_up_rounded,
-                                color: controller.isSpeaking.value
-                                    ? onBackground
-                                    : onPrimaryContainer,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 32),
               Text(
-                teksInti.arab ?? "",
-                textAlign: TextAlign.center,
-                textDirection: TextDirection.rtl,
-                style: GoogleFonts.amiri(
-                  color: Colors.white,
-                  fontSize: 36,
-                  height: 2.2,
-                  fontWeight: FontWeight.w500,
+                'BAB ${bab.id ?? ""}',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.0,
+                  color: DetailView.secondary,
                 ),
               ),
-              if (teksInti.latin != null) ...[
-                const SizedBox(height: 24),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(top: 16),
-                  decoration: BoxDecoration(
-                    border: Border(
-                        top: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.1))),
-                  ),
-                  child: Text(
-                    '"${teksInti.latin!}"',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.plusJakartaSans(
-                      color: onPrimaryContainer,
-                      fontSize: 14,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w300,
-                      height: 1.6,
-                    ),
-                  ),
+              Text(
+                bab.judul ?? 'Detail Bab',
+                style: GoogleFonts.manrope(
+                  fontWeight: FontWeight.bold,
+                  color: DetailView.primary,
+                  fontSize: 18,
+                  height: 1.2,
+                  letterSpacing: -0.5,
                 ),
-              ],
+              ),
             ],
           ),
         ],
@@ -293,50 +189,191 @@ class DetailView extends GetView<DetailController> {
     );
   }
 
-  Widget _buildTranslationSection() {
-    final teksInti = controller.bab.teksInti;
+  Widget _buildBabHeader(Bab bab) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: secondaryContainer.withValues(alpha: 0.3),
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(16),
-          bottomRight: Radius.circular(16),
-        ),
-        border: const Border(
-          left: BorderSide(color: secondary, width: 4),
-        ),
+        color: DetailView.primaryContainer,
+        borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              Text(
+                bab.icon ?? '📘',
+                style: const TextStyle(fontSize: 32),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  bab.judul ?? 'Bab ${bab.id}',
+                  style: GoogleFonts.manrope(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
           Text(
-            'TERJEMAHAN',
+            '${bab.subBab?.length ?? 0} Sub Bab • ${bab.totalLatihan} Soal Latihan',
             style: GoogleFonts.plusJakartaSans(
-              color: secondary,
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.0,
+              color: DetailView.onPrimaryContainer,
+              fontSize: 14,
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            '"${teksInti!.terjemahan!}"',
-            style: GoogleFonts.plusJakartaSans(
-              color: onBackground,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              height: 1.6,
-            ),
+          const SizedBox(height: 16),
+          LinearProgressIndicator(
+            value: 0,
+            backgroundColor: DetailView.primary.withValues(alpha: 0.3),
+            valueColor: AlwaysStoppedAnimation<Color>(DetailView.secondaryContainer),
+            borderRadius: BorderRadius.circular(10),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildExplanationSection() {
-    final penjelasan = controller.bab.teksInti!.penjelasan!;
+  /// YouTube video embed section
+  Widget _buildYoutubeSection() {
+    if (_webViewController == null) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Section header
+        Row(
+          children: [
+            Container(width: 32, height: 2, color: DetailView.secondary),
+            const SizedBox(width: 12),
+            Text(
+              'Video Penjelasan',
+              style: GoogleFonts.manrope(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: DetailView.primary,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const Spacer(),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFF0000).withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.play_arrow_rounded,
+                      color: Color(0xFFFF0000), size: 14),
+                  const SizedBox(width: 2),
+                  Text(
+                    'YouTube',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFFFF0000),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        // YouTube player
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: (MediaQuery.of(context).size.width - 48) * 9 / 16,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: DetailView.onBackground.withValues(alpha: 0.15),
+                      blurRadius: 24,
+                      offset: const Offset(0, 12),
+                    ),
+                  ],
+                ),
+                child: WebViewWidget(controller: _webViewController!),
+              ),
+              // Loading overlay
+              if (_isVideoLoading)
+                Container(
+                  width: double.infinity,
+                  height: (MediaQuery.of(context).size.width - 48) * 9 / 16,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.7),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 3,
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Memuat video...',
+                          style: GoogleFonts.plusJakartaSans(
+                            color: Colors.white70,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        // Video caption
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: DetailView.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.info_outline_rounded,
+                  color: DetailView.onSurfaceVariant, size: 18),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  'Tonton video penjelasan materi bab ini untuk pemahaman lebih mudah',
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 12,
+                    color: DetailView.onSurfaceVariant,
+                    height: 1.4,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSubBabList(Bab bab) {
+    final subBabList = bab.subBab ?? [];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -345,351 +382,190 @@ class DetailView extends GetView<DetailController> {
             Container(
               width: 32,
               height: 2,
-              color: secondary,
+              color: DetailView.secondary,
             ),
             const SizedBox(width: 12),
             Text(
-              'Syarah (Penjelasan)',
+              'Daftar Sub Bab',
               style: GoogleFonts.manrope(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: primary,
+                color: DetailView.primary,
                 letterSpacing: -0.5,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 24),
-        if (penjelasan.pengantar != null) ...[
-          Text(
-            penjelasan.pengantar!,
-            style: GoogleFonts.plusJakartaSans(
-              color: onSurfaceVariant,
-              fontSize: 15,
-              height: 1.8,
-            ),
-          ),
-          const SizedBox(height: 24),
-        ],
-        if (penjelasan.poinPoin != null)
-          ...penjelasan.poinPoin!.map((poin) => _buildPoinCard(poin)),
-        if (penjelasan.contoh != null) ...[
-          const SizedBox(height: 12),
-          _buildContohCard(penjelasan.contoh!),
-        ],
+        const SizedBox(height: 16),
+        ...subBabList.asMap().entries.map((entry) {
+          final subBab = entry.value;
+          final isLast = entry.key == subBabList.length - 1;
+          return _SubBabItem(
+            subBab: subBab,
+            babIndex: bab.id ?? (entry.key + 1),
+            isLast: isLast,
+          );
+        }),
       ],
     );
   }
+}
 
-  Widget _buildPoinCard(dynamic poin) {
-    IconData iconData = Icons.label_important_rounded;
-    if (poin.icon == 'record_voice_over') iconData = Icons.record_voice_over_rounded;
-    if (poin.icon == 'layers') iconData = Icons.layers_rounded;
-    if (poin.icon == 'check_circle') iconData = Icons.check_circle_rounded;
-    if (poin.icon == 'edit_note') iconData = Icons.edit_note_rounded;
-    if (poin.icon == 'pentagon') iconData = Icons.pentagon_rounded;
-    if (poin.icon == 'bolt') iconData = Icons.bolt_rounded;
-    if (poin.icon == 'link') iconData = Icons.link_rounded;
-    if (poin.icon == 'keyboard_arrow_down') iconData = Icons.keyboard_arrow_down_rounded;
-    if (poin.icon == 'done_all') iconData = Icons.done_all_rounded;
-    if (poin.icon == 'text_format') iconData = Icons.text_format_rounded;
-    if (poin.icon == 'verified') iconData = Icons.verified_rounded;
-    if (poin.icon == 'fast_forward') iconData = Icons.fast_forward_rounded;
-    if (poin.icon == 'woman_2') iconData = Icons.woman_2_rounded;
-    if (poin.icon == 'swap_horiz') iconData = Icons.swap_horiz_rounded;
-    if (poin.icon == 'lock') iconData = Icons.lock_rounded;
+class _SubBabItem extends StatelessWidget {
+  const _SubBabItem({
+    required this.subBab,
+    required this.babIndex,
+    required this.isLast,
+  });
 
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: surfaceContainerLow,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(iconData, color: primaryContainer, size: 20),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  poin.judul ?? '',
-                  style: GoogleFonts.manrope(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: primary,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            poin.teks ?? '',
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 14,
-              height: 1.6,
-              color: onSurfaceVariant,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  final SubBab subBab;
+  final int babIndex;
+  final bool isLast;
 
-  Widget _buildContohCard(dynamic contoh) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: onBackground.withValues(alpha: 0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Icon(Icons.lightbulb_rounded, color: secondary, size: 20),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Contoh Kalimat',
-                    style: GoogleFonts.manrope(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: primary,
-                    ),
-                  ),
-                ],
-              ),
-              // TTS untuk contoh
-              if (contoh.arab != null)
-                GestureDetector(
-                  onTap: () => controller.speakArabic(contoh.arab!),
-                  child: Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: surfaceContainerLow,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.volume_up_rounded,
-                        color: primary, size: 16),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            decoration: BoxDecoration(
-              color: surfaceVariant.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Text(
-                    contoh.arti ?? '',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 14,
-                      color: onSurfaceVariant,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Text(
-                  contoh.arab ?? '',
-                  textDirection: TextDirection.rtl,
-                  style: GoogleFonts.amiri(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: primary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (contoh.catatan != null) ...[
-            const SizedBox(height: 16),
-            Text(
-              contoh.catatan!,
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 12,
-                fontStyle: FontStyle.italic,
-                color: onSurfaceVariant.withValues(alpha: 0.8),
-                height: 1.5,
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  /// Tombol untuk masuk ke mode Flashcard
-  Widget _buildFlashcardButton() {
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.FLASHCARD, arguments: controller.bab),
+      onTap: () => Get.toNamed(Routes.SUB_BAB, arguments: subBab),
       child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: secondaryContainer.withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: secondaryContainer, width: 1),
-        ),
+        margin: const EdgeInsets.only(bottom: 12),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: secondary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Text('🃏', style: TextStyle(fontSize: 24)),
+            // Number circle
+            Column(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: DetailView.primaryContainer,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text(
+                      subBab.icon ?? '📖',
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                if (!isLast)
+                  Container(
+                    width: 2,
+                    height: 40,
+                    color: DetailView.surfaceContainerHigh,
+                  ),
+              ],
             ),
             const SizedBox(width: 16),
+            // Content
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Mode Flashcard',
-                    style: GoogleFonts.manrope(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: primary,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: DetailView.surfaceContainerLow,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            subBab.judul ?? 'Sub Bab ${subBab.id}',
+                            style: GoogleFonts.manrope(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: DetailView.primary,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: DetailView.secondaryContainer.withValues(alpha: 0.5),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            '${subBab.latihan?.length ?? 0} Soal',
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: DetailView.secondary,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Hafal istilah-istilah penting dengan kartu bolak-balik',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 12,
-                      color: onSurfaceVariant,
+                    if (subBab.teksInti?.arab != null) ...[
+                      const SizedBox(height: 12),
+                      Text(
+                        subBab.teksInti!.arab!,
+                        textDirection: TextDirection.rtl,
+                        style: GoogleFonts.amiri(
+                          color: DetailView.primary.withValues(alpha: 0.8),
+                          fontSize: 22,
+                          height: 1.6,
+                        ),
+                      ),
+                    ],
+                    if (subBab.teksInti?.terjemahan != null) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        subBab.teksInti!.terjemahan!,
+                        style: GoogleFonts.plusJakartaSans(
+                          color: DetailView.onSurfaceVariant,
+                          fontSize: 13,
+                          height: 1.4,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: DetailView.primaryContainer.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Baca Materi',
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: DetailView.primaryContainer,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Icon(
+                                Icons.arrow_forward_rounded,
+                                color: DetailView.primaryContainer,
+                                size: 16,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: secondary),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProgressVisualizer() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 24),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'PROGRESS MATERI',
-                style: GoogleFonts.plusJakartaSans(
-                  color: primary,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0,
-                ),
-              ),
-              Text(
-                '15% Selesai',
-                style: GoogleFonts.plusJakartaSans(
-                  color: secondary,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Container(
-            width: double.infinity,
-            height: 12,
-            decoration: BoxDecoration(
-              color: primaryContainer.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 15,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: secondary,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                const Expanded(flex: 85, child: SizedBox()),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomActionBar() {
-    final latsLength = controller.bab.latihan?.length ?? 0;
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: Container(
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          color: bgBackground.withValues(alpha: 0.8),
-          border: const Border(
-            top: BorderSide(color: Colors.transparent),
-          ),
-        ),
-        child: ElevatedButton(
-          onPressed: controller.mulaiLatihan,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: primary,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            elevation: 8,
-            shadowColor: primary.withValues(alpha: 0.3),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Mulai Latihan ($latsLength Soal)',
-                style: GoogleFonts.manrope(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 12),
-              const Icon(Icons.arrow_forward_rounded, size: 24),
-            ],
-          ),
         ),
       ),
     );

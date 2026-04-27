@@ -1,5 +1,5 @@
 name: jurumiyah_app
-description: "Nahwu Master - Belajar Ilmu Nahwu Arabic Grammar"
+description: "Nahwu Tutor - Belajar Ilmu Nahwu Arabic Grammar"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -18,6 +18,8 @@ dependencies:
   flutter_tts: ^4.2.0
   share_plus: ^10.1.4
   path_provider: ^2.1.5
+  audioplayers: ^6.1.0
+  webview_flutter: ^4.10.0
 
 dev_dependencies:
   flutter_test:
@@ -28,7 +30,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/icon/nahwu_tutor_logo.jpg"
   min_sdk_android: 21
   web:
     generate: false
@@ -43,3 +45,4 @@ flutter:
   assets:
     - assets/data/
     - assets/icon/
+    - assets/audio/

@@ -1,15 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 
 import '../../../data/local/storage_service.dart';
-import '../../../data/models/bab_model.dart';
+import '../../../data/models/sub_bab_model.dart';
 import '../../../routes/app_pages.dart';
-import '../../home/controllers/home_controller.dart';
 
-class DetailController extends GetxController {
-  late final Bab bab;
+class SubBabController extends GetxController {
+  late final SubBab subBab;
   final StorageService _storage = Get.find<StorageService>();
   final FlutterTts _tts = FlutterTts();
 
@@ -25,13 +23,11 @@ class DetailController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    bab = Get.arguments as Bab;
+    subBab = Get.arguments as SubBab;
 
-    // Mark bab as read
-    if (bab.id != null) {
-      _storage.markBabAsRead(bab.id!);
-      _storage.checkReadAchievements(5);
-      isBookmarked.value = _storage.isBookmarked(bab.id!);
+    // Mark sub bab as read
+    if (subBab.id != null) {
+      isBookmarked.value = _storage.isBookmarked(subBab.id!);
     }
 
     _initTts();
@@ -39,16 +35,9 @@ class DetailController extends GetxController {
 
   @override
   void onClose() {
-    // PENTING: jangan await, pakai catchError supaya tidak freeze
     if (_ttsReady) {
       _tts.stop().catchError((_) {});
     }
-
-    // Refresh HomeController agar unlock status ter-update
-    try {
-      Get.find<HomeController>().refreshStats();
-    } catch (_) {}
-
     super.onClose();
   }
 
@@ -111,15 +100,15 @@ class DetailController extends GetxController {
 
   /// Toggle bookmark
   void toggleBookmark() {
-    if (bab.id == null) return;
-    final result = _storage.toggleBookmark(bab.id!);
+    if (subBab.id == null) return;
+    final result = _storage.toggleBookmark(subBab.id!);
     isBookmarked.value = result;
 
     Get.snackbar(
       result ? 'Ditandai 📌' : 'Tandai Dihapus',
       result
-          ? 'Bab ${bab.judul} ditambahkan ke bookmark'
-          : 'Bab ${bab.judul} dihapus dari bookmark',
+          ? 'Sub bab ${subBab.judul} ditambahkan ke bookmark'
+          : 'Sub bab ${subBab.judul} dihapus dari bookmark',
       snackPosition: SnackPosition.TOP,
       backgroundColor:
           result ? const Color(0xFF054D3A) : const Color(0xFFE4E2DE),
@@ -131,10 +120,10 @@ class DetailController extends GetxController {
   }
 
   void mulaiLatihan() {
-    if (bab.latihan == null || bab.latihan!.isEmpty) {
+    if (subBab.latihan == null || subBab.latihan!.isEmpty) {
       Get.snackbar(
         'Informasi',
-        'Belum ada soal latihan untuk bab ini.',
+        'Belum ada soal latihan untuk sub bab ini.',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color(0xFF054D3A),
         colorText: Colors.white,
@@ -143,6 +132,6 @@ class DetailController extends GetxController {
       );
       return;
     }
-    Get.toNamed(Routes.QUIZ, arguments: bab);
+    Get.toNamed(Routes.QUIZ, arguments: subBab);
   }
 }

@@ -37,7 +37,7 @@ class LatihanView extends StatelessWidget {
                 }
 
                 final unlockedBabs = homeCtrl.babList
-                    .where((b) => homeCtrl.isBabUnlocked(b) && (b.latihan?.isNotEmpty ?? false))
+                    .where((b) => homeCtrl.isBabUnlocked(b) && (b.totalLatihan > 0))
                     .toList();
 
                 if (unlockedBabs.isEmpty) {
@@ -136,17 +136,21 @@ class LatihanView extends StatelessWidget {
   }
 
   Widget _buildCampuranCard(HomeController homeCtrl, List<Bab> unlockedBabs) {
-    // Kumpulkan semua latihan
-    final allLatihan = unlockedBabs.expand<Latihan>((b) => b.latihan ?? []).toList();
+    // Kumpulkan semua latihan dari sub_bab
+    final allLatihan = <Latihan>[];
+    for (final bab in unlockedBabs) {
+      for (final sub in bab.subBab ?? []) {
+        allLatihan.addAll(sub.latihan ?? []);
+      }
+    }
     // Acak soal
     allLatihan.shuffle();
     final mixedLatihan = allLatihan.take(10).toList(); // Ambil 10 soal acak
-    
+
     // Buat objek Bab dummy untuk mode campuran
     final dummyBab = Bab(
       id: null, // id null -> tidak akan menyimpan progress ke specific bab, tapi tetap masuk XP jika ditambahkan
       judul: 'Latihan Campuran (Mix)',
-      latihan: mixedLatihan,
     );
 
     return Container(
@@ -241,7 +245,7 @@ class LatihanView extends StatelessWidget {
     final storage = Get.find<StorageService>();
     final bestScore = storage.getBestScore(bab.id!);
     final isDone = storage.isQuizDone(bab.id!);
-    final total = bab.latihan?.length ?? 0;
+    final total = bab.totalLatihan;
 
     return GestureDetector(
       onTap: () {

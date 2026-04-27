@@ -158,7 +158,7 @@ class KurikulumView extends StatelessWidget {
             isQuizDone: isQuizDone,
             isBookmarked: isBookmarked,
             bestScore: bestScore,
-            totalQuestions: bab.latihan?.length ?? 0,
+            totalQuestions: bab.totalLatihan,
           );
         },
       );
@@ -202,7 +202,7 @@ class KurikulumView extends StatelessWidget {
             isQuizDone: isQuizDone,
             isBookmarked: true,
             bestScore: bestScore,
-            totalQuestions: bab.latihan?.length ?? 0,
+            totalQuestions: bab.totalLatihan,
           );
         },
       );

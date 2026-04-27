@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../data/models/bab_model.dart';
+import '../../../data/models/sub_bab_model.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -92,7 +93,7 @@ class HomeView extends GetView<HomeController> {
               ),
               const SizedBox(width: 16),
               Text(
-                'Nahwu Master',
+                'Nahwu Tutor',
                 style: GoogleFonts.manrope(
                   fontWeight: FontWeight.bold,
                   color: primary,
@@ -133,7 +134,7 @@ class HomeView extends GetView<HomeController> {
                   shape: BoxShape.circle,
                   border: Border.all(color: secondaryContainer, width: 2),
                   image: const DecorationImage(
-                    image: AssetImage('assets/icon/icon.png'),
+                    image: AssetImage('assets/icon/nahwu_tutor_logo.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -487,6 +488,8 @@ class _BabListItem extends StatelessWidget {
   final bool isQuizDone;
   final int bestScore;
 
+  int get totalLatihan => bab.totalLatihan;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -538,7 +541,7 @@ class _BabListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Bab ${bab.id ?? (index + 1)}: ${bab.judul ?? ""}',
+                        bab.judul ?? "Bab ${index + 1}",
                         style: GoogleFonts.plusJakartaSans(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -559,7 +562,7 @@ class _BabListItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '${bab.latihan?.length ?? 0} Soal Latihan',
+                            '$totalLatihan Soal Latihan',
                             style: GoogleFonts.plusJakartaSans(
                               color: HomeView.onSurfaceVariant,
                               fontSize: 12,
@@ -570,7 +573,7 @@ class _BabListItem extends StatelessWidget {
                       if (isUnlocked && isQuizDone) ...[
                         const SizedBox(height: 4),
                         Text(
-                          'Skor terbaik: $bestScore/${bab.latihan?.length ?? 0}',
+                          'Skor terbaik: $bestScore/$totalLatihan',
                           style: GoogleFonts.plusJakartaSans(
                             color: HomeView.secondary,
                             fontSize: 11,
@@ -583,76 +586,10 @@ class _BabListItem extends StatelessWidget {
                 ),
               ],
             ),
-            if (isUnlocked && bab.teksInti?.arab != null) ...[
+            // Tampilkan preview sub-bab
+            if (isUnlocked && bab.subBab != null && bab.subBab!.isNotEmpty) ...[
               const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Text(
-                      bab.teksInti!.arab!,
-                      textDirection: TextDirection.rtl,
-                      style: GoogleFonts.amiri(
-                        color: HomeView.primary.withValues(alpha: 0.8),
-                        fontSize: 26,
-                        height: 1.8,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  if (isRead && !isQuizDone) ...[
-                    SizedBox(
-                      width: 48,
-                      height: 48,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          CircularProgressIndicator(
-                            value: bestScore > 0
-                                ? bestScore / (bab.latihan?.length ?? 1)
-                                : 0.25,
-                            strokeWidth: 3,
-                            color: HomeView.secondary,
-                            backgroundColor: HomeView.surfaceContainerHigh,
-                          ),
-                          const Icon(
-                            Icons.play_circle_filled_rounded,
-                            color: HomeView.secondary,
-                            size: 32,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ] else if (!isRead) ...[
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: const BoxDecoration(
-                        color: HomeView.surfaceContainerHigh,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.chevron_right_rounded,
-                        color: HomeView.primary,
-                      ),
-                    ),
-                  ] else ...[
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: const BoxDecoration(
-                        color: HomeView.primaryContainer,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.check_rounded,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
+              _buildSubBabPreview(),
             ] else if (!isUnlocked) ...[
               const SizedBox(height: 8),
               Row(
@@ -669,6 +606,90 @@ class _BabListItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildSubBabPreview() {
+    final subBabList = bab.subBab ?? [];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Preview teks Arab dari sub-bab pertama
+        if (subBabList.first.teksInti?.arab != null) ...[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Text(
+                  subBabList.first.teksInti!.arab!,
+                  textDirection: TextDirection.rtl,
+                  style: GoogleFonts.amiri(
+                    color: HomeView.primary.withValues(alpha: 0.8),
+                    fontSize: 26,
+                    height: 1.8,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              if (isRead && !isQuizDone) ...[
+                SizedBox(
+                  width: 48,
+                  height: 48,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        value: bestScore > 0 ? bestScore / (totalLatihan > 0 ? totalLatihan : 1) : 0.25,
+                        strokeWidth: 3,
+                        color: HomeView.secondary,
+                        backgroundColor: HomeView.surfaceContainerHigh,
+                      ),
+                      const Icon(
+                        Icons.play_circle_filled_rounded,
+                        color: HomeView.secondary,
+                        size: 32,
+                      ),
+                    ],
+                  ),
+                ),
+              ] else if (!isRead) ...[
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: const BoxDecoration(
+                    color: HomeView.surfaceContainerHigh,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.chevron_right_rounded,
+                    color: HomeView.primary,
+                  ),
+                ),
+              ] else ...[
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: const BoxDecoration(
+                    color: HomeView.primaryContainer,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check_rounded,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ],
+        const SizedBox(height: 16),
+        // Daftar sub-bab
+        ...subBabList.asMap().entries.map((entry) {
+          final subBab = entry.value;
+          return _SubBabChip(subBab: subBab, index: entry.key);
+        }),
+      ],
     );
   }
 
@@ -723,5 +744,54 @@ class _BabListItem extends StatelessWidget {
       default:
         return 'LANJUTAN';
     }
+  }
+}
+
+class _SubBabChip extends StatelessWidget {
+  const _SubBabChip({
+    required this.subBab,
+    required this.index,
+  });
+
+  final SubBab subBab;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.SUB_BAB, arguments: subBab),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: HomeView.surfaceContainerHigh,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Text(
+              subBab.icon ?? '📖',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                subBab.judul ?? "Sub Bab ${index + 1}",
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: HomeView.primary,
+                ),
+              ),
+            ),
+            const Icon(
+              Icons.chevron_right_rounded,
+              color: HomeView.onSurfaceVariant,
+              size: 20,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

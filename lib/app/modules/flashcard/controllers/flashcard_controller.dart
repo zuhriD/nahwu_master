@@ -1,10 +1,9 @@
-
 import 'package:get/get.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../../data/local/storage_service.dart';
 import '../../../data/models/bab_model.dart';
-
-import 'package:flutter_tts/flutter_tts.dart';
+import '../../../data/models/sub_bab_model.dart';
 
 /// Data flashcard yang diambil dari materi bab
 class FlashcardData {
@@ -22,7 +21,11 @@ class FlashcardData {
 }
 
 class FlashcardController extends GetxController {
-  late final Bab bab;
+  // Bisa terima Bab atau SubBab
+  dynamic data;
+  bool get isBab => data is Bab;
+  bool get isSubBab => data is SubBab;
+
   final StorageService _storage = Get.find<StorageService>();
   final FlutterTts _tts = FlutterTts();
 
@@ -34,10 +37,12 @@ class FlashcardController extends GetxController {
 
   int get totalCards => cards.length;
 
+  int? get dataId => isBab ? (data as Bab).id : (data as SubBab).id;
+
   @override
   void onInit() {
     super.onInit();
-    bab = Get.arguments as Bab;
+    data = Get.arguments;
     _generateCards();
     _updateMasteredCount();
     _initTts();
@@ -65,51 +70,61 @@ class FlashcardController extends GetxController {
     }
   }
 
-  /// Generate flashcards dari data bab
+  /// Generate flashcards dari data bab atau subBab
   void _generateCards() {
-    final teksInti = bab.teksInti;
-    if (teksInti == null) return;
+    List<SubBab> subBabList = [];
 
-    // Card 1: Matan utama
-    if (teksInti.arab != null) {
-      cards.add(FlashcardData(
-        front: teksInti.arab!,
-        back: teksInti.terjemahan ?? '',
-        latin: teksInti.latin,
-        type: 'matan',
-      ));
+    if (isBab) {
+      subBabList = (data as Bab).subBab ?? [];
+    } else if (isSubBab) {
+      subBabList = [data as SubBab];
     }
 
-    // Cards dari poin-poin penjelasan
-    final penjelasan = teksInti.penjelasan;
-    if (penjelasan?.poinPoin != null) {
-      for (final poin in penjelasan!.poinPoin!) {
-        if (poin.judul != null && poin.teks != null) {
-          cards.add(FlashcardData(
-            front: poin.judul!,
-            back: poin.teks!,
-            type: 'poin',
-          ));
+    for (final subBab in subBabList) {
+      final teksInti = subBab.teksInti;
+      if (teksInti == null) continue;
+
+      // Card 1: Matan utama
+      if (teksInti.arab != null) {
+        cards.add(FlashcardData(
+          front: teksInti.arab!,
+          back: teksInti.terjemahan ?? '',
+          latin: teksInti.latin,
+          type: 'matan',
+        ));
+      }
+
+      // Cards dari poin-poin penjelasan
+      final penjelasan = teksInti.penjelasan;
+      if (penjelasan?.poinPoin != null) {
+        for (final poin in penjelasan!.poinPoin!) {
+          if (poin.judul != null && poin.teks != null) {
+            cards.add(FlashcardData(
+              front: poin.judul!,
+              back: poin.teks!,
+              type: 'poin',
+            ));
+          }
         }
       }
-    }
 
-    // Card dari contoh
-    if (penjelasan?.contoh != null) {
-      final contoh = penjelasan!.contoh!;
-      if (contoh.arab != null) {
-        cards.add(FlashcardData(
-          front: contoh.arab!,
-          back: '${contoh.arti ?? ''}\n\n${contoh.catatan ?? ''}',
-          type: 'contoh',
-        ));
+      // Card dari contoh
+      if (penjelasan?.contoh != null) {
+        final contoh = penjelasan!.contoh!;
+        if (contoh.arab != null) {
+          cards.add(FlashcardData(
+            front: contoh.arab!,
+            back: '${contoh.arti ?? ''}\n\n${contoh.catatan ?? ''}',
+            type: 'contoh',
+          ));
+        }
       }
     }
   }
 
   void _updateMasteredCount() {
-    if (bab.id == null) return;
-    masteredCount.value = _storage.getMasteredFlashcardCount(bab.id!, totalCards);
+    if (dataId == null) return;
+    masteredCount.value = _storage.getMasteredFlashcardCount(dataId!, totalCards);
   }
 
   /// Flip kartu
@@ -135,8 +150,8 @@ class FlashcardController extends GetxController {
 
   /// Tandai sudah hafal (swipe kanan)
   void markAsMastered() {
-    if (bab.id == null) return;
-    _storage.setFlashcardStatus(bab.id!, currentIndex.value, true);
+    if (dataId == null) return;
+    _storage.setFlashcardStatus(dataId!, currentIndex.value, true);
     _storage.incrementFlashcardReviewed();
     _storage.addXp(3, 'Flashcard mastered');
     _updateMasteredCount();
@@ -145,8 +160,8 @@ class FlashcardController extends GetxController {
 
   /// Tandai belum hafal (swipe kiri)
   void markAsNotMastered() {
-    if (bab.id == null) return;
-    _storage.setFlashcardStatus(bab.id!, currentIndex.value, false);
+    if (dataId == null) return;
+    _storage.setFlashcardStatus(dataId!, currentIndex.value, false);
     _storage.incrementFlashcardReviewed();
     _updateMasteredCount();
     nextCard();
@@ -154,8 +169,8 @@ class FlashcardController extends GetxController {
 
   /// Cek apakah kartu saat ini sudah dikuasai
   bool get isCurrentMastered {
-    if (bab.id == null) return false;
-    return _storage.isFlashcardMastered(bab.id!, currentIndex.value);
+    if (dataId == null) return false;
+    return _storage.isFlashcardMastered(dataId!, currentIndex.value);
   }
 
   /// Baca teks Arab
@@ -176,9 +191,9 @@ class FlashcardController extends GetxController {
 
   /// Reset semua kartu
   void resetAll() {
-    if (bab.id == null) return;
+    if (dataId == null) return;
     for (int i = 0; i < totalCards; i++) {
-      _storage.setFlashcardStatus(bab.id!, i, false);
+      _storage.setFlashcardStatus(dataId!, i, false);
     }
     currentIndex.value = 0;
     isFlipped.value = false;

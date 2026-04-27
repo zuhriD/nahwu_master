@@ -96,7 +96,7 @@ class ProfileView extends GetView<ProfileController> {
               ),
               const SizedBox(width: 16),
               Text(
-                'Nahwu Master',
+                'Nahwu Tutor',
                 style: GoogleFonts.manrope(
                   fontWeight: FontWeight.bold,
                   color: primary,
@@ -113,7 +113,7 @@ class ProfileView extends GetView<ProfileController> {
               shape: BoxShape.circle,
               border: Border.all(color: secondaryContainer, width: 2),
               image: const DecorationImage(
-                image: AssetImage('assets/icon/icon.png'),
+                image: AssetImage('assets/icon/nahwu_tutor_logo.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -162,7 +162,7 @@ class ProfileView extends GetView<ProfileController> {
                               color: surfaceContainerHighest,
                               image: const DecorationImage(
                                 image:
-                                    AssetImage('assets/icon/icon.png'),
+                                    AssetImage('assets/icon/nahwu_tutor_logo.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
