@@ -134,7 +134,7 @@ class HomeView extends GetView<HomeController> {
                   shape: BoxShape.circle,
                   border: Border.all(color: secondaryContainer, width: 2),
                   image: const DecorationImage(
-                    image: AssetImage('assets/icon/nahwu_tutor_logo.jpg'),
+                    image: AssetImage('assets/icon/logo_new.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),

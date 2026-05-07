@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../widgets/diagram_widget.dart';
+import '../../../widgets/konsep_card_widget.dart';
+import '../../../widgets/tabel_widget.dart';
 import '../controllers/sub_bab_controller.dart';
 
 class SubBabView extends GetView<SubBabController> {
@@ -43,6 +46,31 @@ class SubBabView extends GetView<SubBabController> {
                       _buildExplanationSection(),
                       const SizedBox(height: 32),
                     ],
+                    // === ADVANCED UI: Diagram ===
+                    if (subBab.hasDiagram) ...[
+                      _buildSectionHeader('Diagram'),
+                      const SizedBox(height: 16),
+                      DiagramWidget(diagram: subBab.diagram!),
+                      const SizedBox(height: 32),
+                    ],
+                    // === ADVANCED UI: Konsep Card ===
+                    if (subBab.hasKonsep) ...[
+                      _buildSectionHeader('Konsep Utama'),
+                      const SizedBox(height: 16),
+                      KonsepCardWidget(
+                        konsep: subBab.allKonsep,
+                        layout: "horizontal",
+                        primaryColor: primary,
+                      ),
+                      const SizedBox(height: 32),
+                    ],
+                    // === ADVANCED UI: Tabel ===
+                    if (subBab.hasTabel) ...[
+                      _buildSectionHeader('Ringkasan Tabel'),
+                      const SizedBox(height: 16),
+                      TabelWidget(tabel: subBab.tabel!),
+                      const SizedBox(height: 32),
+                    ],
                     if (subBab.lagu != null) ...[
                       _buildSongButton(),
                       const SizedBox(height: 24),
@@ -58,6 +86,28 @@ class SubBabView extends GetView<SubBabController> {
           _buildBottomActionBar(),
         ],
       ),
+    );
+  }
+
+  Widget _buildSectionHeader(String title) {
+    return Row(
+      children: [
+        Container(
+          width: 32,
+          height: 2,
+          color: secondary,
+        ),
+        const SizedBox(width: 12),
+        Text(
+          title,
+          style: GoogleFonts.manrope(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: primary,
+            letterSpacing: -0.5,
+          ),
+        ),
+      ],
     );
   }
 
@@ -123,7 +173,6 @@ class SubBabView extends GetView<SubBabController> {
               ),
             ],
           ),
-          // Bookmark button — now functional
           Obx(() => Container(
                 decoration: BoxDecoration(
                   color: Colors.transparent,
@@ -206,7 +255,6 @@ class SubBabView extends GetView<SubBabController> {
                       ),
                     ),
                   ),
-                  // TTS Button
                   Obx(() => Row(
                         children: [
                           GestureDetector(
@@ -483,7 +531,6 @@ class SubBabView extends GetView<SubBabController> {
                   ),
                 ],
               ),
-              // TTS untuk contoh
               if (contoh.arab != null)
                 GestureDetector(
                   onTap: () => controller.speakArabic(contoh.arab!),

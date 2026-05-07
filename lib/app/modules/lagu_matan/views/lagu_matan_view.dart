@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../controllers/lagu_matan_controller.dart';
 
@@ -111,10 +111,15 @@ class LaguMatanView extends GetView<LaguMatanController> {
     );
   }
 
-  /// YouTube embedded player via WebView
+  /// YouTube embedded player - lazy init
   Widget _buildYoutubeEmbed() {
-    final webViewController = controller.webViewController;
-    if (webViewController == null) {
+    // Lazy init YouTube player when widget is visible
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.ensureYoutubeInitialized();
+    });
+
+    final ytController = controller.ytController;
+    if (ytController == null) {
       return _buildErrorCard('YouTube player gagal dimuat');
     }
 
@@ -125,47 +130,21 @@ class LaguMatanView extends GetView<LaguMatanController> {
           // YouTube player with rounded corners
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  // 16:9 aspect ratio
-                  height: MediaQuery.of(Get.context!).size.width * 9 / 16 - 24,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: onBackground.withValues(alpha: 0.15),
-                        blurRadius: 24,
-                        offset: const Offset(0, 12),
-                      ),
-                    ],
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: onBackground.withValues(alpha: 0.15),
+                    blurRadius: 24,
+                    offset: const Offset(0, 12),
                   ),
-                  child: WebViewWidget(controller: webViewController),
-                ),
-                // Loading overlay
-                Obx(() {
-                  if (!controller.isLoading.value) {
-                    return const SizedBox.shrink();
-                  }
-                  return Container(
-                    width: double.infinity,
-                    height:
-                        MediaQuery.of(Get.context!).size.width * 9 / 16 - 24,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.7),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                        strokeWidth: 3,
-                      ),
-                    ),
-                  );
-                }),
-              ],
+                ],
+              ),
+              child: YoutubePlayer(
+                controller: ytController,
+                aspectRatio: 16 / 9,
+              ),
             ),
           ),
           const SizedBox(height: 16),

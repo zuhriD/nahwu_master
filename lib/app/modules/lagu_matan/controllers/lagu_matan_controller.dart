@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart' hide PlayerState;
 
 import '../../../data/models/sub_bab_model.dart';
 
@@ -11,8 +11,9 @@ class LaguMatanController extends GetxController {
   // Audio player (for local audio)
   AudioPlayer? _audioPlayer;
 
-  // WebView controller (for YouTube embed)
-  WebViewController? webViewController;
+  // YouTube player controller
+  YoutubePlayerController? ytController;
+  bool _ytInitialized = false;
 
   final RxBool isPlaying = false.obs;
   final RxBool isLoading = false.obs;
@@ -32,89 +33,43 @@ class LaguMatanController extends GetxController {
   void onInit() {
     super.onInit();
     subBab = Get.arguments as SubBab;
-    if (hasYoutube) {
-      _initYoutubeWebView();
-    } else {
-      _initAudio();
-    }
+    // Lazy init YouTube/audio - only when actually needed
   }
 
   @override
   void onClose() {
     _audioPlayer?.dispose();
+    ytController?.close();
     super.onClose();
   }
 
-  /// Initialize YouTube via WebView with iframe embed
-  void _initYoutubeWebView() {
+  /// Initialize YouTube player - lazy init
+  void ensureYoutubeInitialized() {
+    if (_ytInitialized || !hasYoutube) return;
     try {
       isLoading.value = true;
-
-      final embedHtml = '''
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #000; overflow: hidden; }
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/$youtubeId?playsinline=1&rel=0&modestbranding=1"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  </div>
-</body>
-</html>
-''';
-
-      webViewController = WebViewController()
-        ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(const Color(0xFF000000))
-        ..setNavigationDelegate(
-          NavigationDelegate(
-            onPageFinished: (url) {
-              isLoading.value = false;
-              isYoutubeReady.value = true;
-            },
-            onWebResourceError: (error) {
-              isLoading.value = false;
-              errorMessage.value = 'Gagal memuat video: ${error.description}';
-              debugPrint('WebView error: ${error.description}');
-            },
-          ),
-        )
-        ..loadHtmlString(embedHtml);
+      ytController = YoutubePlayerController(
+        params: const YoutubePlayerParams(
+          showControls: true,
+          mute: false,
+          showFullscreenButton: true,
+          playsInline: true,
+        ),
+      );
+      ytController!.loadVideoById(videoId: youtubeId!);
+      isLoading.value = false;
+      isYoutubeReady.value = true;
+      _ytInitialized = true;
     } catch (e) {
       isLoading.value = false;
       errorMessage.value = 'Gagal memuat YouTube: $e';
-      debugPrint('YouTube WebView init error: $e');
+      debugPrint('YouTube init error: $e');
     }
   }
 
-  /// Initialize local audio player
-  Future<void> _initAudio() async {
+  /// Ensure audio player is initialized (lazy init)
+  Future<void> _ensureAudioInitialized() async {
+    if (_audioPlayer != null) return;
     if (audioPath == null) return;
 
     _audioPlayer = AudioPlayer();
@@ -162,8 +117,12 @@ class LaguMatanController extends GetxController {
     }
   }
 
-  /// Play/pause toggle (only for local audio mode)
+  /// Play/pause toggle (lazy init audio)
   Future<void> playPause() async {
+    // Lazy init audio if needed
+    if (_audioPlayer == null) {
+      await _ensureAudioInitialized();
+    }
     if (_audioPlayer == null) return;
 
     try {
@@ -178,8 +137,12 @@ class LaguMatanController extends GetxController {
     }
   }
 
-  /// Play from beginning (only for local audio mode)
+  /// Play from beginning (lazy init audio)
   Future<void> play() async {
+    // Lazy init audio if needed
+    if (_audioPlayer == null) {
+      await _ensureAudioInitialized();
+    }
     if (_audioPlayer == null) return;
 
     try {
@@ -192,8 +155,12 @@ class LaguMatanController extends GetxController {
     }
   }
 
-  /// Stop playback (only for local audio mode)
+  /// Stop playback (lazy init audio)
   Future<void> stop() async {
+    // Lazy init audio if needed
+    if (_audioPlayer == null) {
+      await _ensureAudioInitialized();
+    }
     if (_audioPlayer == null) return;
 
     try {
@@ -205,8 +172,12 @@ class LaguMatanController extends GetxController {
     }
   }
 
-  /// Seek to position (only for local audio mode)
+  /// Seek to position (lazy init audio)
   Future<void> seek(Duration position) async {
+    // Lazy init audio if needed
+    if (_audioPlayer == null) {
+      await _ensureAudioInitialized();
+    }
     if (_audioPlayer == null) return;
 
     try {

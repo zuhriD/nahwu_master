@@ -113,7 +113,7 @@ class ProfileView extends GetView<ProfileController> {
               shape: BoxShape.circle,
               border: Border.all(color: secondaryContainer, width: 2),
               image: const DecorationImage(
-                image: AssetImage('assets/icon/nahwu_tutor_logo.jpg'),
+                image: AssetImage('assets/icon/logo_new.jpeg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -162,7 +162,7 @@ class ProfileView extends GetView<ProfileController> {
                               color: surfaceContainerHighest,
                               image: const DecorationImage(
                                 image:
-                                    AssetImage('assets/icon/nahwu_tutor_logo.jpg'),
+                                    AssetImage('assets/icon/logo_new.jpeg'),
                                 fit: BoxFit.cover,
                               ),
                             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../../data/models/bab_model.dart';
 import '../../../data/models/sub_bab_model.dart';
@@ -28,73 +28,37 @@ class DetailView extends StatefulWidget {
 
 class _DetailViewState extends State<DetailView> {
   late final Bab bab;
-  WebViewController? _webViewController;
-  bool _isVideoLoading = true;
+  YoutubePlayerController? _ytController;
+  bool _ytInitialized = false;
 
   @override
   void initState() {
     super.initState();
     bab = Get.arguments as Bab;
-    if (bab.hasYoutube) {
-      _initWebView();
+  }
+
+  void _initYoutubePlayer() {
+    if (_ytInitialized) return;
+    try {
+      _ytController = YoutubePlayerController(
+        params: const YoutubePlayerParams(
+          showControls: true,
+          mute: false,
+          showFullscreenButton: true,
+          playsInline: true,
+        ),
+      );
+      _ytController!.loadVideoById(videoId: bab.youtubeId!);
+      _ytInitialized = true;
+    } catch (e) {
+      debugPrint('YouTube init error: $e');
     }
   }
 
-  void _initWebView() {
-    final embedHtml = '''
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #000; overflow: hidden; }
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/${bab.youtubeId}?playsinline=1&rel=0&modestbranding=1"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  </div>
-</body>
-</html>
-''';
-
-    _webViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0xFF000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageFinished: (_) {
-            if (mounted) setState(() => _isVideoLoading = false);
-          },
-          onWebResourceError: (error) {
-            if (mounted) setState(() => _isVideoLoading = false);
-            debugPrint('WebView error: ${error.description}');
-          },
-        ),
-      )
-      ..loadHtmlString(embedHtml);
+  @override
+  void dispose() {
+    _ytController?.close();
+    super.dispose();
   }
 
   @override
@@ -241,7 +205,14 @@ class _DetailViewState extends State<DetailView> {
 
   /// YouTube video embed section
   Widget _buildYoutubeSection() {
-    if (_webViewController == null) return const SizedBox.shrink();
+    // Lazy init YouTube player only when widget is visible
+    if (!_ytInitialized && bab.hasYoutube) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _initYoutubePlayer();
+        setState(() {});
+      });
+    }
+    if (_ytController == null) return const SizedBox.shrink();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,54 +261,21 @@ class _DetailViewState extends State<DetailView> {
         // YouTube player
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: (MediaQuery.of(context).size.width - 48) * 9 / 16,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: DetailView.onBackground.withValues(alpha: 0.15),
-                      blurRadius: 24,
-                      offset: const Offset(0, 12),
-                    ),
-                  ],
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: DetailView.onBackground.withValues(alpha: 0.15),
+                  blurRadius: 24,
+                  offset: const Offset(0, 12),
                 ),
-                child: WebViewWidget(controller: _webViewController!),
-              ),
-              // Loading overlay
-              if (_isVideoLoading)
-                Container(
-                  width: double.infinity,
-                  height: (MediaQuery.of(context).size.width - 48) * 9 / 16,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.7),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 3,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Memuat video...',
-                          style: GoogleFonts.plusJakartaSans(
-                            color: Colors.white70,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
+              ],
+            ),
+            child: YoutubePlayer(
+              controller: _ytController!,
+              aspectRatio: 16 / 9,
+            ),
           ),
         ),
         const SizedBox(height: 12),

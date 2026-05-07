@@ -19,7 +19,7 @@ dependencies:
   share_plus: ^10.1.4
   path_provider: ^2.1.5
   audioplayers: ^6.1.0
-  webview_flutter: ^4.10.0
+  youtube_player_iframe: ^5.2.2
 
 dev_dependencies:
   flutter_test:
@@ -30,7 +30,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon/nahwu_tutor_logo.jpg"
+  image_path: "assets/icon/logo_new.jpeg"
   min_sdk_android: 21
   web:
     generate: false

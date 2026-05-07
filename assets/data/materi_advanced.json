@@ -1,23 +1,39 @@
 {
+  "_comment": "Struktur JSON baru untuk materi Nahwu Jurumiyah dengan spesifikasi UI advanced",
+  "_versi": "2.0",
+  "_struktur_ui": {
+    "diagram": "Direkomendasikan menggunakan CustomPainter / graph widget",
+    "tabel": "Dirender menggunakan DataTable Flutter",
+    "konsep": "Dirender sebagai Card List dengan detail expandable"
+  },
+
   "judul": "Ilmu Nahwu - Jurumiyah",
-  "deskripsi": "Pengantar ilmu nahwu berdasarkan kitab Jurumiyah",
+  "deskripsi": "Materi Nahwu berbasis Jurumiyah dengan pendekatan multimodal lengkap",
+  "banner": {
+    "gambar": "assets/images/banner_nahwu.png",
+    "warna_primer": "#1B5E20",
+    "warna_sekunder": "#4CAF50",
+    "gradient_id": "banner_nahwu"
+  },
+
   "bab": [
     {
       "id": 1,
-      "judul": "Bab 1: Kalam",
+      "judul": "Kalam",
       "icon": "📘",
-      "youtube_id": "pUb9EW770d0",
+      "youtube_id": "RjoVrd4Rnq8",
       "sub_bab": [
         {
           "id": 1,
           "judul": "Pengertian Kalam",
           "icon": "📖",
+
           "teks_inti": {
             "arab": "الْكَلَامُ هُوَ اللَّفْظُ الْمُرَكَّبُ الْمُفِيدُ بِالْوَضْعِ",
             "latin": "Al-kalāmu huwa al-lafẓu al-murakkab al-mufīdu bil-waḍ'i",
             "terjemahan": "Kalam adalah lafaz yang tersusun, memberikan faedah, dan diucapkan dengan sengaja.",
             "penjelasan": {
-              "pengantar": "Dalam ilmu Nahwu, sebuah ungkapan baru bisa disebut sebagai Kalam apabila memenuhi empat syarat utama yang terkandung dalam definisi di atas:",
+              "pengantar": "Dalam ilmu Nahwu, sebuah ungkapan baru bisa disebut sebagai Kalam apabila memenuhi empat syarat utama yang terkandung dalam definisi di atas.",
               "poin_poin": [
                 {
                   "icon": "record_voice_over",
@@ -43,11 +59,13 @@
               "contoh": {
                 "arab": "قَامَ زَيْدٌ",
                 "arti": "Zaid telah berdiri",
-                "catatan": "*Kalimat di atas disebut kalam karena memenuhi keempat unsur: lafadz, tersusun (dua kata), mufid (berita lengkap), dan sengaja."
+                "catatan": "*Kalimat di atas disebut kalam karena memenuhi keempat unsur."
               }
             }
           },
+
           "diagram": {
+            "_comment_UI": "▶ Tipe: CustomPainter / graph widget — node pusat dengan 4 cabang",
             "tipe": "custom_painter",
             "sub_tipe": "radial_tree",
             "center": {
@@ -81,7 +99,7 @@
                   "header": "Lafadz (اللفظ)",
                   "deskripsi": "Suara hijaiyah yang diucapkan",
                   "contoh": "كِتَابٌ, قَلَمٌ, يَكْتُبُ",
-                  "bukan_contoh": "suara petir, bunyi hewan"
+                  "bukan_contoh": "suara petir, bunyi animals"
                 }
               },
               {
@@ -150,11 +168,18 @@
                   "bukan_contoh": "mimpi, mengigau"
                 }
               }
-            ]
+            ],
+            "animasi": {
+              "派": false,
+              "arah": "radial_outward",
+              "durasi_ms": 800
+            }
           },
+
           "konsep": {
+            "_comment_UI": "▶ Tipe: Card List — setiap item adalah Card dengan expandable detail",
             "tipe": "card_list",
-            "layout": "horizontal",
+            "layout": "vertical",
             "kartu": [
               {
                 "id": "lafadz",
@@ -197,7 +222,7 @@
                       "alasan": "bukan huruf hijaiyah"
                     },
                     {
-                      "arab": "bunyi hewan",
+                      "arab": "bunyi animals",
                       "alasan": "bukan huruf hijaiyah"
                     }
                   ]
@@ -316,7 +341,9 @@
               }
             ]
           },
+
           "tabel": {
+            "_comment_UI": "▶ Tipe: DataTable Flutter — header vertikal, data per baris",
             "tipe": "data_table",
             "orientasi": "horizontal",
             "header": {
@@ -383,52 +410,20 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "1",
-                  "Lafadz",
-                  "اللَّفْظُ",
-                  "Suara hijaiyah",
-                  "كِتَابٌ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["1", "Lafadz", "اللَّفْظُ", "Suara hijaiyah", "كِتَابٌ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "2",
-                  "Murakkab",
-                  "الْمُرَكَّبُ",
-                  "Tersusun 2+ kata",
-                  "زَيْدٌ قَائِمٌ"
-                ],
-                "style": {
-                  "warna_background": "#F1F8E9"
-                }
+                "sel": ["2", "Murakkab", "الْمُرَكَّبُ", "Tersusun 2+ kata", "زَيْدٌ قَائِمٌ"],
+                "style": { "warna_background": "#F1F8E9" }
               },
               {
-                "sel": [
-                  "3",
-                  "Mufid",
-                  "الْمُفِيدُ",
-                  "Makna sempurna",
-                  "زَيْدٌ قَائِمٌ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["3", "Mufid", "الْمُفِيدُ", "Makna sempurna", "زَيْدٌ قَائِمٌ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "4",
-                  "Wadha'",
-                  "بِالْوَضْعِ",
-                  "Disengaja",
-                  "قَامَ زَيْدٌ"
-                ],
-                "style": {
-                  "warna_background": "#F1F8E9"
-                }
+                "sel": ["4", "Wadha'", "بِالْوَضْعِ", "Disengaja", "قَامَ زَيْدٌ"],
+                "style": { "warna_background": "#F1F8E9" }
               }
             ],
             "footer": {
@@ -440,6 +435,54 @@
               }
             }
           },
+
+          "contoh": {
+            "_comment_UI": "▶ Tipe: Contoh perbandingan — kalam vs non-kalam dengan visual",
+            "tipe": "perbandingan_kartu",
+            "item": [
+              {
+                "jenis": "kalam",
+                "label": "✓ Kalam",
+                "warna_label": "#4CAF50",
+                "teks": "الطَّالِبُ يَدْرُسُ",
+                "latin": "Ath-thalibu yadrusu",
+                "arti": "Pelajar sedang belajar",
+                "analisis": [
+                  {
+                    "komponen": "الطالب",
+                    "peran": "Mubtada (subjek)",
+                    "warna": "#4CAF50"
+                  },
+                  {
+                    "komponen": "يدرس",
+                    "peran": "Fi'il mudhari'",
+                    "warna": "#FF9800"
+                  }
+                ],
+                "catatan": "Tersusun dari 2 kata, bermakna sempurna, disengaja → Kalam"
+              },
+              {
+                "jenis": "bukan_kalam",
+                "label": "✗ Bukan Kalam",
+                "warna_label": "#F44336",
+                "sub_item": [
+                  {
+                    "teks": "زَيْدٌ",
+                    "latin": "Zaidun",
+                    "arti": "Zaid",
+                    "alasan": "Tidak murakkab (hanya 1 kata)"
+                  },
+                  {
+                    "teks": "إِنْ ذَهَبَ",
+                    "latin": "In dzahaba",
+                    "arti": "Kalau pergi",
+                    "alasan": "Tidak mufid (makna tergantung kalimat setelahnya)"
+                  }
+                ]
+              }
+            ]
+          },
+
           "lagu": {
             "audio": "assets/audio/lagu_kalam.m4a",
             "lirik": [
@@ -453,42 +496,73 @@
               "Yang harus dihafal secara mendalam"
             ]
           },
+
+          "video": {
+            "youtube_id": "RjoVrd4Rnq8",
+            "thumbnail": "assets/images/thumb_kalam.png",
+            "durasi": "12:34"
+          },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "benar_salah",
-              "pertanyaan": "Apakah 'الْكَلَامُ' dalam ilmu nahwu harus tersusun dari dua kata atau lebih?",
+              "pertanyaan": "Apakah 'الْكَلَامُ' harus tersusun dari dua kata atau lebih?",
               "jawaban": true,
-              "penjelasan": "Benar! Kalam harus 'murakkab' yaitu tersusun dari dua kata atau lebih agar bisa memberikan makna yang sempurna."
+              "penjelasan": "Benar! Kalam harus murakkab."
             },
             {
               "id": 2,
-              "tipe": "benar_salah",
-              "pertanyaan": "Apakah satu kata saja sudah cukup untuk disebut kalam dalam ilmu nahwu?",
-              "jawaban": false,
-              "penjelasan": "Tidak benar. Satu kata saja belum bisa disebut kalam karena tidak memenuhi syarat murakkab dan mufid."
+              "tipe": "pilihan_ganda",
+              "pertanyaan": "Berapa syarat kalam?",
+              "opsi": ["2", "3", "4", "5"],
+              "jawaban_benar_index": 2
             },
             {
               "id": 3,
-              "tipe": "benar_salah",
-              "pertanyaan": "Apakah 'قَامَ زَيْدٌ' termasuk kalam?",
-              "jawaban": true,
-              "penjelasan": "Benar! Kalimat ini memenuhi syarat kalam."
-            },
-            {
-              "id": 4,
               "tipe": "pilihan_ganda",
-              "pertanyaan": "Berapa syarat yang harus dipenuhi agar sebuah ungkapan disebut 'Kalam'?",
-              "opsi": [
-                "Dua syarat",
-                "Tiga syarat",
-                "Empat syarat",
-                "Lima syarat"
-              ],
-              "jawaban_benar_index": 2
+              "pertanyaan": "Manakah yang termasuk kalam?",
+              "opsi": ["كِتَابٌ", "زَيْدٌ قَائِمٌ", "فِي", "إِنْ"],
+              "jawaban_benar_index": 1
             }
-          ]
+          ],
+
+          "ringkasan": {
+            "tipe": "card_grid",
+            "kolom": 2,
+            "item": [
+              {
+                "ikon": "record_voice_over",
+                "warna": "#4CAF50",
+                "unsur": "Lafadz",
+                "isi": "Harus huruf hijaiyah",
+                "contoh": "كِتَابٌ"
+              },
+              {
+                "ikon": "layers",
+                "warna": "#8BC34A",
+                "unsur": "Murakkab",
+                "isi": "Minimal 2 kata",
+                "contoh": "زَيْدٌ قَائِمٌ"
+              },
+              {
+                "ikon": "check_circle",
+                "warna": "#009688",
+                "unsur": "Mufid",
+                "isi": "Makna sempurna",
+                "contoh": "زَيْدٌ قَائِمٌ"
+              },
+              {
+                "ikon": "edit_note",
+                "warna": "#FF5722",
+                "unsur": "Wadha'",
+                "isi": "Disengaja",
+                "contoh": "قَامَ زَيْدٌ"
+              }
+            ]
+          }
         },
+
         {
           "id": 2,
           "judul": "Pembagian Kalam",
@@ -496,43 +570,31 @@
           "teks_inti": {
             "arab": "أَقْسَامُهُ ثَلَاثَةٌ: اِسْمٌ، وَفِعْلٌ، وَحَرْفٌ جَاءَ لِمَعْنًى",
             "latin": "Aqsāmuhu tsalātsatun: ismun, wa fi'lun, wa harfun jā'a li-ma'nan",
-            "terjemahan": "Bagian-bagiannya ada tiga: isim, fi'il, dan harf.",
-            "penjelasan": {
-              "pengantar": "Kata dalam bahasa Arab terbagi menjadi tiga jenis utama:",
-              "poin_poin": [
-                {
-                  "icon": "pentagon",
-                  "judul": "1. Isim",
-                  "teks": "Kata yang menunjukkan makna dan tidak terikat waktu."
-                },
-                {
-                  "icon": "bolt",
-                  "judul": "2. Fi'il",
-                  "teks": "Kata yang menunjukkan makna dan terikat waktu."
-                },
-                {
-                  "icon": "link",
-                  "judul": "3. Harf",
-                  "teks": "Kata yang tidak bermakna sempurna kecuali bila bersama kata lain."
-                }
-              ]
-            }
+            "terjemahan": "Bagian-bagiannya ada tiga: isim, fi'il, dan harf."
           },
+
           "diagram": {
+            "_comment_UI": "▶ Tipe: Diagram horizontal — 3 cabang utama",
             "tipe": "custom_painter",
             "sub_tipe": "horizontal_tree",
-            "center": {
-              "label": "الْكَلَامُ",
-              "sub_label": "Kalimat",
-              "style": {
-                "warna_lingkaran": "#2E7D32",
-                "warna_teks": "#FFFFFF",
-                "ukuran": 70.0,
-                "font_size": 14.0,
-                "bold": true
-              }
-            },
+            "layout": "level_horizontal",
             "nodes": [
+              {
+                "label": "الْكَلَامُ",
+                "sub_label": "Kalimat",
+                "style": {
+                  "warna_lingkaran": "#2E7D32",
+                  "warna_teks": "#FFFFFF",
+                  "ukuran": 70.0,
+                  "font_size": 14.0,
+                  "bold": true
+                },
+                "connector": {
+                  "jenis": "garis_vertikal",
+                  "warna": "#A5D6A7",
+                  "tebal": 2.0
+                }
+              },
               {
                 "label": "Isim",
                 "sub_label": "الْاِسْمُ",
@@ -583,7 +645,9 @@
               }
             ]
           },
+
           "konsep": {
+            "_comment_UI": "▶ Tipe: Card List horizontal — 3 kartu utama",
             "tipe": "card_list",
             "layout": "horizontal",
             "kartu": [
@@ -602,11 +666,7 @@
                     "Menerima alif lam",
                     "Bisa dibaca raf' dengan kasrah"
                   ],
-                  "ciri": [
-                    "Tanwin",
-                    "Alif Lam",
-                    "Kasrah (i'rab)"
-                  ],
+                  "ciri": ["Tanwin", "Alif Lam", "Kasrah (i'rab)"],
                   "contoh": [
                     {
                       "arab": "زَيْدٌ",
@@ -641,7 +701,7 @@
                 "detail": {
                   "deskripsi": "Fi'il adalah kata yang menunjukkan makna dan terikat dengan waktu (madhi, mudhari', amr).",
                   "syarat": [
-                    "Dahului oleh qad/sin/sauf",
+                    "Dahulu oleh qad/sin/sauf",
                     "Menerima tanwin",
                     "Bisa di-ta' ta'nits-kan"
                   ],
@@ -692,7 +752,7 @@
                 "id": "harf",
                 "ikon": "link",
                 "warna_ikon": "#7B1FA2",
-                "judul": "Huruf",
+                "judul": "Harf",
                 "sub_judul": "الْحَرْفُ",
                 "kategori": "kalimat",
                 "ringkasan": "Tidak bermakna sendiri",
@@ -705,20 +765,19 @@
                   ],
                   "jenis": [
                     {
-                      "arab": "فِي",
-                      "arti": "di dalam"
+                      "nama": "Huruf Jar",
+                      "contoh": ["فِي", "مِنْ", "إِلَى", "عَلَى"],
+                      "warna": "#9C27B0"
                     },
                     {
-                      "arab": "مِنْ",
-                      "arti": "dari"
+                      "nama": "Huruf Athaf",
+                      "contoh": ["وَ", "فَ", "ثُمَّ"],
+                      "warna": "#673AB7"
                     },
                     {
-                      "arab": "إِلَى",
-                      "arti": "ke"
-                    },
-                    {
-                      "arab": "عَلَى",
-                      "arti": "di atas"
+                      "nama": "Huruf Istifham",
+                      "contoh": ["هَلْ", "أَ", "هَلَّا"],
+                      "warna": "#3F51B5"
                     }
                   ],
                   "contoh": [
@@ -746,7 +805,9 @@
               }
             ]
           },
+
           "tabel": {
+            "_comment_UI": "▶ Tipe: DataTable Flutter — perbandingan 3 jenis kalimat",
             "tipe": "data_table",
             "orientasi": "horizontal",
             "header": {
@@ -802,7 +863,7 @@
               },
               {
                 "nama": "Contoh",
-                "lebar": 0.2,
+                "lebar": 0.20,
                 "style": {
                   "warna_background": "#BBDEFB",
                   "warna_teks": "#0D47A1",
@@ -813,43 +874,20 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Isim",
-                  "الْاِسْمُ",
-                  "Tidak terikat waktu",
-                  "Tanwin, Alif Lam, Kasrah",
-                  "زَيْدٌ, كِتَابٌ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Isim", "الْاِسْمُ", "Tidak terikat waktu", "Tanwin, Alif Lam, Kasrah", "زَيْدٌ, كِتَابٌ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Fi'il",
-                  "الْفِعْلُ",
-                  "Terikat waktu",
-                  "Qad, Sin, Saufa, Ta' Ta'nits",
-                  "كَتَبَ, يَكْتُبُ"
-                ],
-                "style": {
-                  "warna_background": "#F3E5F5"
-                }
+                "sel": ["Fi'il", "الْفِعْلُ", "Terikat waktu", "Qad, Sin, Saufa, Ta' Ta'nits", "كَتَبَ, يَكْتُبُ"],
+                "style": { "warna_background": "#F3E5F5" }
               },
               {
-                "sel": [
-                  "Huruf",
-                  "الْحَرْفُ",
-                  "Tidak bermakna sendiri",
-                  "Tidak terima tanda isim/fi'il",
-                  "فِي, وَ, هَلْ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Huruf", "الْحَرْفُ", "Tidak bermakna sendiri", "Tidak terima tanda isim/fi'il", "فِي, وَ, هَلْ"],
+                "style": { "warna_background": "#FFFFFF" }
               }
             ]
           },
+
           "lagu": {
             "audio": "assets/audio/lagu_pembagian_kalimat.m4a",
             "lirik": [
@@ -863,27 +901,25 @@
               "Jika tak disambung kalimat lainnya"
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "benar_salah",
               "pertanyaan": "Apakah isim terikat waktu?",
-              "jawaban": false
+              "jawaban": false,
+              "penjelasan": "Isim tidak terikat waktu, berbeda dengan fi'il."
             },
             {
               "id": 2,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Berapa pembagian kalimah?",
-              "opsi": [
-                "2",
-                "3",
-                "4",
-                "5"
-              ],
+              "opsi": ["2", "3", "4", "5"],
               "jawaban_benar_index": 1
             }
           ]
         },
+
         {
           "id": 3,
           "judul": "Tanda-tanda Isim",
@@ -891,29 +927,11 @@
           "teks_inti": {
             "arab": "فَالِاسْمُ يُعْرَفُ بِالْخَفْضِ وَالتَّنْوِينِ وَدُخُولِ الْأَلِفِ وَاللَّامِ",
             "latin": "Fal-ismu yu'rafu bil-khafḍi wat-tanwīni wa dukhūlil-alif wal-lāmi",
-            "terjemahan": "Isim dikenali dengan kasrah, tanwin, dan alif lam.",
-            "penjelasan": {
-              "pengantar": "Tanda-tanda isim:",
-              "poin_poin": [
-                {
-                  "icon": "keyboard_arrow_down",
-                  "judul": "1. Khafadh",
-                  "teks": "Isim bisa dibaca kasrah."
-                },
-                {
-                  "icon": "done_all",
-                  "judul": "2. Tanwin",
-                  "teks": "Isim dapat menerima tanwin."
-                },
-                {
-                  "icon": "text_format",
-                  "judul": "3. Alif Lam",
-                  "teks": "Isim dapat dimasuki alif lam."
-                }
-              ]
-            }
+            "terjemahan": "Isim dikenali dengan kasrah, tanwin, dan alif lam."
           },
+
           "diagram": {
+            "_comment_UI": "▶ Tipe: Diagram chips/badges — 3 tanda utama",
             "tipe": "custom_painter",
             "sub_tipe": "badge_circle",
             "center": {
@@ -938,6 +956,11 @@
                   "ukuran": 55.0,
                   "font_size": 12.0,
                   "bold": true
+                },
+                "tooltip": {
+                  "header": "Khafadh (الخفض)",
+                  "deskripsi": "Isim dibaca kasrah (i'rab jar)",
+                  "contoh": "بِزَيْدٍ"
                 }
               },
               {
@@ -950,6 +973,11 @@
                   "ukuran": 55.0,
                   "font_size": 12.0,
                   "bold": true
+                },
+                "tooltip": {
+                  "header": "Tanwin",
+                  "deskripsi": "Isim dapat menerima tanwin di akhir",
+                  "contoh": "زَيْدٌ"
                 }
               },
               {
@@ -962,11 +990,18 @@
                   "ukuran": 55.0,
                   "font_size": 12.0,
                   "bold": true
+                },
+                "tooltip": {
+                  "header": "Alif Lam (الألف اللام)",
+                  "deskripsi": "Isim dapat dimasuki alif lam",
+                  "contoh": "الْكِتَابُ"
                 }
               }
             ]
           },
+
           "konsep": {
+            "_comment_UI": "▶ Tipe: Card List — 3 kartu tanda isim",
             "tipe": "card_list",
             "layout": "horizontal",
             "kartu": [
@@ -980,35 +1015,14 @@
                 "ringkasan": "Isim dibaca kasrah",
                 "detail": {
                   "deskripsi": "Khafadh artinya rendah/drops. Isim dibaca kasrah sebagai tanda i'rab jar. Huruf jar yang menyebabkannya.",
-                  "huruf": [
-                    {
-                      "arab": "مِنْ",
-                      "arti": "dari"
-                    },
-                    {
-                      "arab": "إِلَى",
-                      "arti": "ke"
-                    },
-                    {
-                      "arab": "عَلَى",
-                      "arti": "di atas"
-                    },
-                    {
-                      "arab": "فِي",
-                      "arti": "di dalam"
-                    },
-                    {
-                      "arab": "بِ",
-                      "arti": "dengan"
-                    },
-                    {
-                      "arab": "لِ",
-                      "arti": "untuk"
-                    },
-                    {
-                      "arab": "عَنْ",
-                      "arti": "dari"
-                    }
+                  "huruf_jar": [
+                    { "arab": "مِنْ", "arti": "dari" },
+                    { "arab": "إِلَى", "arti": "ke" },
+                    { "arab": "عَلَى", "arti": "di atas" },
+                    { "arab": "فِي", "arti": "di dalam" },
+                    { "arab": "بِ", "arti": "dengan" },
+                    { "arab": "لِ", "arti": "untuk" },
+                    { "arab": "عَنْ", "arti": "dari" }
                   ],
                   "contoh": [
                     {
@@ -1030,22 +1044,10 @@
                 "ringkasan": "Akhiran nun ganda",
                 "detail": {
                   "deskripsi": "Tanwin adalah nun berganda di akhir kata yang memberikan arti 'satu' pada isim nakirah.",
-                  "jenis": [
-                    {
-                      "nama": "Fathah Tanwin",
-                      "arab": "ً",
-                      "contoh": "كِتَابًا"
-                    },
-                    {
-                      "nama": "Kasrah Tanwin",
-                      "arab": "ٍ",
-                      "contoh": "كِتَابٍ"
-                    },
-                    {
-                      "nama": "Dammah Tanwin",
-                      "arab": "ٌ",
-                      "contoh": "كِتَابٌ"
-                    }
+                  "jenis_tanwin": [
+                    { "nama": "Fathah Tanwin", "arab": "ً", "contoh": "كِتَابًا" },
+                    { "nama": "Kasrah Tanwin", "arab": "ٍ", "contoh": "كِتَابٍ" },
+                    { "nama": "Dammah Tanwin", "arab": "ٌ", "contoh": "كِتَابٍ" }
                   ],
                   "contoh": [
                     {
@@ -1072,17 +1074,9 @@
                 "ringkasan": "Dimasuki ال di awal",
                 "detail": {
                   "deskripsi": "Alif Lam (ال) adalah kata Sandang yang memasuki isim untuk menunjukkan makna generik atau spesifik.",
-                  "jenis": [
-                    {
-                      "nama": "Ma'rifah",
-                      "arab": "الْكِتَابُ",
-                      "arti": "buku (yang dimaksud)"
-                    },
-                    {
-                      "nama": "Nakirah",
-                      "arab": "كِتَابٌ",
-                      "arti": "sebuah buku"
-                    }
+                  "jenis_idraf": [
+                    { "nama": "Ma'rifah", "arab": "الْكِتَابُ", "arti": "buku (yang dimaksud)" },
+                    { "nama": "Nakirah", "arab": "كِتَابٌ", "arti": "sebuah buku" }
                   ],
                   "contoh": [
                     {
@@ -1096,7 +1090,9 @@
               }
             ]
           },
+
           "tabel": {
+            "_comment_UI": "▶ Tipe: DataTable Flutter — 3 tanda isim",
             "tipe": "data_table",
             "orientasi": "horizontal",
             "header": {
@@ -1121,7 +1117,7 @@
               },
               {
                 "nama": "Penjelasan",
-                "lebar": 0.3,
+                "lebar": 0.30,
                 "style": {
                   "warna_background": "#BBDEFB",
                   "warna_teks": "#0D47A1",
@@ -1162,77 +1158,48 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Khafadh",
-                  "Isim dibaca kasrah",
-                  "Kasrah ِ",
-                  "بِالْبَيْتِ",
-                  "Jar"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Khafadh", "Isim dibaca kasrah", "Kasrah ِ", "بِالْبَيْتِ", "Jar"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Tanwin",
-                  "Akhiran nun ganda",
-                  "Tanwin ٌ ٍ ً",
-                  "زَيْدٌ",
-                  "Rafa/Nashab/Jar"
-                ],
-                "style": {
-                  "warna_background": "#F3E5F5"
-                }
+                "sel": ["Tanwin", "Akhiran nun ganda", "Tanwin ٌ ٍ ً", "زَيْدٌ", "Rafa/Nashab/Jar"],
+                "style": { "warna_background": "#F3E5F5" }
               },
               {
-                "sel": [
-                  "Alif Lam",
-                  "Diawali ال",
-                  "ال + kata",
-                  "الْكِتَابُ",
-                  "Rafa"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Alif Lam", "Diawali ال", "ال + kata", "الْكِتَابُ", "Rafa"],
+                "style": { "warna_background": "#FFFFFF" }
               }
             ]
           },
+
           "lagu": {
             "audio": "assets/audio/lagu_tanda_isim.m4a",
             "lirik": [
               "Isim itu tandanya dii'rabi Jar",
               "Kemasukan Tanwin Al juga Huruf Jar",
               "Huruf Jar yaitu Min Fi 'An dan 'Ala",
-              "Rubba Ba' Kaf Lam dan juga Huruf Ila",
-              "Huruf Qasam termasuk Kalimah Huruf",
-              "Huruf untuk sumpah ada tiga huruf",
-              "Wawu Ba' Ta' itulah macam hurufnya",
-              "Wallohi Billahi Tallohi contohnya"
+              "Rubba Ba' Kaf Lam dan juga Huruf Ila"
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "benar_salah",
               "pertanyaan": "Apakah fi'il bisa menerima tanwin?",
-              "jawaban": false
+              "jawaban": false,
+              "penjelasan": "Tidak, tanwin hanya untuk isim."
             },
             {
               "id": 2,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Huruf jar yang dibaca kasrah disebut?",
-              "opsi": [
-                "Khafadh",
-                "Raf'",
-                "Jazm",
-                "Nashab"
-              ],
+              "opsi": ["Khafadh", "Raf'", "Jazm", "Nashab"],
               "jawaban_benar_index": 0
             }
           ]
         },
+
         {
           "id": 4,
           "judul": "Tanda-tanda Fi'il",
@@ -1240,35 +1207,17 @@
           "teks_inti": {
             "arab": "وَالْفِعْلُ يُعْرَفُ بِقَدْ وَالسِّينِ وَسَوْفَ وَتَاءِ التَّأْنِيثِ السَّاكِنَةِ",
             "latin": "Wal-fi'lu yu'rafu biqad was-sīni wa sawfa wa tā'it-ta'nīts as-sākinati",
-            "terjemahan": "Fi'il dikenali dengan qad, sin, saufa, dan ta' ta'nits.",
-            "penjelasan": {
-              "pengantar": "Tanda-tanda fi'il:",
-              "poin_poin": [
-                {
-                  "icon": "verified",
-                  "judul": "1. Qad",
-                  "teks": "Masuk pada fi'il."
-                },
-                {
-                  "icon": "fast_forward",
-                  "judul": "2. Sin",
-                  "teks": "Menunjukkan masa akan datang."
-                },
-                {
-                  "icon": "schedule",
-                  "judul": "3. Saufa",
-                  "teks": "Menunjukkan masa depan."
-                }
-              ]
-            }
+            "terjemahan": "Fi'il dikenali dengan qad, sin, saufa, dan ta' ta'nits."
           },
+
           "diagram": {
+            "_comment_UI": "▶ Tipe: Timeline diagram — 4 tanda dengan timeline",
             "tipe": "custom_painter",
             "sub_tipe": "timeline_vertical",
             "nodes": [
               {
-                "label": "Qad",
-                "arab": "قَدْ",
+                "label": "قَدْ",
+                "sub_label": "Qad",
                 "waktu": "penegas",
                 "style": {
                   "warna_lingkaran": "#FF7043",
@@ -1281,11 +1230,16 @@
                   "jenis": "garis_timeline",
                   "warna": "#FFAB91",
                   "tebal": 2.0
+                },
+                "tooltip": {
+                  "header": "Qad (قد)",
+                  "deskripsi": "Penegasan, masuk pada fi'il madhi",
+                  "contoh": "قَدْ كَتَبَ"
                 }
               },
               {
-                "label": "Sin",
-                "arab": "سَ",
+                "label": "سَ",
+                "sub_label": "Sin",
                 "waktu": "akan datang (dekat)",
                 "style": {
                   "warna_lingkaran": "#FF9800",
@@ -1298,11 +1252,16 @@
                   "jenis": "garis_timeline",
                   "warna": "#FFCC80",
                   "tebal": 2.0
+                },
+                "tooltip": {
+                  "header": "Sin (س)",
+                  "deskripsi": "Menunjukkan masa akan datang dekat",
+                  "contoh": "سَيَكْتُبُ"
                 }
               },
               {
-                "label": "Saufa",
-                "arab": "سَوْفَ",
+                "label": "سَوْفَ",
+                "sub_label": "Saufa",
                 "waktu": "akan datang (jauh)",
                 "style": {
                   "warna_lingkaran": "#FFA726",
@@ -1315,11 +1274,16 @@
                   "jenis": "garis_timeline",
                   "warna": "#FFE0B2",
                   "tebal": 2.0
+                },
+                "tooltip": {
+                  "header": "Saufa (سوف)",
+                  "deskripsi": "Menunjukkan masa akan datang jauh",
+                  "contoh": "سَوْفَ يَدْرُسُ"
                 }
               },
               {
-                "label": "Ta' Ta'nits",
-                "arab": "تْ",
+                "label": "تْ",
+                "sub_label": "Ta' Ta'nits",
                 "waktu": "perempuan",
                 "style": {
                   "warna_lingkaran": "#F4511E",
@@ -1327,11 +1291,18 @@
                   "ukuran": 50.0,
                   "font_size": 13.0,
                   "bold": true
+                },
+                "tooltip": {
+                  "header": "Ta' Ta'nits (تاء التأنيث)",
+                  "deskripsi": "Ta' sukun di akhir fi'il perempuan",
+                  "contoh": "كَتَبَتْ"
                 }
               }
             ]
           },
+
           "konsep": {
+            "_comment_UI": "▶ Tipe: Card List — 4 kartu tanda fi'il",
             "tipe": "card_list",
             "layout": "horizontal",
             "kartu": [
@@ -1344,7 +1315,10 @@
                 "kategori": "tanda_fiil",
                 "ringkasan": "Penegasan pada fi'il madhi",
                 "detail": {
-                  "deskripsi": "Qad masuk pada fi'il madhi untuk menegaskan terjadi sesuatu.",
+                  "deskripsi": "Qad masuk pada fi'il madhi untuk menegaskan terjadi sesuatu, atau sebagai ragu.",
+                  "fungsi": [
+                    { "nama": "Penegasan", "contoh": "قَدْ كَتَبَ زَيْدٌ" }
+                  ],
                   "contoh": [
                     {
                       "arab": "قَدْ كَتَبَ",
@@ -1365,6 +1339,9 @@
                 "ringkasan": "Akan datang dekat",
                 "detail": {
                   "deskripsi": "Sin (س) menunjukkan fi'il mudhari' yang akan terjadi dalam waktu dekat.",
+                  "fungsi": [
+                    { "nama": "Masa depan dekat", "contoh": "سَيَكْتُبُ" }
+                  ],
                   "contoh": [
                     {
                       "arab": "سَيَكْتُبُ",
@@ -1385,6 +1362,9 @@
                 "ringkasan": "Akan datang jauh",
                 "detail": {
                   "deskripsi": "Sauf menunjukkan fi'il mudhari' yang akan terjadi dalam waktu yang relatif lama.",
+                  "fungsi": [
+                    { "nama": "Masa depan jauh", "contoh": "سَوْفَ يَدْرُسُ" }
+                  ],
                   "contoh": [
                     {
                       "arab": "سَوْفَ يَدْرُسُ",
@@ -1405,6 +1385,9 @@
                 "ringkasan": "Fi'il perempuan tunggal",
                 "detail": {
                   "deskripsi": "Ta' ta'nits adalah ta' sukun (تْ) di akhir fi'il mudhari' yang menunjukkan subjek perempuan tunggal.",
+                  "fungsi": [
+                    { "nama": "Perempuan tunggal", "contoh": "تَكْتُبْ", "arab": "كَتَبَتْ" }
+                  ],
                   "contoh": [
                     {
                       "arab": "كَتَبَتْ",
@@ -1417,7 +1400,9 @@
               }
             ]
           },
+
           "tabel": {
+            "_comment_UI": "▶ Tipe: DataTable Flutter — 4 tanda fi'il",
             "tipe": "data_table",
             "orientasi": "horizontal",
             "header": {
@@ -1472,7 +1457,7 @@
               },
               {
                 "nama": "Waktu",
-                "lebar": 0.2,
+                "lebar": 0.20,
                 "style": {
                   "warna_background": "#FFE0B2",
                   "warna_teks": "#E65100",
@@ -1483,55 +1468,24 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Qad",
-                  "قَدْ",
-                  "Penegasan",
-                  "قَدْ كَتَبَ",
-                  "Madhi"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Qad", "قَدْ", "Penegasan", "قَدْ كَتَبَ", "Madhi"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Sin",
-                  "سَ",
-                  "Akan dekat",
-                  "سَيَكْتُبُ",
-                  "Mudhari'"
-                ],
-                "style": {
-                  "warna_background": "#FFF8E1"
-                }
+                "sel": ["Sin", "سَ", "Akan dekat", "سَيَكْتُبُ", "Mudhari'"],
+                "style": { "warna_background": "#FFF8E1" }
               },
               {
-                "sel": [
-                  "Sauf",
-                  "سَوْفَ",
-                  "Akan jauh",
-                  "سَوْفَ يَدْرُسُ",
-                  "Mudhari'"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Sauf", "سَوْفَ", "Akan jauh", "سَوْفَ يَدْرُسُ", "Mudhari'"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Ta' Ta'nits",
-                  "تْ",
-                  "Perempuan",
-                  "كَتَبَتْ",
-                  "Mudhari'/Madhi"
-                ],
-                "style": {
-                  "warna_background": "#FFF8E1"
-                }
+                "sel": ["Ta' Ta'nits", "تْ", "Perempuan", "كَتَبَتْ", "Mudhari'/Madhi"],
+                "style": { "warna_background": "#FFF8E1" }
               }
             ]
           },
+
           "lagu": {
             "audio": "assets/audio/lagu_tanda_fiil.m4a",
             "lirik": [
@@ -1539,27 +1493,25 @@
               "Sin Saufa Qad Ta' Ta'nis tanpa Harakat"
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "benar_salah",
               "pertanyaan": "Apakah huruf sin bisa masuk pada isim?",
-              "jawaban": false
+              "jawaban": false,
+              "penjelasan": "Sin hanya untuk fi'il mudhari'."
             },
             {
               "id": 2,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Huruf 'س' menunjukkan...",
-              "opsi": [
-                "Lampau",
-                "Sekarang",
-                "Akan datang",
-                "Tidak tahu"
-              ],
+              "opsi": ["Lampau", "Sekarang", "Akan datang", "Tidak tahu"],
               "jawaban_benar_index": 2
             }
           ]
         },
+
         {
           "id": 5,
           "judul": "Tanda Huruf",
@@ -1567,38 +1519,25 @@
           "teks_inti": {
             "arab": "وَالْحَرْفُ مَا لَا يَصْلُحُ مَعَهُ دَلِيْلُ الْاِسْمِ وَلَا دَلِيْلُ الْفِعْلِ",
             "latin": "Wal-harfu ma la yashluhu ma'ahu daliilul ismi wa la daliilul fi'l",
-            "terjemahan": "Huruf tidak menerima tanda isim maupun fi'il.",
-            "penjelasan": {
-              "pengantar": "Huruf memiliki ciri khusus:",
-              "poin_poin": [
-                {
-                  "icon": "cancel",
-                  "judul": "Tidak menerima tanda isim",
-                  "teks": "Tidak menerima tanwin dan alif lam."
-                },
-                {
-                  "icon": "cancel",
-                  "judul": "Tidak menerima tanda fi'il",
-                  "teks": "Tidak bisa didahului qad atau sin."
-                }
-              ]
-            }
+            "terjemahan": "Huruf tidak menerima tanda isim maupun fi'il."
           },
+
           "diagram": {
+            "_comment_UI": "▶ Tipe: Diagram — huruf tidak menerima tanda isim/fi'il",
             "tipe": "custom_painter",
             "sub_tipe": "cross_diagram",
-            "center": {
-              "label": "Huruf",
-              "sub_label": "الْحَرْفُ",
-              "style": {
-                "warna_lingkaran": "#7B1FA2",
-                "warna_teks": "#FFFFFF",
-                "ukuran": 70.0,
-                "font_size": 14.0,
-                "bold": true
-              }
-            },
             "nodes": [
+              {
+                "label": "Huruf",
+                "arab": "الْحَرْفُ",
+                "style": {
+                  "warna_lingkaran": "#7B1FA2",
+                  "warna_teks": "#FFFFFF",
+                  "ukuran": 70.0,
+                  "font_size": 14.0,
+                  "bold": true
+                }
+              },
               {
                 "label": "TIDAK",
                 "sub_label": "✗ Tanwin",
@@ -1645,7 +1584,9 @@
               }
             ]
           },
+
           "konsep": {
+            "_comment_UI": "▶ Tipe: Card List — jenis huruf dengan contoh",
             "tipe": "card_list",
             "layout": "horizontal",
             "kartu": [
@@ -1660,34 +1601,13 @@
                 "detail": {
                   "deskripsi": "Huruf jar adalah huruf yang menyebabkan isim setelahnya dibaca kasrah.",
                   "huruf": [
-                    {
-                      "arab": "مِنْ",
-                      "arti": "dari"
-                    },
-                    {
-                      "arab": "إِلَى",
-                      "arti": "ke"
-                    },
-                    {
-                      "arab": "عَلَى",
-                      "arti": "di atas"
-                    },
-                    {
-                      "arab": "فِي",
-                      "arti": "di dalam"
-                    },
-                    {
-                      "arab": "بِ",
-                      "arti": "dengan"
-                    },
-                    {
-                      "arab": "لِ",
-                      "arti": "untuk"
-                    },
-                    {
-                      "arab": "عَنْ",
-                      "arti": "dari"
-                    }
+                    { "arab": "مِنْ", "arti": "dari" },
+                    { "arab": "إِلَى", "arti": "ke" },
+                    { "arab": "عَلَى", "arti": "di atas" },
+                    { "arab": "فِي", "arti": "di dalam" },
+                    { "arab": "بِ", "arti": "dengan" },
+                    { "arab": "لِ", "arti": "untuk" },
+                    { "arab": "عَنْ", "arti": "dari" }
                   ],
                   "contoh": [
                     {
@@ -1710,26 +1630,11 @@
                 "detail": {
                   "deskripsi": "Huruf athaf adalah huruf yang menghubungkan dua bagian kalimat.",
                   "huruf": [
-                    {
-                      "arab": "وَ",
-                      "arti": "dan"
-                    },
-                    {
-                      "arab": "فَ",
-                      "arti": "maka"
-                    },
-                    {
-                      "arab": "ثُمَّ",
-                      "arti": "kemudian"
-                    },
-                    {
-                      "arab": "أَوْ",
-                      "arti": "atau"
-                    },
-                    {
-                      "arab": "بَلْ",
-                      "arti": "bahkan"
-                    }
+                    { "arab": "وَ", "arti": "dan" },
+                    { "arab": "فَ", "arti": "maka" },
+                    { "arab": "ثُمَّ", "arti": "kemudian" },
+                    { "arab": "أَوْ", "arti": "atau" },
+                    { "arab": "بَلْ", "arti": "bahkan" }
                   ],
                   "contoh": [
                     {
@@ -1752,18 +1657,9 @@
                 "detail": {
                   "deskripsi": "Huruf istifham adalah huruf yang digunakan untuk bertanya.",
                   "huruf": [
-                    {
-                      "arab": "هَلْ",
-                      "arti": "apakah"
-                    },
-                    {
-                      "arab": "أَ",
-                      "arti": "apakah"
-                    },
-                    {
-                      "arab": "هَلَّا",
-                      "arti": "mengapa tidak"
-                    }
+                    { "arab": "هَلْ", "arti": "apakah" },
+                    { "arab": "أَ", "arti": "apakah" },
+                    { "arab": "هَلَّا", "arti": "mengapa tidak" }
                   ],
                   "contoh": [
                     {
@@ -1777,7 +1673,9 @@
               }
             ]
           },
+
           "tabel": {
+            "_comment_UI": "▶ Tipe: DataTable Flutter — jenis huruf",
             "tipe": "data_table",
             "orientasi": "horizontal",
             "header": {
@@ -1833,40 +1731,20 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Huruf Jar",
-                  "مِنْ، إِلَى، عَلَى، فِي، بِ، لِ، عَنْ",
-                  "Menunjukkan hubungan",
-                  "فِي الْبَيْتِ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Huruf Jar", "مِنْ، إِلَى، عَلَى، فِي، بِ، لِ، عَنْ", "Menunjukkan hubungan", "فِي الْبَيْتِ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Huruf Athaf",
-                  "وَ، فَ، ثُمَّ، أَوْ، بَلْ",
-                  "Menghubungkan kalimat",
-                  "زَيْدٌ وَعَمْرٌو"
-                ],
-                "style": {
-                  "warna_background": "#F3E5F5"
-                }
+                "sel": ["Huruf Athaf", "وَ، فَ، ثُمَّ، أَوْ، بَلْ", "Menghubungkan kalimat", "زَيْدٌ وَعَمْرٌو"],
+                "style": { "warna_background": "#F3E5F5" }
               },
               {
-                "sel": [
-                  "Huruf Istifham",
-                  "هَلْ، أَ، هَلَّا",
-                  "Huruf tanya",
-                  "هَلْ ذَهَبَ؟"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Huruf Istifham", "هَلْ، أَ، هَلَّا", "Huruf tanya", "هَلْ ذَهَبَ؟"],
+                "style": { "warna_background": "#FFFFFF" }
               }
             ]
           },
+
           "lagu": {
             "audio": "assets/audio/lagu_tanda_huruf.m4a",
             "lirik": [
@@ -1874,23 +1752,20 @@
               "Tanda Isim Fi'il bukanlah untuknya"
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Yang termasuk huruf adalah?",
-              "opsi": [
-                "زَيْدٌ",
-                "كَتَبَ",
-                "فِي",
-                "كِتَابٌ"
-              ],
+              "opsi": ["زَيْدٌ", "كَتَبَ", "فِي", "كِتَابٌ"],
               "jawaban_benar_index": 2
             }
           ]
         }
       ]
     },
+
     {
       "id": 2,
       "judul": "I'rab",
@@ -1906,6 +1781,7 @@
             "latin": "I'rabul kalami taghyiru akhrihi lima yakhtalifu bihi ma'anihi",
             "terjemahan": "I'rab kalimat adalah perubahan akhir kata karena perbedaan makna yang dihasilkannya."
           },
+
           "diagram": {
             "_comment_UI": "▶ Tipe: CustomPainter — 4 cabang Rafa', Nashab, Jar, Jazm",
             "tipe": "custom_painter",
@@ -1925,7 +1801,7 @@
               {
                 "label": "Rafa'",
                 "arab": "الرَّفْعُ",
-                "tanda": "Dhammah ",
+                "tanda": "Dhammah dummy",
                 "style": {
                   "warna_lingkaran": "#26A69A",
                   "warna_teks": "#FFFFFF",
@@ -1942,7 +1818,7 @@
               {
                 "label": "Nashab",
                 "arab": "النَّصْبُ",
-                "tanda": "Fathah ",
+                "tanda": "Fathah dummy",
                 "style": {
                   "warna_lingkaran": "#42A5F5",
                   "warna_teks": "#FFFFFF",
@@ -1959,7 +1835,7 @@
               {
                 "label": "Jar",
                 "arab": "الْجَرُّ",
-                "tanda": "Kasrah ",
+                "tanda": "Kasrah dummy",
                 "style": {
                   "warna_lingkaran": "#7B1FA2",
                   "warna_teks": "#FFFFFF",
@@ -1976,7 +1852,7 @@
               {
                 "label": "Jazm",
                 "arab": "الْجَزْمُ",
-                "tanda": "Sukun ",
+                "tanda": "Sukun dummy",
                 "style": {
                   "warna_lingkaran": "#EF5350",
                   "warna_teks": "#FFFFFF",
@@ -1992,6 +1868,7 @@
               }
             ]
           },
+
           "konsep": {
             "_comment_UI": "▶ Tipe: Card List — 4 jenis i'rab",
             "tipe": "card_list",
@@ -2008,26 +1885,12 @@
                 "detail": {
                   "deskripsi": "Rafa' artinya mengangkat. I'rab Rafa' menyebabkan akhir kata dibaca dhammah atau ditambah nun.",
                   "tanda": [
-                    {
-                      "nama": "Dhammah",
-                      "arab": "ـُ",
-                      "contoh": "زَيْدٌ"
-                    },
-                    {
-                      "nama": "Nun",
-                      "arab": "نْ",
-                      "contoh": "يَكْتُبُونَ"
-                    }
+                    { "nama": "Dhammah", "arab": "ـُ", "contoh": "زَيْدٌ" },
+                    { "nama": "Nun", "arab": "نْ", "contoh": "يَكْتُبُونَ" }
                   ],
                   "fungsi": [
-                    {
-                      "nama": "Mubtada",
-                      "contoh": "زَيْدٌ قَائِمٌ"
-                    },
-                    {
-                      "nama": "Fi'il muda'm",
-                      "contoh": "يَكْتُبُ"
-                    }
+                    { "nama": "Mubtada", "contoh": "زَيْدٌ قَائِمٌ" },
+                    { "nama": "Fi'il muda'm", "contoh": "يَكْتُبُ" }
                   ],
                   "contoh": [
                     {
@@ -2050,33 +1913,13 @@
                 "detail": {
                   "deskripsi": "Nashab artinya menegakkan. I'rab Nashab menyebabkan akhir kata dibaca fathah.",
                   "tanda": [
-                    {
-                      "nama": "Fathah",
-                      "arab": "ـَ",
-                      "contoh": "رَأَيْتُ زَيْدًا"
-                    },
-                    {
-                      "nama": "Alif",
-                      "arab": "ا",
-                      "contoh": "لَمْ يَكْتُبْ"
-                    }
+                    { "nama": "Fathah", "arab": "ـَ", "contoh": "رَأَيْتُ زَيْدًا" },
+                    { "nama": "Alif", "arab": "ا", "contoh": "لَمْ يَكْتُبْ" }
                   ],
                   "amil": [
-                    {
-                      "nama": "Lan",
-                      "arab": "لَنْ",
-                      "contoh": "لَنْ يَكْتُبَ"
-                    },
-                    {
-                      "nama": "Kaanna",
-                      "arab": "كَأَنَّ",
-                      "contoh": "كَأَنَّ زَيْدًا قَائِمٌ"
-                    },
-                    {
-                      "nama": "La'an",
-                      "arab": "لَعَلَّ",
-                      "contoh": "لَعَلَّ زَيْدًا ذَاهِبٌ"
-                    }
+                    { "nama": "Lan", "arab": "لَنْ", "contoh": "لَنْ يَكْتُبَ" },
+                    { "nama": "Kaanna", "arab": "كَأَنَّ", "contoh": "كَأَنَّ زَيْدًا قَائِمٌ" },
+                    { "nama": "La'an", "arab": "لَعَلَّ", "contoh": "لَعَلَّ زَيْدًا ذَاهِبٌ" }
                   ],
                   "contoh": [
                     {
@@ -2099,22 +1942,11 @@
                 "detail": {
                   "deskripsi": "Jar artinya menurunkan. I'rab Jar menyebabkan akhir kata dibaca kasrah.",
                   "tanda": [
-                    {
-                      "nama": "Kasrah",
-                      "arab": "ـِ",
-                      "contoh": "بِزَيْدٍ"
-                    },
-                    {
-                      "nama": "Ya",
-                      "arab": "يْ",
-                      "contoh": "عَلَى يَدَيْهِ"
-                    }
+                    { "nama": "Kasrah", "arab": "ـِ", "contoh": "بِزَيْدٍ" },
+                    { "nama": "Ya", "arab": "يْ", "contoh": "عَلَى يَدَيْهِ" }
                   ],
                   "fungsi": [
-                    {
-                      "nama": "Isim setelah huruf jar",
-                      "contoh": "فِي الْبَيْتِ"
-                    }
+                    { "nama": "Isim setelah huruf jar", "contoh": "فِي الْبَيْتِ" }
                   ],
                   "contoh": [
                     {
@@ -2137,28 +1969,12 @@
                 "detail": {
                   "deskripsi": "Jazm artinya memotong. I'rab Jazm menyebabkan akhir kata dibaca sukun.",
                   "tanda": [
-                    {
-                      "nama": "Sukun",
-                      "arab": "ـْ",
-                      "contoh": "لَمْ يَكْتُبْ"
-                    },
-                    {
-                      "nama": "Hadzf Nun",
-                      "arab": "看不到",
-                      "contoh": "لَا تَكْتُبْ"
-                    }
+                    { "nama": "Sukun", "arab": "ـْ", "contoh": "لَمْ يَكْتُبْ" },
+                    { "nama": "Hadzf Nun", "arab": "看不到", "contoh": "لَا تَكْتُبْ" }
                   ],
                   "amil": [
-                    {
-                      "nama": "Lam",
-                      "arab": "لَمْ",
-                      "contoh": "لَمْ يَكْتُبْ"
-                    },
-                    {
-                      "nama": "La",
-                      "arab": "لَا",
-                      "contoh": "لَا تَكْتُبْ"
-                    }
+                    { "nama": "Lam", "arab": "لَمْ", "contoh": "لَمْ يَكْتُبْ" },
+                    { "nama": "La", "arab": "لَا", "contoh": "لَا تَكْتُبْ" }
                   ],
                   "contoh": [
                     {
@@ -2172,6 +1988,7 @@
               }
             ]
           },
+
           "tabel": {
             "_comment_UI": "▶ Tipe: DataTable Flutter — 4 i'rab",
             "tipe": "data_table",
@@ -2228,7 +2045,7 @@
               },
               {
                 "nama": "Contoh",
-                "lebar": 0.3,
+                "lebar": 0.30,
                 "style": {
                   "warna_background": "#B2DFDB",
                   "warna_teks": "#004D40",
@@ -2239,82 +2056,42 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Rafa'",
-                  "الرَّفْعُ",
-                  "Dhammah  / Nun",
-                  "Subjek, Fi'il muda'm",
-                  "جَاءَ زَيْدٌ / يَكْتُبُ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Rafa'", "الرَّفْعُ", "Dhammah dummy / Nun", "Subjek, Fi'il muda'm", "جَاءَ زَيْدٌ / يَكْتُبُ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Nashab",
-                  "النَّصْبُ",
-                  "Fathah  / Alif",
-                  "Objek, Fi'il setelah amil nashab",
-                  "رَأَيْتُ زَيْدًا / لَنْ يَكْتُبَ"
-                ],
-                "style": {
-                  "warna_background": "#E0F2F1"
-                }
+                "sel": ["Nashab", "النَّصْبُ", "Fathah dummy / Alif", "Objek, Fi'il setelah amil nashab", "رَأَيْتُ زَيْدًا / لَنْ يَكْتُبَ"],
+                "style": { "warna_background": "#E0F2F1" }
               },
               {
-                "sel": [
-                  "Jar",
-                  "الْجَرُّ",
-                  "Kasrah  / Ya",
-                  "Isim setelah huruf jar",
-                  "بِزَيْدٍ / فِي الْبَيْتِ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Jar", "الْجَرُّ", "Kasrah dummy / Ya", "Isim setelah huruf jar", "بِزَيْدٍ / فِي الْبَيْتِ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Jazm",
-                  "الْجَزْمُ",
-                  "Sukun  / Hadzf",
-                  "Fi'il setelah lam/la jazmah",
-                  "لَمْ يَكْتُبْ / لَا تَكْتُبْ"
-                ],
-                "style": {
-                  "warna_background": "#E0F2F1"
-                }
+                "sel": ["Jazm", "الْجَزْمُ", "Sukun dummy / Hadzf", "Fi'il setelah lam/la jazmah", "لَمْ يَكْتُبْ / لَا تَكْتُبْ"],
+                "style": { "warna_background": "#E0F2F1" }
               }
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Berapa jumlah i'rab?",
-              "opsi": [
-                "2",
-                "3",
-                "4",
-                "5"
-              ],
+              "opsi": ["2", "3", "4", "5"],
               "jawaban_benar_index": 2
             },
             {
               "id": 2,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Tanda Rafa' adalah?",
-              "opsi": [
-                "Fathah",
-                "Dhammah",
-                "Kasrah",
-                "Sukun"
-              ],
+              "opsi": ["Fathah", "Dhammah", "Kasrah", "Sukun"],
               "jawaban_benar_index": 1
             }
           ]
         },
+
         {
           "id": 2,
           "judul": "I'rab Isim",
@@ -2324,6 +2101,7 @@
             "latin": "I'rabul ismi tsalatsatun: raf'un wa nashbun wa jarrun",
             "terjemahan": "I'rab isim ada tiga: Rafa', Nashab, dan Jar."
           },
+
           "diagram": {
             "_comment_UI": "▶ Tipe: Diagram — 3 i'rab isim",
             "tipe": "custom_painter",
@@ -2358,6 +2136,7 @@
               }
             ]
           },
+
           "konsep": {
             "_comment_UI": "▶ Tipe: Card List — 3 i'rab isim",
             "tipe": "card_list",
@@ -2397,14 +2176,8 @@
                 "detail": {
                   "deskripsi": "Isim nashab adalah isim yang berfungsi sebagai objek (Maf'ul bih) setelah fi'il nashab.",
                   "amil": [
-                    {
-                      "arab": "رَأَيْتُ",
-                      "arti": "saya melihat"
-                    },
-                    {
-                      "arab": "ضَرَبْتُ",
-                      "arti": "saya memukul"
-                    }
+                    { "arab": "رَأَيْتُ", "arti": "saya melihat" },
+                    { "arab": "ضَرَبْتُ", "arti": "saya memukul" }
                   ],
                   "contoh": [
                     {
@@ -2425,15 +2198,7 @@
                 "ringkasan": "Isim setelah huruf jar",
                 "detail": {
                   "deskripsi": "Isim jar adalah isim yang dibaca kasrah karena sesudah huruf jar.",
-                  "huruf_jar": [
-                    "مِنْ",
-                    "إِلَى",
-                    "عَلَى",
-                    "فِي",
-                    "بِ",
-                    "لِ",
-                    "عَنْ"
-                  ],
+                  "huruf_jar": ["مِنْ", "إِلَى", "عَلَى", "فِي", "بِ", "لِ", "عَنْ"],
                   "contoh": [
                     {
                       "arab": "فِي الْفَصْلِ",
@@ -2446,6 +2211,7 @@
               }
             ]
           },
+
           "tabel": {
             "_comment_UI": "▶ Tipe: DataTable Flutter — i'rab isim",
             "tipe": "data_table",
@@ -2503,55 +2269,31 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Rafa'",
-                  "Subjek (Mubtada/Khabar)",
-                  "Dhammah ",
-                  "جَاءَ الطَّالِبُ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Rafa'", "Subjek (Mubtada/Khabar)", "Dhammah dummy", "جَاءَ الطَّالِبُ"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Nashab",
-                  "Objek (Maf'ul bih)",
-                  "Fathah ",
-                  "رَأَيْتُ الطَّالِبَ"
-                ],
-                "style": {
-                  "warna_background": "#E0F2F1"
-                }
+                "sel": ["Nashab", "Objek (Maf'ul bih)", "Fathah dummy", "رَأَيْتُ الطَّالِبَ"],
+                "style": { "warna_background": "#E0F2F1" }
               },
               {
-                "sel": [
-                  "Jar",
-                  "Setelah huruf jar",
-                  "Kasrah ",
-                  "فِي الْفَصْلِ"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Jar", "Setelah huruf jar", "Kasrah dummy", "فِي الْفَصْلِ"],
+                "style": { "warna_background": "#FFFFFF" }
               }
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Berapa i'rab isim?",
-              "opsi": [
-                "2",
-                "3",
-                "4",
-                "5"
-              ],
+              "opsi": ["2", "3", "4", "5"],
               "jawaban_benar_index": 1
             }
           ]
         },
+
         {
           "id": 3,
           "judul": "I'rab Fi'il",
@@ -2561,6 +2303,7 @@
             "latin": "Wa i'rabul fi'li tsalatsatun: raf'un wa nashbun wa jazmun",
             "terjemahan": "Dan i'rab fi'il ada tiga: Rafa', Nashab, dan Jazm."
           },
+
           "diagram": {
             "_comment_UI": "▶ Tipe: Diagram — 3 i'rab fi'il",
             "tipe": "custom_painter",
@@ -2595,6 +2338,7 @@
               }
             ]
           },
+
           "konsep": {
             "_comment_UI": "▶ Tipe: Card List — 3 i'rab fi'il",
             "tipe": "card_list",
@@ -2629,18 +2373,9 @@
                 "detail": {
                   "deskripsi": "Fi'il mudhari' yang didahului amil nashab dibaca nashab (fathah).",
                   "amil_nashab": [
-                    {
-                      "arab": "لَنْ",
-                      "arti": "tidak akan"
-                    },
-                    {
-                      "arab": "كَيْ",
-                      "arti": "agar"
-                    },
-                    {
-                      "arab": "اِجْ",
-                      "arti": "supaya"
-                    }
+                    { "arab": "لَنْ", "arti": "tidak akan" },
+                    { "arab": "كَيْ", "arti": "agar" },
+                    { "arab": "اِجْ", "arti": "supaya" }
                   ],
                   "contoh": [
                     {
@@ -2662,18 +2397,9 @@
                 "detail": {
                   "deskripsi": "Fi'il mudhari' yang didahului amil jazm dibaca jazm (sukun).",
                   "amil_jazm": [
-                    {
-                      "arab": "لَمْ",
-                      "arti": "tidak (lampau)"
-                    },
-                    {
-                      "arab": "لَا",
-                      "arti": "jangan"
-                    },
-                    {
-                      "arab": "لَمَّا",
-                      "arti": "belum"
-                    }
+                    { "arab": "لَمْ", "arti": "tidak (lampau)" },
+                    { "arab": "لَا", "arti": "jangan" },
+                    { "arab": "لَمَّا", "arti": "belum" }
                   ],
                   "contoh": [
                     {
@@ -2687,6 +2413,7 @@
               }
             ]
           },
+
           "tabel": {
             "_comment_UI": "▶ Tipe: DataTable Flutter — i'rab fi'il",
             "tipe": "data_table",
@@ -2713,7 +2440,7 @@
               },
               {
                 "nama": "Amil",
-                "lebar": 0.2,
+                "lebar": 0.20,
                 "style": {
                   "warna_background": "#FFE0B2",
                   "warna_teks": "#E65100",
@@ -2754,66 +2481,33 @@
             ],
             "baris": [
               {
-                "sel": [
-                  "Rafa'",
-                  "—",
-                  "Dhammah ",
-                  "يَكْتُبُ",
-                  "Tanpa amil"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Rafa'", "—", "Dhammah dummy", "يَكْتُبُ", "Tanpa amil"],
+                "style": { "warna_background": "#FFFFFF" }
               },
               {
-                "sel": [
-                  "Nashab",
-                  "لَنْ",
-                  "Fathah ",
-                  "لَنْ يَكْتُبَ",
-                  "Akan datang (nafyu)"
-                ],
-                "style": {
-                  "warna_background": "#FFF8E1"
-                }
+                "sel": ["Nashab", "لَنْ", "Fathah dummy", "لَنْ يَكْتُبَ", "Akan datang (nafyu)"],
+                "style": { "warna_background": "#FFF8E1" }
               },
               {
-                "sel": [
-                  "Jazm",
-                  "لَمْ",
-                  "Sukun ",
-                  "لَمْ يَكْتُبْ",
-                  "Lampau (nafyi)"
-                ],
-                "style": {
-                  "warna_background": "#FFFFFF"
-                }
+                "sel": ["Jazm", "لَمْ", "Sukun dummy", "لَمْ يَكْتُبْ", "Lampau (nafyi)"],
+                "style": { "warna_background": "#FFFFFF" }
               }
             ]
           },
+
           "latihan": [
             {
               "id": 1,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Berapa i'rab fi'il?",
-              "opsi": [
-                "2",
-                "3",
-                "4",
-                "5"
-              ],
+              "opsi": ["2", "3", "4", "5"],
               "jawaban_benar_index": 1
             },
             {
               "id": 2,
               "tipe": "pilihan_ganda",
               "pertanyaan": "Amil jazm yang menunjukkan lampau adalah?",
-              "opsi": [
-                "لَنْ",
-                "لَمْ",
-                "كَيْ",
-                "اِجْ"
-              ],
+              "opsi": ["لَنْ", "لَمْ", "كَيْ", "اِجْ"],
               "jawaban_benar_index": 1
             }
           ]
