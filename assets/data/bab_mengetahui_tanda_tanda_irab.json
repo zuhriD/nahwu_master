@@ -1,0 +1,601 @@
+{
+  "judul": "Bab Mengetahui Tanda-Tanda I’rab",
+  "deskripsi": "Materi tanda i’rab rafa’, nashab, khafadh, dan jazm serta pembagiannya.",
+  "icon": "📙",
+  "sub_bab": [
+    {
+      "id": 1,
+      "judul": "Tanda-Tanda I’rab Rafa’",
+      "icon": "⬆️",
+      "teks_inti": {
+        "arab": "لِلرَّفْعِ أَرْبَعُ عَلَامَاتٍ: الضَّمَّةُ، وَالْوَاوُ، وَالْأَلِفُ، وَالنُّوْنُ",
+        "latin": "Lir-raf'i arba'u 'alāmātin: aḍ-ḍammatu, wal-wāwu, wal-alifu, wan-nūnu",
+        "terjemahan": "I’rab rafa’ mempunyai empat tanda: dhammah, wawu, alif, dan nun.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda-Tanda I’rab Rafa’",
+        "youtube_id": "",
+        "asset_path": "assets/video/tanda_irab_rafa.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda I’rab Rafa’",
+        "asset_path": "assets/audio/tanda_irab_rafa.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda I’rab Rafa’",
+        "audio_path": "assets/audio/lagu_tanda_irab_rafa.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda I’rab Rafa’",
+        "image_path": "assets/images/mindmap/tanda_irab_rafa.png",
+        "alt": "Mind map materi Tanda-Tanda I’rab Rafa’"
+      },
+      "keterangan": "Dhammah adalah tanda asli rafa’. Wawu, alif, dan nun menjadi pengganti dhammah pada bagian tertentu.",
+      "penjelasan_unsur": [
+        {
+          "id": "isim_mufrad",
+          "nama": "Isim Mufrad",
+          "arab": "اَلإِسْمُ الْمُفْرَدُ: هُوَ مَا دَلَّ عَلَى وَاحِدٍ أَوْ وَاحِدَةٍ",
+          "definisi": "Isim yang menunjukkan makna satu laki-laki atau satu perempuan.",
+          "contoh": [
+            "كِتَابٌ",
+            "زَهْرَةٌ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "jama_taksir",
+          "nama": "Jama’ Taksir",
+          "arab": "جَمْعُ التَّكْسِيرِ: هُوَ مَا دَلَّ عَلَى أَكْثَرَ مِنِ اثْنَيْنِ أَوْ اثْنَتَيْنِ مَعَ تَغَيُّرِ صُورَةِ مُفْرَدِهِ",
+          "definisi": "Kata yang menunjukkan lebih dari dua dengan perubahan bentuk mufradnya.",
+          "contoh": [
+            "كِتَابٌ → كُتُبٌ",
+            "رَجُلٌ → رِجَالٌ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "jama_muannas_salim",
+          "nama": "Jama’ Mu’annas Salim",
+          "arab": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ: هُوَ مَا دَلَّ عَلَى أَكْثَرَ مِنِ اثْنَتَيْنِ بِزِيَادَةِ أَلِفٍ وَتَاءٍ فِي آخِرِهِ",
+          "definisi": "Kata yang menunjukkan lebih dari dua perempuan dengan tambahan alif dan ta’ di akhir.",
+          "contoh": [
+            "مُؤْمِنَاتٌ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "fiil_mudhari",
+          "nama": "Fi’il Mudhari’",
+          "arab": "اَلْفِعْلُ الْمُضَارِعُ: هُوَ كُلُّ فِعْلٍ يَدُلُّ عَلَى حُصُولِ عَمَلٍ فِي الزَّمَنِ الْحَاضِرِ أَوْ الْمُسْتَقْبَلِ",
+          "definisi": "Kata kerja yang menunjukkan perbuatan pada masa sekarang atau akan datang.",
+          "contoh": [
+            "أَغْسِلُ",
+            "يَغْسِلُ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "jama_mudzakkar_salim",
+          "nama": "Jama’ Mudzakkar Salim",
+          "arab": "جَمْعُ الْمُذَكَّرِ السَّالِمُ: هُوَ مَا دَلَّ عَلَى أَكْثَرَ مِنِ اثْنَيْنِ بِزِيَادَةِ وَاوٍ وَنُونٍ أَوْ يَاءٍ وَنُونٍ فِي آخِرِهِ",
+          "definisi": "Kata yang menunjukkan lebih dari dua laki-laki dengan tambahan wawu-nun atau ya-nun.",
+          "contoh": [
+            "مُجْتَهِدُونَ",
+            "مُجْتَهِدِينَ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "asmaul_khamsah",
+          "nama": "Asma’ul Khamsah",
+          "arab": "الْأَسْمَاءُ الْخَمْسَةُ هِيَ: أَبٌ، أَخٌ، حَمٌ، فُوْ، ذُوْ",
+          "definisi": "Isim-isim yang lima: ayah, saudara laki-laki, ipar, mulut, dan yang memiliki.",
+          "contoh": [
+            "أَبُوْكَ",
+            "أَخُوْكَ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "isim_tatsniyah",
+          "nama": "Isim Tatsniyah",
+          "arab": "اَلْمُثَنَّى: هُوَ كُلُّ اسْمٍ دَلَّ عَلَى اثْنَيْنِ أَوِ اثْنَتَيْنِ، بِزِيَادَةِ أَلِفٍ وَنُونٍ أَوْ يَاءٍ وَنُونٍ فِي آخِرِهِ",
+          "definisi": "Isim yang menunjukkan makna dua dengan tambahan alif-nun atau ya-nun di akhir.",
+          "contoh": [
+            "كِتَابَانِ",
+            "شَجَرَتَانِ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "afalul_khamsah",
+          "nama": "Af’alul Khamsah",
+          "arab": "الْأَفْعَالُ الْخَمْسَةُ: هِيَ كُلُّ فِعْلٍ مُضَارِعٍ اتَّصَلَتْ بِهِ أَلِفُ الِاثْنَيْنِ، أَوْ وَاوُ الْجَمَاعَةِ، أَوْ يَاءُ الْمُخَاطَبَةِ",
+          "definisi": "Fi’il mudhari’ yang bersambung dengan alif tatsniyah, wawu jama’ah, atau ya’ mukhatabah.",
+          "contoh": [
+            "يَفْعَلَانِ",
+            "يَفْعَلُوْنَ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        }
+      ],
+      "tabel": {
+        "headers": [
+          "tanda_rafa",
+          "pembagiannya",
+          "tanda",
+          "contoh_ayat"
+        ],
+        "rows": [
+          {
+            "tanda_rafa": "Dhammah",
+            "pembagiannya": "Isim Mufrad",
+            "tanda": "Ḍhammah (ـُ)",
+            "contoh_ayat": "اَللّٰهُ نُوْرُ السَّمٰوٰتِ وَالْاَرْضِۗ — QS. An-Nur Ayat 35"
+          },
+          {
+            "tanda_rafa": "Dhammah",
+            "pembagiannya": "Jama’ Taksir",
+            "tanda": "Ḍhammah (ـُ)",
+            "contoh_ayat": "الْمُؤْمِنُونَ وَالْمُؤْمِنَاتُ... — QS. At-Taubah Ayat 71"
+          },
+          {
+            "tanda_rafa": "Dhammah",
+            "pembagiannya": "Jama’ Mu’annas Salim",
+            "tanda": "Ḍhammah (ـُ)",
+            "contoh_ayat": "وَٱلْمُطَلَّقَٰتُ... — QS. Al-Baqarah Ayat 228"
+          },
+          {
+            "tanda_rafa": "Dhammah",
+            "pembagiannya": "Fi’il Mudhari’",
+            "tanda": "Ḍhammah (ـُ)",
+            "contoh_ayat": "وَاللّٰهُ يَعْلَمُ مَا تَصْنَعُوْنَ — QS. Al-Ankabut Ayat 45"
+          },
+          {
+            "tanda_rafa": "Wawu",
+            "pembagiannya": "Jama’ Mudzakkar Salim",
+            "tanda": "Wawu (و)",
+            "contoh_ayat": "وَالْمُؤْمِنُونَ وَالْمُؤْمِنَاتُ... — QS. At-Taubah Ayat 71"
+          },
+          {
+            "tanda_rafa": "Wawu",
+            "pembagiannya": "Asma’ul Khamsah",
+            "tanda": "Wawu (و)",
+            "contoh_ayat": "وَاللّٰهُ ذُو الْفَضْلِ الْعَظِيمِ — QS. Al-Baqarah Ayat 105"
+          },
+          {
+            "tanda_rafa": "Alif",
+            "pembagiannya": "Isim Tatsniyah",
+            "tanda": "Alif (ا)",
+            "contoh_ayat": "قَالَ رَجُلَانِ... — QS. Al-Ma’idah Ayat 23"
+          },
+          {
+            "tanda_rafa": "Nun",
+            "pembagiannya": "Af’alul Khamsah",
+            "tanda": "Nun (ن)",
+            "contoh_ayat": "وَيَقُولُونَ مَتَى هَذَا الْوَعْدُ — QS. Yasin Ayat 48"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Tanda rafa’ ada empat: dhammah, wawu, alif, dan nun.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Dhammah adalah tanda asli rafa’. ",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Alif menjadi tanda rafa’ pada jama’ mudzakkar salim.",
+          "jawaban": false,
+          "penjelasan": "Alif menjadi tanda rafa’ pada isim tatsniyah."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "judul": "Tanda-Tanda I’rab Nashab",
+      "icon": "➡️",
+      "teks_inti": {
+        "arab": "وَلِلنَّصْبِ خَمْسُ عَلَامَاتٍ: الْفَتْحَةُ، وَالْأَلِفُ، وَالْكَسْرَةُ، وَالْيَاءُ، وَحَذْفُ النُّوْنِ",
+        "latin": "Wa lin-naṣbi khamsu 'alāmātin: al-fatḥatu, wal-alifu, wal-kasratu, wal-yā'u, wa ḥadzfun-nūni",
+        "terjemahan": "I’rab nashab mempunyai lima tanda: fathah, alif, kasrah, ya’, dan menghilangkan nun.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda-Tanda I’rab Nashab",
+        "youtube_id": "",
+        "asset_path": "assets/video/tanda_irab_nashab.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda I’rab Nashab",
+        "asset_path": "assets/audio/tanda_irab_nashab.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda I’rab Nashab",
+        "audio_path": "assets/audio/lagu_tanda_irab_nashab.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda I’rab Nashab",
+        "image_path": "assets/images/mindmap/tanda_irab_nashab.png",
+        "alt": "Mind map materi Tanda-Tanda I’rab Nashab"
+      },
+      "keterangan": "Fathah adalah tanda asli nashab. Alif, kasrah, ya’, dan hadzfu nun menjadi pengganti fathah.",
+      "penjelasan_unsur": [
+        {
+          "id": "isim_mufrad",
+          "nama": "Isim Mufrad",
+          "arab": "اَلإِسْمُ الْمُفْرَدُ: هُوَ مَا دَلَّ عَلَى وَاحِدٍ أَوْ وَاحِدَةٍ",
+          "definisi": "Isim yang menunjukkan makna satu laki-laki atau satu perempuan.",
+          "contoh": [
+            "كِتَابٌ",
+            "زَهْرَةٌ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "jama_taksir",
+          "nama": "Jama’ Taksir",
+          "arab": "جَمْعُ التَّكْسِيرِ: هُوَ مَا دَلَّ عَلَى أَكْثَرَ مِنِ اثْنَيْنِ أَوْ اثْنَتَيْنِ مَعَ تَغَيُّرِ صُورَةِ مُفْرَدِهِ",
+          "definisi": "Kata yang menunjukkan lebih dari dua dengan perubahan bentuk mufradnya.",
+          "contoh": [
+            "كِتَابٌ → كُتُبٌ",
+            "رَجُلٌ → رِجَالٌ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "jama_muannas_salim",
+          "nama": "Jama’ Mu’annas Salim",
+          "arab": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ: هُوَ مَا دَلَّ عَلَى أَكْثَرَ مِنِ اثْنَتَيْنِ بِزِيَادَةِ أَلِفٍ وَتَاءٍ فِي آخِرِهِ",
+          "definisi": "Kata yang menunjukkan lebih dari dua perempuan dengan tambahan alif dan ta’ di akhir.",
+          "contoh": [
+            "مُؤْمِنَاتٌ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "fiil_mudhari",
+          "nama": "Fi’il Mudhari’",
+          "arab": "اَلْفِعْلُ الْمُضَارِعُ: هُوَ كُلُّ فِعْلٍ يَدُلُّ عَلَى حُصُولِ عَمَلٍ فِي الزَّمَنِ الْحَاضِرِ أَوْ الْمُسْتَقْبَلِ",
+          "definisi": "Kata kerja yang menunjukkan perbuatan pada masa sekarang atau akan datang.",
+          "contoh": [
+            "أَغْسِلُ",
+            "يَغْسِلُ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "jama_mudzakkar_salim",
+          "nama": "Jama’ Mudzakkar Salim",
+          "arab": "جَمْعُ الْمُذَكَّرِ السَّالِمُ: هُوَ مَا دَلَّ عَلَى أَكْثَرَ مِنِ اثْنَيْنِ بِزِيَادَةِ وَاوٍ وَنُونٍ أَوْ يَاءٍ وَنُونٍ فِي آخِرِهِ",
+          "definisi": "Kata yang menunjukkan lebih dari dua laki-laki dengan tambahan wawu-nun atau ya-nun.",
+          "contoh": [
+            "مُجْتَهِدُونَ",
+            "مُجْتَهِدِينَ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "asmaul_khamsah",
+          "nama": "Asma’ul Khamsah",
+          "arab": "الْأَسْمَاءُ الْخَمْسَةُ هِيَ: أَبٌ، أَخٌ، حَمٌ، فُوْ، ذُوْ",
+          "definisi": "Isim-isim yang lima: ayah, saudara laki-laki, ipar, mulut, dan yang memiliki.",
+          "contoh": [
+            "أَبُوْكَ",
+            "أَخُوْكَ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "isim_tatsniyah",
+          "nama": "Isim Tatsniyah",
+          "arab": "اَلْمُثَنَّى: هُوَ كُلُّ اسْمٍ دَلَّ عَلَى اثْنَيْنِ أَوِ اثْنَتَيْنِ، بِزِيَادَةِ أَلِفٍ وَنُونٍ أَوْ يَاءٍ وَنُونٍ فِي آخِرِهِ",
+          "definisi": "Isim yang menunjukkan makna dua dengan tambahan alif-nun atau ya-nun di akhir.",
+          "contoh": [
+            "كِتَابَانِ",
+            "شَجَرَتَانِ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "afalul_khamsah",
+          "nama": "Af’alul Khamsah",
+          "arab": "الْأَفْعَالُ الْخَمْسَةُ: هِيَ كُلُّ فِعْلٍ مُضَارِعٍ اتَّصَلَتْ بِهِ أَلِفُ الِاثْنَيْنِ، أَوْ وَاوُ الْجَمَاعَةِ، أَوْ يَاءُ الْمُخَاطَبَةِ",
+          "definisi": "Fi’il mudhari’ yang bersambung dengan alif tatsniyah, wawu jama’ah, atau ya’ mukhatabah.",
+          "contoh": [
+            "يَفْعَلَانِ",
+            "يَفْعَلُوْنَ"
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        }
+      ],
+      "tabel": {
+        "headers": [
+          "tanda_nashab",
+          "pembagiannya",
+          "tanda",
+          "contoh_ayat"
+        ],
+        "rows": [
+          {
+            "tanda_nashab": "Fathah",
+            "pembagiannya": "Isim Mufrad",
+            "tanda": "Fatḥah (ـَ)",
+            "contoh_ayat": "وَلَمْ يَجْعَلْ لَّهٗ عِوَجًاࣝ — QS. Al-Kahfi Ayat 1"
+          },
+          {
+            "tanda_nashab": "Fathah",
+            "pembagiannya": "Jama’ Taksir",
+            "tanda": "Fatḥah (ـَ)",
+            "contoh_ayat": "وَعَلَّمَ آدَمَ الْأَسْمَاءَ كُلَّهَا — QS. Al-Baqarah Ayat 31"
+          },
+          {
+            "tanda_nashab": "Fathah",
+            "pembagiannya": "Fi’il Mudhari’",
+            "tanda": "Fatḥah (ـَ)",
+            "contoh_ayat": "لَنْ نَّبْرَحَ — QS. Taha Ayat 91"
+          },
+          {
+            "tanda_nashab": "Alif",
+            "pembagiannya": "Asma’ul Khamsah",
+            "tanda": "Alif (ا)",
+            "contoh_ayat": "أَبَاكَ، أَخَاكَ"
+          },
+          {
+            "tanda_nashab": "Kasrah",
+            "pembagiannya": "Jama’ Mu’annas Salim",
+            "tanda": "Kasrah (ـِ)",
+            "contoh_ayat": "مُؤْمِنَاتٍ"
+          },
+          {
+            "tanda_nashab": "Ya’",
+            "pembagiannya": "Isim Tatsniyah",
+            "tanda": "Ya’ (ي)",
+            "contoh_ayat": "رَجُلَيْنِ"
+          },
+          {
+            "tanda_nashab": "Ya’",
+            "pembagiannya": "Jama’ Mudzakkar Salim",
+            "tanda": "Ya’ (ي)",
+            "contoh_ayat": "مُجْتَهِدِينَ"
+          },
+          {
+            "tanda_nashab": "Hadzfu Nun",
+            "pembagiannya": "Af’alul Khamsah",
+            "tanda": "Membuang nun",
+            "contoh_ayat": "لَنْ تَفْعَلُوا"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Tanda nashab ada lima.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Kasrah dapat menjadi tanda nashab pada jama’ mu’annas salim.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Nun adalah tanda asli nashab.",
+          "jawaban": false,
+          "penjelasan": "Tanda asli nashab adalah fathah."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "judul": "Tanda-Tanda I’rab Khafadh/Jar",
+      "icon": "⬇️",
+      "teks_inti": {
+        "arab": "وَلِلْخَفْضِ ثَلَاثُ عَلَامَاتٍ: الْكَسْرَةُ، وَالْيَاءُ، وَالْفَتْحَةُ",
+        "latin": "Wa lil-khafḍi tsalātsu 'alāmātin: al-kasratu, wal-yā'u, wal-fatḥatu",
+        "terjemahan": "I’rab khafadh mempunyai tiga tanda: kasrah, ya’, dan fathah.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda-Tanda I’rab Khafadh",
+        "youtube_id": "",
+        "asset_path": "assets/video/tanda_irab_khafadh.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda I’rab Khafadh",
+        "asset_path": "assets/audio/tanda_irab_khafadh.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda I’rab Khafadh",
+        "audio_path": "assets/audio/lagu_tanda_irab_khafadh.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda I’rab Khafadh",
+        "image_path": "assets/images/mindmap/tanda_irab_khafadh.png",
+        "alt": "Mind map materi Tanda-Tanda I’rab Khafadh"
+      },
+      "keterangan": "Kasrah adalah tanda asli khafadh/jar. Ya’ dan fathah menjadi pengganti kasrah pada bagian tertentu.",
+      "tabel": {
+        "headers": [
+          "tanda_khafadh",
+          "pembagiannya",
+          "tanda",
+          "contoh_ayat"
+        ],
+        "rows": [
+          {
+            "tanda_khafadh": "Kasrah",
+            "pembagiannya": "Isim Mufrad",
+            "tanda": "Kasrah (ـِ)",
+            "contoh_ayat": "وَآمَنَهُمْ مِنْ جُوعٍ — QS. Quraysh Ayat 4"
+          },
+          {
+            "tanda_khafadh": "Kasrah",
+            "pembagiannya": "Jama’ Taksir",
+            "tanda": "Kasrah (ـِ)",
+            "contoh_ayat": "فِي قُلُوبِهِمْ مَرَضٌ — QS. Al-Baqarah Ayat 10"
+          },
+          {
+            "tanda_khafadh": "Kasrah",
+            "pembagiannya": "Jama’ Mu’annas Salim",
+            "tanda": "Kasrah (ـِ)",
+            "contoh_ayat": "الْمُسْلِمٰتِ وَالْمُؤْمِنٰتِ — QS. Al-Ahzab Ayat 35"
+          },
+          {
+            "tanda_khafadh": "Ya’",
+            "pembagiannya": "Isim Tatsniyah",
+            "tanda": "Ya’ (ي)",
+            "contoh_ayat": "رَجُلَيْنِ"
+          },
+          {
+            "tanda_khafadh": "Ya’",
+            "pembagiannya": "Jama’ Mudzakkar Salim",
+            "tanda": "Ya’ (ي)",
+            "contoh_ayat": "مُجْتَهِدِينَ"
+          },
+          {
+            "tanda_khafadh": "Ya’",
+            "pembagiannya": "Asma’ul Khamsah",
+            "tanda": "Ya’ (ي)",
+            "contoh_ayat": "بِأَبِيْكَ"
+          },
+          {
+            "tanda_khafadh": "Fathah",
+            "pembagiannya": "Isim ghairu munsharif",
+            "tanda": "Fathah (ـَ)",
+            "contoh_ayat": "بِأَحْمَدَ"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Tanda khafadh ada tiga: kasrah, ya’, dan fathah.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Kasrah adalah tanda asli khafadh.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Khafadh berlaku pada fi'il mudhari'.",
+          "jawaban": false,
+          "penjelasan": "Khafadh/jar berlaku pada isim."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "judul": "Tanda-Tanda I’rab Jazm",
+      "icon": "⏸️",
+      "teks_inti": {
+        "arab": "وَلِلْجَزْمِ عَلَامَتَانِ: السُّكُونُ، وَالْحَذْفُ",
+        "latin": "Wa lil-jazmi 'alāmatāni: as-sukūnu, wal-ḥadzfu",
+        "terjemahan": "I’rab jazm mempunyai dua tanda: sukun dan membuang huruf.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda-Tanda I’rab Jazm",
+        "youtube_id": "",
+        "asset_path": "assets/video/tanda_irab_jazm.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda I’rab Jazm",
+        "asset_path": "assets/audio/tanda_irab_jazm.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda I’rab Jazm",
+        "audio_path": "assets/audio/lagu_tanda_irab_jazm.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda I’rab Jazm",
+        "image_path": "assets/images/mindmap/tanda_irab_jazm.png",
+        "alt": "Mind map materi Tanda-Tanda I’rab Jazm"
+      },
+      "keterangan": "Sukun adalah tanda asli jazm. Hadzfu/membuang huruf berlaku pada fi'il tertentu.",
+      "tabel": {
+        "headers": [
+          "tanda_jazm",
+          "pembagiannya",
+          "tanda",
+          "contoh_ayat"
+        ],
+        "rows": [
+          {
+            "tanda_jazm": "Sukun",
+            "pembagiannya": "Fi‘il Mudhari‘ Shahih Akhir",
+            "tanda": "Sukun (ـْ)",
+            "contoh_ayat": "لَمْ يَلِدْ وَلَمْ يُولَدْ — QS. Al-Ikhlas Ayat 3"
+          },
+          {
+            "tanda_jazm": "Membuang huruf Nun dan huruf Illat",
+            "pembagiannya": "Al-Af‘āl al-Khamsah",
+            "tanda": "Membuang ن atau huruf illat",
+            "contoh_ayat": "فَإِنْ لَمْ تَفْعَلُوا وَلَنْ تَفْعَلُوا — QS. Al-Baqarah Ayat 24"
+          },
+          {
+            "tanda_jazm": "Membuang huruf Nun dan huruf Illat",
+            "pembagiannya": "Fi‘il Mudhari‘ Mu‘tal Akhir",
+            "tanda": "Membuang ن atau ا/ي/و",
+            "contoh_ayat": "وَلَا تَمْشِ فِى الْاَرْضِ مَرَحًاۚ — QS. Al-Isra' Ayat 37"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Tanda jazm adalah sukun dan hadzfu/membuang huruf.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Sukun adalah tanda asli jazm.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Jazm berlaku pada isim.",
+          "jawaban": false,
+          "penjelasan": "Jazm berlaku pada fi'il, bukan isim."
+        }
+      ]
+    }
+  ]
+}

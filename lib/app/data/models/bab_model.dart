@@ -5,6 +5,7 @@ import 'sub_bab_model.dart';
 class Bab {
   final int? id;
   final String? judul;
+  final String? deskripsi;
   final String? icon;
   final String? youtubeId;
   final List<SubBab>? subBab;
@@ -12,6 +13,7 @@ class Bab {
   Bab({
     this.id,
     this.judul,
+    this.deskripsi,
     this.icon,
     this.youtubeId,
     this.subBab,
@@ -23,6 +25,7 @@ class Bab {
     return Bab(
       id: json['id'] as int?,
       judul: json['judul'] as String?,
+      deskripsi: json['deskripsi'] as String?,
       icon: json['icon'] as String?,
       youtubeId: json['youtube_id'] as String?,
       subBab: json['sub_bab'] != null
@@ -36,6 +39,7 @@ class Bab {
   Map<String, dynamic> toJson() => {
         'id': id,
         'judul': judul,
+        'deskripsi': deskripsi,
         'icon': icon,
         'youtube_id': youtubeId,
         'sub_bab': subBab?.map((e) => e.toJson()).toList(),

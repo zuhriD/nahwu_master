@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../data/local/storage_service.dart';
+import '../../home/controllers/home_controller.dart';
 
 class ProfileController extends GetxController {
   final StorageService _storage = Get.find<StorageService>();
@@ -10,6 +11,7 @@ class ProfileController extends GetxController {
   // Real stats
   final RxInt totalXp = 0.obs;
   final RxInt completedBab = 0.obs;
+  final RxInt totalMateri = 0.obs;
   final RxInt currentStreak = 0.obs;
   final RxInt bestStreak = 0.obs;
   final RxString levelName = 'Al-Mubtadi'.obs;
@@ -20,7 +22,8 @@ class ProfileController extends GetxController {
   final RxString userName = 'Thalabul Ilmi'.obs;
 
   // Achievements list
-  final RxList<Map<String, dynamic>> achievements = <Map<String, dynamic>>[].obs;
+  final RxList<Map<String, dynamic>> achievements =
+      <Map<String, dynamic>>[].obs;
 
   @override
   void onInit() {
@@ -32,7 +35,14 @@ class ProfileController extends GetxController {
 
   void refreshStats() {
     totalXp.value = _storage.getTotalXp();
-    completedBab.value = _storage.getCompletedBabCount(5); // Current total bab
+    try {
+      final homeController = Get.find<HomeController>();
+      totalMateri.value = homeController.totalMateri;
+      completedBab.value = homeController.completedBab.value;
+    } catch (_) {
+      totalMateri.value = 0;
+      completedBab.value = 0;
+    }
     currentStreak.value = _storage.getCurrentStreak();
     bestStreak.value = _storage.getBestStreak();
 

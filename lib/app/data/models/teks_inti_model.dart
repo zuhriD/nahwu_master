@@ -2,12 +2,14 @@ class TeksInti {
   final String? arab;
   final String? latin;
   final String? terjemahan;
+  final String? sumber;
   final Penjelasan? penjelasan;
 
   TeksInti({
     this.arab,
     this.latin,
     this.terjemahan,
+    this.sumber,
     this.penjelasan,
   });
 
@@ -16,6 +18,7 @@ class TeksInti {
       arab: json['arab'] as String?,
       latin: json['latin'] as String?,
       terjemahan: json['terjemahan'] as String?,
+      sumber: json['sumber'] as String?,
       penjelasan: json['penjelasan'] != null
           ? Penjelasan.fromJson(json['penjelasan'] as Map<String, dynamic>)
           : null,
@@ -26,6 +29,7 @@ class TeksInti {
         'arab': arab,
         'latin': latin,
         'terjemahan': terjemahan,
+        'sumber': sumber,
         'penjelasan': penjelasan?.toJson(),
       };
 }

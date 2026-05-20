@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../controllers/lagu_matan_controller.dart';
 
@@ -45,7 +45,8 @@ class LaguMatanView extends GetView<LaguMatanController> {
               ),
             ),
             // Show audio controls only if using local audio (no YouTube)
-            if (!controller.hasYoutube) _buildPlayerControls(),
+            if (controller.hasLocalAudio && !controller.hasYoutube)
+              _buildPlayerControls(),
           ],
         ),
       ),
@@ -143,7 +144,12 @@ class LaguMatanView extends GetView<LaguMatanController> {
               ),
               child: YoutubePlayer(
                 controller: ytController,
-                aspectRatio: 16 / 9,
+                showVideoProgressIndicator: true,
+                progressIndicatorColor: secondaryContainer,
+                progressColors: const ProgressBarColors(
+                  playedColor: secondaryContainer,
+                  handleColor: secondary,
+                ),
               ),
             ),
           ),
@@ -318,7 +324,9 @@ class LaguMatanView extends GetView<LaguMatanController> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Dengarkan dan hapalkan lirik lagu ini untuk mengingat point-point penting dari materinya.',
+              controller.hasLocalAudio
+                  ? 'Dengarkan dan hapalkan lirik lagu ini untuk mengingat point-point penting dari materinya.'
+                  : 'Hafalkan lirik ini untuk mengingat point-point penting dari materinya.',
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 13,
                 color: onPrimaryContainer.withValues(alpha: 0.9),
@@ -364,8 +372,7 @@ class LaguMatanView extends GetView<LaguMatanController> {
               onTap: () => controller.goToLine(index),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                margin:
-                    const EdgeInsets.only(bottom: 8, left: 24, right: 24),
+                margin: const EdgeInsets.only(bottom: 8, left: 24, right: 24),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 decoration: BoxDecoration(
@@ -415,9 +422,8 @@ class LaguMatanView extends GetView<LaguMatanController> {
                         lirik[index],
                         style: GoogleFonts.manrope(
                           fontSize: isCurrentLine ? 17 : 15,
-                          fontWeight: isCurrentLine
-                              ? FontWeight.bold
-                              : FontWeight.w500,
+                          fontWeight:
+                              isCurrentLine ? FontWeight.bold : FontWeight.w500,
                           color: isCurrentLine
                               ? Colors.white
                               : isPastLine

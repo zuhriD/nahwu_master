@@ -72,26 +72,7 @@ class HomeView extends GetView<HomeController> {
         children: [
           Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(24),
-                    onTap: () {},
-                    hoverColor: surfaceVariant,
-                    highlightColor: primaryContainer,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(Icons.menu_rounded, color: primary),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
+              
               Text(
                 'Nahwu Tutor',
                 style: GoogleFonts.manrope(
@@ -201,8 +182,7 @@ class HomeView extends GetView<HomeController> {
     return Obx(() {
       final pct = (controller.progressPercent.value * 100).toInt();
       final completed = controller.completedBab.value;
-      final total = controller.totalBab;
-      final remaining = total - completed;
+      final remaining = controller.totalMateri - completed;
 
       return Column(
         children: [
@@ -243,7 +223,8 @@ class HomeView extends GetView<HomeController> {
                   ),
                   child: FractionallySizedBox(
                     alignment: Alignment.centerLeft,
-                    widthFactor: controller.progressPercent.value.clamp(0.0, 1.0),
+                    widthFactor:
+                        controller.progressPercent.value.clamp(0.0, 1.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: secondaryContainer,
@@ -255,9 +236,9 @@ class HomeView extends GetView<HomeController> {
                 const SizedBox(height: 24),
                 Row(
                   children: [
-                    _buildStatChip('BAB SELESAI', '$completed Bab'),
+                    _buildStatChip('MATERI SELESAI', '$completed Materi'),
                     const SizedBox(width: 16),
-                    _buildStatChip('SISA MATERI', '$remaining Bab'),
+                    _buildStatChip('SISA MATERI', '$remaining Materi'),
                     const SizedBox(width: 16),
                     _buildStatChip('TOTAL XP', '${controller.totalXp.value}'),
                   ],
@@ -282,8 +263,8 @@ class HomeView extends GetView<HomeController> {
                     color: secondary.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
-                  child:
-                      const Icon(Icons.quiz_rounded, color: secondary, size: 32),
+                  child: const Icon(Icons.quiz_rounded,
+                      color: secondary, size: 32),
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -493,9 +474,8 @@ class _BabListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isUnlocked
-          ? () => Get.toNamed(Routes.DETAIL, arguments: bab)
-          : null,
+      onTap:
+          isUnlocked ? () => Get.toNamed(Routes.DETAIL, arguments: bab) : null,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(24),
@@ -640,7 +620,9 @@ class _BabListItem extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       CircularProgressIndicator(
-                        value: bestScore > 0 ? bestScore / (totalLatihan > 0 ? totalLatihan : 1) : 0.25,
+                        value: bestScore > 0
+                            ? bestScore / (totalLatihan > 0 ? totalLatihan : 1)
+                            : 0.25,
                         strokeWidth: 3,
                         color: HomeView.secondary,
                         backgroundColor: HomeView.surfaceContainerHigh,

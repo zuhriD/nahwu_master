@@ -81,21 +81,20 @@ class FlashcardController extends GetxController {
     }
 
     for (final subBab in subBabList) {
-      final teksInti = subBab.teksInti;
-      if (teksInti == null) continue;
-
       // Card 1: Matan utama
-      if (teksInti.arab != null) {
-        cards.add(FlashcardData(
-          front: teksInti.arab!,
-          back: teksInti.terjemahan ?? '',
-          latin: teksInti.latin,
-          type: 'matan',
-        ));
+      for (final teksInti in subBab.teksIntiList) {
+        if (teksInti.arab != null) {
+          cards.add(FlashcardData(
+            front: teksInti.arab!,
+            back: teksInti.terjemahan ?? '',
+            latin: teksInti.latin,
+            type: 'matan',
+          ));
+        }
       }
 
       // Cards dari poin-poin penjelasan
-      final penjelasan = teksInti.penjelasan;
+      final penjelasan = subBab.teksInti?.penjelasan;
       if (penjelasan?.poinPoin != null) {
         for (final poin in penjelasan!.poinPoin!) {
           if (poin.judul != null && poin.teks != null) {
@@ -119,12 +118,39 @@ class FlashcardController extends GetxController {
           ));
         }
       }
+
+      _addRawCards(subBab);
+    }
+  }
+
+  void _addRawCards(SubBab subBab) {
+    for (final key in ['unsur', 'jenis_kata', 'tanda', 'penjelasan_unsur']) {
+      final value = subBab.rawJson[key];
+      if (value is! List) continue;
+      for (final item in value.whereType<Map<String, dynamic>>()) {
+        final front =
+            (item['arab'] ?? item['judul'] ?? item['nama'] ?? item['tanda'])
+                ?.toString();
+        final back =
+            (item['definisi'] ?? item['keterangan'] ?? item['arti'] ?? '')
+                .toString();
+        if (front != null &&
+            front.trim().isNotEmpty &&
+            back.trim().isNotEmpty) {
+          cards.add(FlashcardData(
+            front: front,
+            back: back,
+            type: key,
+          ));
+        }
+      }
     }
   }
 
   void _updateMasteredCount() {
     if (dataId == null) return;
-    masteredCount.value = _storage.getMasteredFlashcardCount(dataId!, totalCards);
+    masteredCount.value =
+        _storage.getMasteredFlashcardCount(dataId!, totalCards);
   }
 
   /// Flip kartu

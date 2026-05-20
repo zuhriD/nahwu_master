@@ -14,7 +14,7 @@ class LaguMatan {
 
   factory LaguMatan.fromJson(Map<String, dynamic> json) {
     return LaguMatan(
-      audio: json['audio'] as String?,
+      audio: (json['audio_path'] ?? json['audio']) as String?,
       youtubeId: json['youtube_id'] as String?,
       lirik: json['lirik'] != null
           ? (json['lirik'] as List<dynamic>).map((e) => e.toString()).toList()

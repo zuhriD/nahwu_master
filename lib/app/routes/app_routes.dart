@@ -12,6 +12,9 @@ abstract class Routes {
   static const MAIN_WRAPPER = _Paths.MAIN_WRAPPER;
   static const FLASHCARD = _Paths.FLASHCARD;
   static const LAGU_MATAN = _Paths.LAGU_MATAN;
+  static const ABOUT_APP = _Paths.ABOUT_APP;
+  static const DEVELOPER_PROFILE = _Paths.DEVELOPER_PROFILE;
+  static const USER_GUIDE = _Paths.USER_GUIDE;
 }
 
 abstract class _Paths {
@@ -25,4 +28,7 @@ abstract class _Paths {
   static const MAIN_WRAPPER = '/main-wrapper';
   static const FLASHCARD = '/flashcard';
   static const LAGU_MATAN = '/lagu-matan';
+  static const ABOUT_APP = '/about-app';
+  static const DEVELOPER_PROFILE = '/developer-profile';
+  static const USER_GUIDE = '/user-guide';
 }

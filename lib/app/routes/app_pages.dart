@@ -7,6 +7,9 @@ import '../modules/home/views/home_view.dart';
 import '../modules/quiz/bindings/quiz_binding.dart';
 import '../modules/quiz/views/quiz_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/about_app_view.dart';
+import '../modules/profile/views/developer_profile_view.dart';
+import '../modules/profile/views/user_guide_view.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/main_wrapper/bindings/main_wrapper_binding.dart';
 import '../modules/main_wrapper/views/main_wrapper_view.dart';
@@ -61,6 +64,18 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT_APP,
+      page: () => const AboutAppView(),
+    ),
+    GetPage(
+      name: _Paths.DEVELOPER_PROFILE,
+      page: () => const DeveloperProfileView(),
+    ),
+    GetPage(
+      name: _Paths.USER_GUIDE,
+      page: () => const UserGuideView(),
     ),
     GetPage(
       name: _Paths.MAIN_WRAPPER,

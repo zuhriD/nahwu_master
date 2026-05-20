@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../data/models/bab_model.dart';
 import '../../../data/models/sub_bab_model.dart';
@@ -40,15 +40,20 @@ class _DetailViewState extends State<DetailView> {
   void _initYoutubePlayer() {
     if (_ytInitialized) return;
     try {
+      final videoId = YoutubePlayer.convertUrlToId(
+            'https://www.youtube.com/watch?v=${bab.youtubeId}',
+          ) ??
+          bab.youtubeId ??
+          '';
+
       _ytController = YoutubePlayerController(
-        params: const YoutubePlayerParams(
-          showControls: true,
+        initialVideoId: videoId,
+        flags: const YoutubePlayerFlags(
+          autoPlay: false,
           mute: false,
-          showFullscreenButton: true,
-          playsInline: true,
+          enableCaption: false,
         ),
       );
-      _ytController!.loadVideoById(videoId: bab.youtubeId!);
       _ytInitialized = true;
     } catch (e) {
       debugPrint('YouTube init error: $e');
@@ -57,7 +62,7 @@ class _DetailViewState extends State<DetailView> {
 
   @override
   void dispose() {
-    _ytController?.close();
+    _ytController?.dispose();
     super.dispose();
   }
 
@@ -71,13 +76,18 @@ class _DetailViewState extends State<DetailView> {
             slivers: [
               _buildSliverAppBar(bab),
               SliverPadding(
-                padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 120),
+                padding: const EdgeInsets.only(
+                    left: 24, right: 24, top: 24, bottom: 120),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     _buildBabHeader(bab),
                     if (bab.hasYoutube) ...[
                       const SizedBox(height: 24),
                       _buildYoutubeSection(),
+                    ],
+                    if (_mindMapSubBab(bab).isNotEmpty) ...[
+                      const SizedBox(height: 32),
+                      _buildMindMapGallery(bab),
                     ],
                     const SizedBox(height: 32),
                     _buildSubBabList(bab),
@@ -118,7 +128,8 @@ class _DetailViewState extends State<DetailView> {
                 highlightColor: DetailView.primaryContainer,
                 child: const Padding(
                   padding: EdgeInsets.only(top: 8, bottom: 8, right: 16),
-                  child: Icon(Icons.arrow_back_rounded, color: DetailView.primary),
+                  child:
+                      Icon(Icons.arrow_back_rounded, color: DetailView.primary),
                 ),
               ),
             ),
@@ -184,6 +195,17 @@ class _DetailViewState extends State<DetailView> {
             ],
           ),
           const SizedBox(height: 16),
+          if (bab.deskripsi != null) ...[
+            Text(
+              bab.deskripsi!,
+              style: GoogleFonts.plusJakartaSans(
+                color: Colors.white.withValues(alpha: 0.85),
+                fontSize: 14,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
           Text(
             '${bab.subBab?.length ?? 0} Sub Bab • ${bab.totalLatihan} Soal Latihan',
             style: GoogleFonts.plusJakartaSans(
@@ -195,7 +217,8 @@ class _DetailViewState extends State<DetailView> {
           LinearProgressIndicator(
             value: 0,
             backgroundColor: DetailView.primary.withValues(alpha: 0.3),
-            valueColor: AlwaysStoppedAnimation<Color>(DetailView.secondaryContainer),
+            valueColor:
+                AlwaysStoppedAnimation<Color>(DetailView.secondaryContainer),
             borderRadius: BorderRadius.circular(10),
           ),
         ],
@@ -274,7 +297,12 @@ class _DetailViewState extends State<DetailView> {
             ),
             child: YoutubePlayer(
               controller: _ytController!,
-              aspectRatio: 16 / 9,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: DetailView.secondaryContainer,
+              progressColors: const ProgressBarColors(
+                playedColor: DetailView.secondaryContainer,
+                handleColor: DetailView.secondary,
+              ),
             ),
           ),
         ),
@@ -345,6 +373,217 @@ class _DetailViewState extends State<DetailView> {
           );
         }),
       ],
+    );
+  }
+
+  List<SubBab> _mindMapSubBab(Bab bab) {
+    return (bab.subBab ?? [])
+        .where((subBab) => subBab.mindMapImagePath != null)
+        .toList();
+  }
+
+  Widget _buildMindMapGallery(Bab bab) {
+    final items = _mindMapSubBab(bab);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(width: 32, height: 2, color: DetailView.secondary),
+            const SizedBox(width: 12),
+            Text(
+              'Mind Mapping',
+              style: GoogleFonts.manrope(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: DetailView.primary,
+                letterSpacing: -0.5,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          height: 210,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            itemCount: items.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            itemBuilder: (context, index) {
+              final subBab = items[index];
+              final imagePath = subBab.mindMapImagePath!;
+
+              return GestureDetector(
+                onTap: () => _showMindMapDialog(
+                  context,
+                  imagePath: imagePath,
+                  title: subBab.mindMapTitle ?? subBab.judul ?? 'Mind Mapping',
+                ),
+                child: Container(
+                  width: 280,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: DetailView.onBackground.withValues(alpha: 0.05),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          color: DetailView.surfaceContainerLow,
+                          child: Image.asset(
+                            imagePath,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return _buildMissingMindMapPreview(imagePath);
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              subBab.mindMapTitle ?? 'Mind Mapping',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.manrope(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: DetailView.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              subBab.judul ?? 'Sub Bab',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.plusJakartaSans(
+                                fontSize: 12,
+                                color: DetailView.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMissingMindMapPreview(String imagePath) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.image_not_supported_rounded,
+            color: DetailView.onSurfaceVariant,
+            size: 34,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            imagePath,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.plusJakartaSans(
+              color: DetailView.onSurfaceVariant,
+              fontSize: 11,
+              height: 1.3,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showMindMapDialog(
+    BuildContext context, {
+    required String imagePath,
+    required String title,
+  }) {
+    return showDialog<void>(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.82),
+      builder: (context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.all(20),
+          backgroundColor: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 18, 14, 10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: GoogleFonts.manrope(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: DetailView.primary,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: const Icon(
+                          Icons.close_rounded,
+                          color: DetailView.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: InteractiveViewer(
+                    minScale: 0.8,
+                    maxScale: 5,
+                    child: Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: _buildMissingMindMapPreview(imagePath),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -425,7 +664,8 @@ class _SubBabItem extends StatelessWidget {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: DetailView.secondaryContainer.withValues(alpha: 0.5),
+                            color: DetailView.secondaryContainer
+                                .withValues(alpha: 0.5),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
@@ -474,7 +714,8 @@ class _SubBabItem extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: DetailView.primaryContainer.withValues(alpha: 0.2),
+                            color: DetailView.primaryContainer
+                                .withValues(alpha: 0.2),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(

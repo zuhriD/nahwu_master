@@ -28,6 +28,7 @@ class StorageService {
 
   /// Tandai bab sebagai sudah dibaca
   void markBabAsRead(int babId) {
+    if (isBabRead(babId)) return;
     _progressBox.put('bab_${babId}_read', true);
     _progressBox.put('bab_${babId}_readAt', DateTime.now().toIso8601String());
     _addXp(50, 'Membaca Bab $babId');
@@ -40,6 +41,7 @@ class StorageService {
 
   /// Simpan hasil quiz
   void saveQuizResult(int babId, int score, int total) {
+    if (total <= 0) return;
     final int prevBest = getBestScore(babId);
     _progressBox.put('bab_${babId}_quizDone', true);
     _progressBox.put('bab_${babId}_lastScore', score);
@@ -92,7 +94,7 @@ class StorageService {
     final int prevId = babId - 1;
     final bool prevRead = isBabRead(prevId);
     final bool prevQuizDone = isQuizDone(prevId);
-    
+
     // Cukup pastikan sudah dibaca dan kuis sudah pernah dikerjakan
     return prevRead && prevQuizDone;
   }
@@ -125,7 +127,8 @@ class StorageService {
     _prefsBox.put('totalXp', current + amount);
 
     // Log XP history (simpan 50 terakhir)
-    List<dynamic> history = _prefsBox.get('xpHistory', defaultValue: <dynamic>[]);
+    List<dynamic> history =
+        _prefsBox.get('xpHistory', defaultValue: <dynamic>[]);
     history.add({
       'amount': amount,
       'reason': reason,
@@ -149,13 +152,55 @@ class StorageService {
   Map<String, dynamic> getCurrentLevel() {
     final int xp = getTotalXp();
     final levels = [
-      {'level': 1, 'name': 'Al-Mubtadi', 'title': 'Pemula', 'minXp': 0, 'emoji': '🌱'},
-      {'level': 2, 'name': 'Thalibul Ilmi', 'title': 'Pencari Ilmu', 'minXp': 500, 'emoji': '📖'},
-      {'level': 3, 'name': "Al-Muta'allim", 'title': 'Pelajar', 'minXp': 1500, 'emoji': '✏️'},
-      {'level': 4, 'name': 'Al-Faahim', 'title': 'Pemahami', 'minXp': 3500, 'emoji': '💡'},
-      {'level': 5, 'name': 'Al-Mutqin', 'title': 'Mahir', 'minXp': 7000, 'emoji': '⭐'},
-      {'level': 6, 'name': "Al-'Aalim", 'title': 'Berilmu', 'minXp': 12000, 'emoji': '🏅'},
-      {'level': 7, 'name': 'Al-Ustadz', 'title': 'Pengajar', 'minXp': 20000, 'emoji': '👑'},
+      {
+        'level': 1,
+        'name': 'Al-Mubtadi',
+        'title': 'Pemula',
+        'minXp': 0,
+        'emoji': '🌱'
+      },
+      {
+        'level': 2,
+        'name': 'Thalibul Ilmi',
+        'title': 'Pencari Ilmu',
+        'minXp': 500,
+        'emoji': '📖'
+      },
+      {
+        'level': 3,
+        'name': "Al-Muta'allim",
+        'title': 'Pelajar',
+        'minXp': 1500,
+        'emoji': '✏️'
+      },
+      {
+        'level': 4,
+        'name': 'Al-Faahim',
+        'title': 'Pemahami',
+        'minXp': 3500,
+        'emoji': '💡'
+      },
+      {
+        'level': 5,
+        'name': 'Al-Mutqin',
+        'title': 'Mahir',
+        'minXp': 7000,
+        'emoji': '⭐'
+      },
+      {
+        'level': 6,
+        'name': "Al-'Aalim",
+        'title': 'Berilmu',
+        'minXp': 12000,
+        'emoji': '🏅'
+      },
+      {
+        'level': 7,
+        'name': 'Al-Ustadz',
+        'title': 'Pengajar',
+        'minXp': 20000,
+        'emoji': '👑'
+      },
     ];
 
     Map<String, dynamic> current = levels.first;
@@ -168,11 +213,11 @@ class StorageService {
       }
     }
 
-    final int nextMinXp = next != null ? (next['minXp'] as int) : (current['minXp'] as int);
+    final int nextMinXp =
+        next != null ? (next['minXp'] as int) : (current['minXp'] as int);
     final int currentMinXp = current['minXp'] as int;
-    final double progress = next != null
-        ? (xp - currentMinXp) / (nextMinXp - currentMinXp)
-        : 1.0;
+    final double progress =
+        next != null ? (xp - currentMinXp) / (nextMinXp - currentMinXp) : 1.0;
 
     return {
       ...current,
@@ -193,7 +238,8 @@ class StorageService {
 
     if (lastActive == today) return; // Sudah diupdate hari ini
 
-    final String yesterday = _dateKey(DateTime.now().subtract(const Duration(days: 1)));
+    final String yesterday =
+        _dateKey(DateTime.now().subtract(const Duration(days: 1)));
     int streak = _prefsBox.get('streakDays', defaultValue: 0);
 
     if (lastActive == yesterday) {
@@ -213,7 +259,8 @@ class StorageService {
     }
 
     // Simpan tanggal aktif untuk kalender
-    List<dynamic> activeDates = _prefsBox.get('activeDates', defaultValue: <dynamic>[]);
+    List<dynamic> activeDates =
+        _prefsBox.get('activeDates', defaultValue: <dynamic>[]);
     if (!activeDates.contains(today)) {
       activeDates.add(today);
       // Keep last 90 days
@@ -229,7 +276,8 @@ class StorageService {
   /// Ambil streak saat ini
   int getCurrentStreak() {
     final String today = _dateKey(DateTime.now());
-    final String yesterday = _dateKey(DateTime.now().subtract(const Duration(days: 1)));
+    final String yesterday =
+        _dateKey(DateTime.now().subtract(const Duration(days: 1)));
     final String? lastActive = _prefsBox.get('lastActiveDate');
 
     if (lastActive == today || lastActive == yesterday) {
@@ -245,7 +293,8 @@ class StorageService {
 
   /// Ambil daftar tanggal aktif
   List<String> getActiveDates() {
-    final List<dynamic> dates = _prefsBox.get('activeDates', defaultValue: <dynamic>[]);
+    final List<dynamic> dates =
+        _prefsBox.get('activeDates', defaultValue: <dynamic>[]);
     return dates.cast<String>();
   }
 
@@ -447,7 +496,8 @@ class StorageService {
 
   /// Increment total flashcard reviewed (untuk achievement)
   void incrementFlashcardReviewed() {
-    final int current = _prefsBox.get('totalFlashcardReviewed', defaultValue: 0);
+    final int current =
+        _prefsBox.get('totalFlashcardReviewed', defaultValue: 0);
     _prefsBox.put('totalFlashcardReviewed', current + 1);
     if (current + 1 >= 50) {
       unlockAchievement('flashcard_50');
@@ -467,7 +517,8 @@ class StorageService {
   void setUserName(String name) => _prefsBox.put('userName', name);
 
   /// Get nama user
-  String getUserName() => _prefsBox.get('userName', defaultValue: 'Thalabul Ilmi');
+  String getUserName() =>
+      _prefsBox.get('userName', defaultValue: 'Thalabul Ilmi');
 
   /// Set notifikasi
   void setNotification(bool active) => _prefsBox.put('notifActive', active);

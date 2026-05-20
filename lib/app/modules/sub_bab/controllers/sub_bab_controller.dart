@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart'
+    hide PlayerState;
 
 import '../../../data/local/storage_service.dart';
 import '../../../data/models/sub_bab_model.dart';
 import '../../../routes/app_pages.dart';
+import '../../home/controllers/home_controller.dart';
 
 class SubBabController extends GetxController {
   late final SubBab subBab;
   final StorageService _storage = Get.find<StorageService>();
   final FlutterTts _tts = FlutterTts();
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  YoutubePlayerController? ytController;
 
   bool _ttsReady = false;
+  bool _audioReady = false;
+  bool _ytInitialized = false;
 
   // Bookmark state
   final RxBool isBookmarked = false.obs;
 
   // TTS state
   final RxBool isSpeaking = false.obs;
+  final RxBool isAudioPlaying = false.obs;
+  final RxBool isAudioLoading = false.obs;
+  final RxBool isYoutubeReady = false.obs;
+  final RxString youtubeError = ''.obs;
   final RxDouble ttsSpeed = 0.4.obs;
 
   @override
@@ -25,9 +37,11 @@ class SubBabController extends GetxController {
     super.onInit();
     subBab = Get.arguments as SubBab;
 
-    // Mark sub bab as read
-    if (subBab.id != null) {
-      isBookmarked.value = _storage.isBookmarked(subBab.id!);
+    final progressId = subBab.progressId;
+    if (progressId != null) {
+      isBookmarked.value = _storage.isBookmarked(progressId);
+      _storage.markBabAsRead(progressId);
+      _refreshHomeProgress();
     }
 
     _initTts();
@@ -38,7 +52,40 @@ class SubBabController extends GetxController {
     if (_ttsReady) {
       _tts.stop().catchError((_) {});
     }
+    _audioPlayer.dispose();
+    ytController?.dispose();
     super.onClose();
+  }
+
+  bool get hasYoutubeVideo {
+    final url = subBab.youtubeUrl;
+    final id = subBab.youtubeId;
+    return (url != null && url.isNotEmpty) || (id != null && id.isNotEmpty);
+  }
+
+  void ensureYoutubeInitialized() {
+    if (_ytInitialized || !hasYoutubeVideo) return;
+
+    try {
+      final videoId = YoutubePlayer.convertUrlToId(subBab.youtubeUrl ?? '') ??
+          subBab.youtubeId ??
+          '';
+      if (videoId.isEmpty) return;
+
+      ytController = YoutubePlayerController(
+        initialVideoId: videoId,
+        flags: const YoutubePlayerFlags(
+          autoPlay: false,
+          mute: false,
+          enableCaption: false,
+        ),
+      );
+      _ytInitialized = true;
+      isYoutubeReady.value = true;
+    } catch (e) {
+      youtubeError.value = 'Gagal memuat video: $e';
+      debugPrint('YouTube init error: $e');
+    }
   }
 
   Future<void> _initTts() async {
@@ -60,6 +107,46 @@ class SubBabController extends GetxController {
     } catch (e) {
       _ttsReady = false;
       debugPrint('TTS not available: $e');
+    }
+  }
+
+  Future<void> toggleMaterialAudio() async {
+    final audioPath = subBab.materialAudioPath;
+    if (audioPath == null || audioPath.isEmpty) return;
+
+    try {
+      if (isAudioPlaying.value) {
+        await _audioPlayer.pause();
+        return;
+      }
+
+      isAudioLoading.value = true;
+      if (!_audioReady) {
+        _audioPlayer.onPlayerStateChanged.listen((state) {
+          isAudioPlaying.value = state == PlayerState.playing;
+          if (state == PlayerState.completed || state == PlayerState.stopped) {
+            isAudioPlaying.value = false;
+          }
+        });
+        await _audioPlayer.setReleaseMode(ReleaseMode.stop);
+        await _audioPlayer.setSource(
+          AssetSource(audioPath.replaceFirst('assets/', '')),
+        );
+        _audioReady = true;
+      }
+      await _audioPlayer.resume();
+    } catch (e) {
+      Get.snackbar(
+        'Audio belum bisa diputar',
+        '$e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: const Color(0xFFE4E2DE),
+        colorText: const Color(0xFF1B1C1A),
+        margin: const EdgeInsets.all(16),
+        borderRadius: 12,
+      );
+    } finally {
+      isAudioLoading.value = false;
     }
   }
 
@@ -98,10 +185,24 @@ class SubBabController extends GetxController {
     return '1.5x';
   }
 
+  double get materialProgress {
+    final progressId = subBab.progressId;
+    if (progressId == null) return 0;
+    if (_storage.isQuizDone(progressId)) return 1;
+    if (_storage.isBabRead(progressId)) return 0.5;
+    return 0;
+  }
+
+  String get materialProgressLabel {
+    final percent = (materialProgress * 100).round();
+    return '$percent% Selesai';
+  }
+
   /// Toggle bookmark
   void toggleBookmark() {
-    if (subBab.id == null) return;
-    final result = _storage.toggleBookmark(subBab.id!);
+    final progressId = subBab.progressId;
+    if (progressId == null) return;
+    final result = _storage.toggleBookmark(progressId);
     isBookmarked.value = result;
 
     Get.snackbar(
@@ -133,5 +234,11 @@ class SubBabController extends GetxController {
       return;
     }
     Get.toNamed(Routes.QUIZ, arguments: subBab);
+  }
+
+  void _refreshHomeProgress() {
+    try {
+      Get.find<HomeController>().refreshStats();
+    } catch (_) {}
   }
 }

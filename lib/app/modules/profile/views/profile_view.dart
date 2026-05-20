@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -30,19 +31,20 @@ class ProfileView extends GetView<ProfileController> {
         slivers: [
           _buildSliverAppBar(),
           SliverPadding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 120),
+            padding: const EdgeInsets.only(
+                left: 24, right: 24, top: 16, bottom: 120),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 _buildHeroProfile(),
                 const SizedBox(height: 24),
-                _buildStreakCard(),
-                const SizedBox(height: 24),
-                _buildStatsGrid(),
-                const SizedBox(height: 32),
+                // _buildStreakCard(),
+                // const SizedBox(height: 24),
+                  // _buildStatsGrid(),
+                  // const SizedBox(height: 32),
                 _buildXpProgressCard(),
                 const SizedBox(height: 32),
-                _buildAchievementsSection(),
-                const SizedBox(height: 32),
+                // _buildAchievementsSection(),
+                // const SizedBox(height: 32),
                 Text(
                   'Pengaturan Akun',
                   style: GoogleFonts.manrope(
@@ -75,26 +77,26 @@ class ProfileView extends GetView<ProfileController> {
         children: [
           Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(24),
-                    onTap: () {},
-                    hoverColor: surfaceVariant,
-                    highlightColor: primaryContainer,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(Icons.menu_rounded, color: primary),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
+              // Container(
+              //   decoration: BoxDecoration(
+              //     color: Colors.transparent,
+              //     borderRadius: BorderRadius.circular(24),
+              //   ),
+              //   child: Material(
+              //     color: Colors.transparent,
+              //     child: InkWell(
+              //       borderRadius: BorderRadius.circular(24),
+              //       onTap: () {},
+              //       hoverColor: surfaceVariant,
+              //       highlightColor: primaryContainer,
+              //       child: const Padding(
+              //         padding: EdgeInsets.all(8.0),
+              //         child: Icon(Icons.menu_rounded, color: primary),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(width: 16),
               Text(
                 'Nahwu Tutor',
                 style: GoogleFonts.manrope(
@@ -157,12 +159,10 @@ class ProfileView extends GetView<ProfileController> {
                             height: 100,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              border:
-                                  Border.all(color: secondary, width: 4),
+                              border: Border.all(color: secondary, width: 4),
                               color: surfaceContainerHighest,
                               image: const DecorationImage(
-                                image:
-                                    AssetImage('assets/icon/logo_new.jpeg'),
+                                image: AssetImage('assets/icon/logo_new.jpeg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -205,53 +205,7 @@ class ProfileView extends GetView<ProfileController> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: primary,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            '${controller.totalXp.value} XP',
-                            style: GoogleFonts.plusJakartaSans(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: surfaceVariant,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text('🔥',
-                                  style: TextStyle(fontSize: 14)),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${controller.currentStreak.value} Hari',
-                                style: GoogleFonts.plusJakartaSans(
-                                  color: onSurfaceVariant,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                   
                   ],
                 ),
               ),
@@ -298,9 +252,7 @@ class ProfileView extends GetView<ProfileController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    streak > 0
-                        ? 'Streak $streak Hari!'
-                        : 'Belum Ada Streak',
+                    streak > 0 ? 'Streak $streak Hari!' : 'Belum Ada Streak',
                     style: GoogleFonts.manrope(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -332,8 +284,9 @@ class ProfileView extends GetView<ProfileController> {
             Expanded(
               child: _buildStatCard(
                 icon: Icons.menu_book_rounded,
-                title: 'Bab Selesai',
-                value: '${controller.completedBab.value} / 5',
+                title: 'Materi Selesai',
+                value:
+                    '${controller.completedBab.value} / ${controller.totalMateri.value}',
               ),
             ),
             const SizedBox(width: 12),
@@ -462,6 +415,7 @@ class ProfileView extends GetView<ProfileController> {
     });
   }
 
+  // ignore: unused_element
   Widget _buildAchievementsSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -515,17 +469,14 @@ class ProfileView extends GetView<ProfileController> {
       decoration: BoxDecoration(
         color: isUnlocked ? surfaceContainerLowest : surfaceContainerLow,
         borderRadius: BorderRadius.circular(16),
-        border: isUnlocked
-            ? Border.all(color: secondaryContainer, width: 2)
-            : null,
+        border:
+            isUnlocked ? Border.all(color: secondaryContainer, width: 2) : null,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            isUnlocked
-                ? (achievement['icon'] as String? ?? '🏆')
-                : '🔒',
+            isUnlocked ? (achievement['icon'] as String? ?? '🏆') : '🔒',
             style: TextStyle(
               fontSize: isUnlocked ? 28 : 24,
             ),
@@ -539,7 +490,9 @@ class ProfileView extends GetView<ProfileController> {
             style: GoogleFonts.plusJakartaSans(
               fontSize: 10,
               fontWeight: FontWeight.bold,
-              color: isUnlocked ? primary : onSurfaceVariant.withValues(alpha: 0.5),
+              color: isUnlocked
+                  ? primary
+                  : onSurfaceVariant.withValues(alpha: 0.5),
             ),
           ),
           const SizedBox(height: 2),
@@ -568,35 +521,48 @@ class ProfileView extends GetView<ProfileController> {
       ),
       child: Column(
         children: [
-          _buildSettingsItem(
-            icon: Icons.lock_outline_rounded,
-            title: 'Ganti Password',
-          ),
+          // _buildSettingsItem(
+          //   icon: Icons.lock_outline_rounded,
+          //   title: 'Ganti Password',
+          // ),
+          // const Divider(height: 1, color: surfaceContainerHigh),
+          // Obx(() => _buildSettingsItem(
+          //       icon: Icons.notifications_none_rounded,
+          //       title: 'Notifikasi Belajar',
+          //       trailing: Switch(
+          //         value: controller.isNotifikasiBelajarAktif.value,
+          //         onChanged: controller.toggleNotifikasiBelajar,
+          //         activeThumbColor: Colors.white,
+          //         activeTrackColor: secondary,
+          //         inactiveThumbColor: Colors.white,
+          //         inactiveTrackColor: surfaceVariant,
+          //       ),
+          //     )),
           const Divider(height: 1, color: surfaceContainerHigh),
-          Obx(() => _buildSettingsItem(
-                icon: Icons.notifications_none_rounded,
-                title: 'Notifikasi Belajar',
-                trailing: Switch(
-                  value: controller.isNotifikasiBelajarAktif.value,
-                  onChanged: controller.toggleNotifikasiBelajar,
-                  activeThumbColor: Colors.white,
-                  activeTrackColor: secondary,
-                  inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: surfaceVariant,
-                ),
-              )),
+          _buildSettingsItem(
+            icon: Icons.chrome_reader_mode_rounded,
+            title: 'Panduan Penggunaan',
+            onTap: () => Get.toNamed(Routes.USER_GUIDE),
+          ),
           const Divider(height: 1, color: surfaceContainerHigh),
           _buildSettingsItem(
             icon: Icons.info_outline_rounded,
             title: 'Tentang Aplikasi',
+            onTap: () => Get.toNamed(Routes.ABOUT_APP),
           ),
           const Divider(height: 1, color: surfaceContainerHigh),
           _buildSettingsItem(
-            icon: Icons.logout_rounded,
-            title: 'Keluar Sesi',
-            isDestructive: true,
-            trailing: const SizedBox.shrink(),
+            icon: Icons.person_outline_rounded,
+            title: 'Profil Pengembang',
+            onTap: () => Get.toNamed(Routes.DEVELOPER_PROFILE),
           ),
+          // const Divider(height: 1, color: surfaceContainerHigh),
+          // _buildSettingsItem(
+          //   icon: Icons.logout_rounded,
+          //   title: 'Keluar Sesi',
+          //   isDestructive: true,
+          //   trailing: const SizedBox.shrink(),
+          // ),
         ],
       ),
     );
@@ -607,10 +573,10 @@ class ProfileView extends GetView<ProfileController> {
     required String title,
     bool isDestructive = false,
     Widget? trailing,
+    VoidCallback? onTap,
   }) {
     return ListTile(
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
       leading: Icon(
         icon,
         color: isDestructive ? Colors.red[700] : primary,
@@ -629,9 +595,8 @@ class ProfileView extends GetView<ProfileController> {
               ? null
               : const Icon(Icons.chevron_right_rounded,
                   color: onSurfaceVariant, size: 20)),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20)),
-      onTap: () {},
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      onTap: onTap,
     );
   }
 }

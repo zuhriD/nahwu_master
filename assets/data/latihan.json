@@ -1,0 +1,736 @@
+{
+  "latihan_soal": [
+    {
+      "materi_id": "kalam",
+      "judul": "Latihan Soal Materi Kalam",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Ada berapakah syarat kalam dalam ilmu nahwu?",
+          "opsi": ["2", "3", "4", "5"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "4",
+          "penjelasan": "Syarat kalam ada empat, yaitu lafadz, murakkab, mufid, dan bil-wadh'i."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Apakah suara petir termasuk lafadz?",
+          "opsi": [
+            "Termasuk lafadz karena dapat didengar",
+            "Termasuk lafadz karena memiliki makna",
+            "Bukan lafadz karena tidak tersusun",
+            "Bukan lafadz karena bukan huruf hijaiyah"
+          ],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "Bukan lafadz karena bukan huruf hijaiyah",
+          "penjelasan": "Lafadz dalam nahwu adalah ucapan yang mengandung sebagian huruf hijaiyah."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Apakah yang dimaksud dengan murakkab?",
+          "opsi": [
+            "Ucapan yang memiliki makna sempurna",
+            "Ucapan yang terdiri dari satu kata",
+            "Ucapan yang tersusun dari dua kata atau lebih",
+            "Ucapan yang mengandung huruf hijaiyah"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Ucapan yang tersusun dari dua kata atau lebih",
+          "penjelasan": "Murakkab berarti tersusun, yaitu terdiri dari dua kata atau lebih."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Lafadz إِنْ صَلَّيْتَ merupakan susunan kata yang bagaimana?",
+          "opsi": [
+            "Mufid karena terdiri dari dua kata",
+            "Mufid karena memiliki fi’il",
+            "Tidak mengandung makna sempurna",
+            "Tidak mufid karena tidak mengandung isim"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Tidak mengandung makna sempurna",
+          "penjelasan": "Kalimat tersebut belum memberi faedah sempurna karena masih membutuhkan kelanjutan makna."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan beberapa contoh berikut: 1) قَامَ مُحَمَّدٌ 2) فِي الْمَسْجِدِ 3) الطَّالِبُ مُجْتَهِدٌ. Yang termasuk kalam adalah...",
+          "opsi": ["1 dan 2", "1 dan 3", "2 dan 3", "Semua benar"],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "1 dan 3",
+          "penjelasan": "Nomor 1 dan 3 termasuk kalam karena tersusun dan memberi makna sempurna. Nomor 2 belum sempurna maknanya."
+        }
+      ]
+    },
+    {
+      "materi_id": "pembagian_kalimah",
+      "judul": "Latihan Soal Materi Pembagian Kalimah",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Kalimah atau kata dalam ilmu nahwu terbagi menjadi berapa?",
+          "opsi": ["Dua jenis", "Tiga jenis", "Empat jenis", "Lima jenis"],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Tiga jenis",
+          "penjelasan": "Kalimah terbagi menjadi tiga, yaitu isim, fi’il, dan huruf."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah di bawah ini yang termasuk isim?",
+          "opsi": ["كَتَبَ", "يَكْتُبُ", "كِتَابٌ", "اُكْتُبْ"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "كِتَابٌ",
+          "penjelasan": "كِتَابٌ adalah isim karena menunjukkan benda dan tidak terikat waktu."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kata berikut: كَتَبَ. Kata tersebut termasuk jenis apa?",
+          "opsi": ["Isim", "Fi’il", "Huruf", "Kalam"],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Fi’il",
+          "penjelasan": "كَتَبَ adalah fi’il madhi yang berarti telah menulis."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah yang termasuk huruf dari kata-kata berikut?",
+          "opsi": ["زَيْدٌ", "فِي", "كَتَبَ", "يَكْتُبُ"],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "فِي",
+          "penjelasan": "فِي termasuk huruf jar yang maknanya sempurna apabila digabung dengan kata lain."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kata berikut: يَكْتُبُ yang berarti sedang menulis. Kata tersebut termasuk kategori fi’il apa?",
+          "opsi": ["Fi’il Nahi", "Fi’il Amar", "Fi’il Mudhari’", "Fi’il Madhi"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Fi’il Mudhari’",
+          "penjelasan": "يَكْتُبُ adalah fi’il mudhari’ karena menunjukkan pekerjaan yang sedang atau akan dilakukan."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_tanda_isim",
+      "judul": "Latihan Soal Materi Tanda-Tanda Isim",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Di bawah ini yang termasuk tanda isim adalah...",
+          "opsi": ["Huruf Mad", "Tasydid", "Tanwin", "Diawali Huruf Jazm"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Tanwin",
+          "penjelasan": "Salah satu tanda isim adalah dapat menerima tanwin."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kata berikut: كِتَابٌ. Tanda isim pada kata tersebut adalah...",
+          "opsi": ["Alif lam", "Majrur", "Tanwin", "Huruf Jar"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Tanwin",
+          "penjelasan": "Kata كِتَابٌ memiliki tanwin di akhirnya, sehingga termasuk isim."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: فِي الْبَيْتِ رَجُلٌ. Kedudukan kata الْبَيْتِ dalam kalimat tersebut adalah...",
+          "opsi": ["Fa’il", "Maf’ul bih", "Isim Majrur", "Mubtada’"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Isim Majrur",
+          "penjelasan": "Kata الْبَيْتِ menjadi majrur karena didahului huruf jar فِي."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Ada berapa jumlah huruf qasam?",
+          "opsi": ["Satu", "Dua", "Tiga", "Empat"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Tiga",
+          "penjelasan": "Huruf qasam ada tiga, yaitu و, ب, dan ت."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: حَضَرَ الطَّالِبُ إِلَى الْفَصْلِ. Harakat yang tepat pada akhir kata الْفَصْل adalah...",
+          "opsi": ["الْفَصْلُ", "الْفَصْلِ", "الْفَصْلَ", "الْفَصْلْ"],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "الْفَصْلِ",
+          "penjelasan": "Kata الْفَصْلِ dibaca kasrah karena didahului huruf jar إِلَى."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_tanda_fiil",
+      "judul": "Latihan Soal Materi Tanda-Tanda Fi’il",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Salah satu tanda fi’il yaitu dapat didahului huruf...",
+          "opsi": ["ال", "مِنْ", "قَدْ", "فِي"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "قَدْ",
+          "penjelasan": "قَدْ termasuk salah satu tanda fi’il."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: قَدْ يَنْجَحُ الْمُجْتَهِدُ. Penggunaan kata قَدْ pada kalimat tersebut menunjukkan bahwa kata يَنْجَحُ adalah...",
+          "opsi": [
+            "Isim karena didahului huruf",
+            "Fi’il Mudhari’ yang menunjukkan kemungkinan",
+            "Fi’il Amar karena mengandung perintah",
+            "Huruf karena tidak menunjukkan waktu"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Fi’il Mudhari’ yang menunjukkan kemungkinan",
+          "penjelasan": "قَدْ dapat masuk pada fi’il dan pada kalimat ini menunjukkan fi’il mudhari’."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Huruf س atau سَوْفَ yang mendahului suatu kata menunjukkan bahwa kata tersebut adalah...",
+          "opsi": ["Isim", "Huruf", "Fi’il Mudhari’", "Kalam"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Fi’il Mudhari’",
+          "penjelasan": "س dan سَوْفَ masuk pada fi’il mudhari’ untuk menunjukkan makna akan."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah di bawah ini yang merupakan fi’il amar?",
+          "opsi": ["كَتَبَ", "يَكْتُبُ", "اُكْتُبْ", "كِتَابٌ"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "اُكْتُبْ",
+          "penjelasan": "اُكْتُبْ adalah fi’il amar yang berarti tulislah."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Apa yang membedakan penggunaan huruf س dan سَوْفَ saat mendahului fi’il mudhari’?",
+          "opsi": [
+            "س menunjukkan waktu lampau, sedangkan سَوْفَ menunjukkan perintah",
+            "س menunjukkan masa depan dekat, sedangkan سَوْفَ menunjukkan masa depan yang lebih jauh",
+            "س hanya digunakan pada isim, sedangkan سَوْفَ pada fi’il",
+            "س menunjukkan makna sempurna, sedangkan سَوْفَ tidak bermakna"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "س menunjukkan masa depan dekat, sedangkan سَوْفَ menunjukkan masa depan yang lebih jauh",
+          "penjelasan": "س biasanya menunjukkan masa depan dekat, sedangkan سَوْفَ menunjukkan masa depan yang lebih jauh."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_tanda_huruf",
+      "judul": "Latihan Soal Materi Tanda-Tanda Huruf",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Yang dimaksud dengan huruf dalam ilmu nahwu adalah...",
+          "opsi": [
+            "Lafadz yang menunjukkan makna dan terikat waktu",
+            "Lafadz yang menunjukkan makna pada dirinya sendiri",
+            "Lafadz yang tidak layak disertai tanda isim atau tanda fi’il",
+            "Lafadz yang selalu menerima tanwin"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Lafadz yang tidak layak disertai tanda isim atau tanda fi’il",
+          "penjelasan": "Huruf tidak menerima tanda isim maupun tanda fi’il."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah di bawah ini yang termasuk huruf?",
+          "opsi": ["زَيْدٌ", "كَتَبَ", "فِي", "كِتَابٌ"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "فِي",
+          "penjelasan": "فِي adalah huruf jar."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: لَمْ يَحْضُرْ خَالِدٌ. Kata لَمْ termasuk huruf karena...",
+          "opsi": [
+            "Menunjukkan makna sendiri secara sempurna",
+            "Tidak memiliki makna kecuali bersama kata lain",
+            "Dapat menerima tanwin",
+            "Menunjukkan waktu lampau"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Tidak memiliki makna kecuali bersama kata lain",
+          "penjelasan": "Huruf membutuhkan kata lain agar maknanya sempurna."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: هَلْ فَهِمْتَ الدَّرْسَ؟ Kata هَلْ merupakan...",
+          "opsi": ["Fi’il mudhari’", "Isim istifham", "Huruf istifham", "Maf’ul bih"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Huruf istifham",
+          "penjelasan": "هَلْ adalah huruf istifham atau kata tanya."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: كِتَابٌ جَدِيْدٌ مِنَ الْمَكْتَبَةِ. Harakat yang tepat pada akhir kata الْمَكْتَبَة adalah...",
+          "opsi": ["الْمَكْتَبَةُ", "الْمَكْتَبَةَ", "الْمَكْتَبَةِ", "الْمَكْتَبَةْ"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "الْمَكْتَبَةِ",
+          "penjelasan": "Kata الْمَكْتَبَةِ dibaca kasrah karena didahului huruf jar مِنْ."
+        }
+      ]
+    },
+    {
+      "materi_id": "irab_dan_pembagiannya",
+      "judul": "Latihan Soal Materi I’rab dan Pembagiannya",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Yang dimaksud dengan I‘rab dalam ilmu Nahwu adalah...",
+          "opsi": [
+            "Perubahan makna kata karena perbedaan bahasa",
+            "Perubahan harakat akhir kata karena perbedaan amil baik terlihat atau dikira-kira",
+            "Penambahan huruf pada awal kata",
+            "Penggabungan dua kata menjadi satu kalimat"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Perubahan harakat akhir kata karena perbedaan amil baik terlihat atau dikira-kira",
+          "penjelasan": "I’rab adalah perubahan akhir kalimah karena perbedaan amil yang memasukinya."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: رَأَيْتُ الْمُعَلِّمَ. Harakat yang tepat pada akhir kata الْمُعَلِّم adalah...",
+          "opsi": ["الْمُعَلِّمُ", "الْمُعَلِّمِ", "الْمُعَلِّمَ", "الْمُعَلِّمْ"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "الْمُعَلِّمَ",
+          "penjelasan": "Kata الْمُعَلِّمَ berkedudukan sebagai objek sehingga ber-i’rab nashab dengan fathah."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: صَلَّيْتُ فِي الْمَسْجِدِ. Kata الْمَسْجِدِ termasuk...",
+          "opsi": ["Isim Marfu‘", "Isim Manshub", "Isim Majrur", "Fi’il Majzum"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Isim Majrur",
+          "penjelasan": "Kata الْمَسْجِدِ menjadi majrur karena didahului huruf jar فِي."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Berikut ini yang termasuk pembagian I‘rab adalah...",
+          "opsi": [
+            "Rafa’, Nashab, Jar, dan Jazm",
+            "Jazm berlaku pada semua isim",
+            "Jar hanya terdapat pada fi’il mudhari’",
+            "Rafa’ hanya terdapat pada huruf"
+          ],
+          "jawaban_benar_index": 0,
+          "jawaban_benar": "Rafa’, Nashab, Jar, dan Jazm",
+          "penjelasan": "Pembagian I’rab ada empat, yaitu rafa’, nashab, jar atau khafad, dan jazm."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: الْعِلْمُ نَافِعٌ. Kata الْعِلْمُ ber-i‘rab...",
+          "opsi": ["Manshub", "Majzum", "Majrur", "Rafa‘"],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "Rafa‘",
+          "penjelasan": "Kata الْعِلْمُ dibaca rafa’ karena menjadi mubtada’."
+        }
+      ]
+    },
+    {
+      "materi_id": "irab_pada_isim",
+      "judul": "Latihan Soal Materi I’rab yang Berlaku pada Isim",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "I‘rab-I’rab yang berlaku pada isim adalah...",
+          "opsi": [
+            "Rafa’, Nashab, dan Jazm",
+            "Rafa’, Khafad, dan Jazm",
+            "Rafa’, Nashab, dan Khafad",
+            "Nashab, Jazm, dan Khafad"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Rafa’, Nashab, dan Khafad",
+          "penjelasan": "Isim dapat menerima i’rab rafa’, nashab, dan khafad, tetapi tidak menerima jazm."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Mengapa isim tidak dapat menerima I‘rab Jazm?",
+          "opsi": [
+            "Karena isim tidak menunjukkan waktu",
+            "Karena I’rab Jazm hanya berlaku untuk fi’il",
+            "Karena isim selalu majrur",
+            "Karena isim dapat berubah harakatnya"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Karena I’rab Jazm hanya berlaku untuk fi’il",
+          "penjelasan": "Jazm hanya berlaku pada fi’il, bukan pada isim."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: الْمُؤْمِنُ صَادِقٌ. Kata الْمُؤْمِنُ termasuk isim yang ber-I’rab...",
+          "opsi": ["Manshub", "Majrur", "Marfu‘", "Majzum"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Marfu‘",
+          "penjelasan": "Kata الْمُؤْمِنُ ber-i’rab rafa’ karena menjadi mubtada’."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: أَكْرَمْتُ الضَّيْفَ. Harakat yang tepat pada akhir kata الضَّيْف adalah...",
+          "opsi": ["الضَّيْفُ", "الضَّيْفِ", "الضَّيْفَ", "الضَّيْفْ"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "الضَّيْفَ",
+          "penjelasan": "Kata الضَّيْفَ menjadi maf’ul bih sehingga dibaca nashab."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: جَلَسْتُ فِي الْحَدِيْقَةِ. Kata الْحَدِيْقَةِ berharakat kasrah karena...",
+          "opsi": [
+            "Berkedudukan sebagai fa’il",
+            "Berkedudukan sebagai mubtada’",
+            "Didahului huruf jar",
+            "Berkedudukan sebagai maf’ul bih"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Didahului huruf jar",
+          "penjelasan": "Kata الْحَدِيْقَةِ dibaca kasrah karena didahului huruf jar فِي."
+        }
+      ]
+    },
+    {
+      "materi_id": "irab_pada_fiil",
+      "judul": "Latihan Soal Materi I’rab yang Berlaku pada Fi’il",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "I‘rab-I’rab yang berlaku pada fi’il adalah...",
+          "opsi": [
+            "Rafa’, Nashab, dan Jazm",
+            "Rafa’, Khafad, dan Jazm",
+            "Rafa’, Nashab, dan Khafad",
+            "Nashab, Jazm, dan Khafad"
+          ],
+          "jawaban_benar_index": 0,
+          "jawaban_benar": "Rafa’, Nashab, dan Jazm",
+          "penjelasan": "Fi’il dapat menerima i’rab rafa’, nashab, dan jazm, tetapi tidak menerima khafad."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Mengapa fi’il tidak dapat menerima I‘rab Khafad?",
+          "opsi": [
+            "Karena fi’il menunjukkan waktu",
+            "Karena fi’il berlaku pada I’rab Rafa’",
+            "Karena fi’il selalu majzum",
+            "Karena I’rab Khafad hanya berlaku untuk isim"
+          ],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "Karena I’rab Khafad hanya berlaku untuk isim",
+          "penjelasan": "I’rab khafad atau jar hanya berlaku pada isim."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: لَنْ يَكْسَلَ الطَّالِبُ. Kata يَكْسَلَ berharakat fathah karena...",
+          "opsi": [
+            "Berkedudukan sebagai fi’il",
+            "Didahului amil nashab",
+            "Didahului huruf khafad",
+            "Berkedudukan sebagai maf’ul bih"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Didahului amil nashab",
+          "penjelasan": "Fi’il mudhari’ setelah لَنْ menjadi manshub."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: لَمْ يَغِبْ مُحَمَّدٌ. Kata يَغِبْ termasuk...",
+          "opsi": [
+            "Fi’il Mudhari’ Marfu‘",
+            "Fi’il Mudhari’ Manshub",
+            "Fi’il Mudhari’ Majzum",
+            "Fi’il Amar"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Fi’il Mudhari’ Majzum",
+          "penjelasan": "Fi’il mudhari’ setelah لَمْ menjadi majzum."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: التِّلْمِيذُ يَكْتُبُ الدَّرْسَ. Harakat yang tepat pada akhir kata يَكْتُب adalah...",
+          "opsi": ["يَكْتُبَ", "يَكْتُبْ", "يَكْتُبِ", "يَكْتُبُ"],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "يَكْتُبُ",
+          "penjelasan": "Fi’il mudhari’ yang tidak didahului amil nashab atau jazm dibaca rafa’ dengan dhammah."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_irab_rafa",
+      "judul": "Latihan Soal Materi Tanda I’rab Rafa’",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda asli I‘rab Rafa’ adalah...",
+          "opsi": ["Wawu", "Kasrah", "Dhammah", "Alif"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Dhammah",
+          "penjelasan": "Tanda asli rafa’ adalah dhammah."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda I’rab Rafa’ dari Asma’ul Khamsah adalah...",
+          "opsi": ["Wawu", "Dhammah", "Alif", "Nun"],
+          "jawaban_benar_index": 0,
+          "jawaban_benar": "Wawu",
+          "penjelasan": "Asma’ul Khamsah ketika rafa’ ditandai dengan wawu."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: جَاءَ الْمُسْلِمُ. Kenapa kata الْمُسْلِمُ memiliki tanda I’rab Rafa’ berupa dhammah?",
+          "opsi": [
+            "Karena Jama’ Taksir",
+            "Karena Jama’ Mu’annas Salim",
+            "Karena Isim Mufrad",
+            "Karena Fi‘il Mudhari’"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Karena Isim Mufrad",
+          "penjelasan": "Isim mufrad ketika rafa’ menggunakan tanda dhammah."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: الزَّيْدَانِ مُجْتَهِدَانِ. Tanda I’rab Rafa’ pada kata الزَّيْدَانِ adalah...",
+          "opsi": ["Dhammah", "Kasrah", "Alif", "Ya’"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Alif",
+          "penjelasan": "Isim tatsniyah ketika rafa’ ditandai dengan alif."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: الْمُعَلِّمُونَ حَاضِرُونَ. Tanda I’rab Rafa’ yang tepat pada kata الْمُعَلِّمُونَ adalah...",
+          "opsi": ["Dhammah", "Fathah", "Wawu", "Ya’"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Wawu",
+          "penjelasan": "Jama’ mudzakkar salim ketika rafa’ ditandai dengan wawu."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_irab_nashab",
+      "judul": "Latihan Soal Materi Tanda I’rab Nashab",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda asli I‘rab Nashab adalah...",
+          "opsi": ["Alif", "Fathah", "Dhammah", "Kasrah"],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Fathah",
+          "penjelasan": "Tanda asli nashab adalah fathah."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda I’rab Nashab dari Jama’ Mu’annats Salim adalah...",
+          "opsi": ["Fathah", "Alif", "Kasrah", "Ya’"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Kasrah",
+          "penjelasan": "Jama’ mu’annats salim ketika nashab ditandai dengan kasrah sebagai pengganti fathah."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: رَأَيْتُ أَبَاكَ. Kenapa kata أَبَاكَ memiliki tanda I’rab Nashab berupa alif?",
+          "opsi": [
+            "Karena Jama’ Taksir",
+            "Karena Asma’ul Khamsah",
+            "Karena Isim Mufrad",
+            "Karena Jama’ Mudzakar Salim"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Karena Asma’ul Khamsah",
+          "penjelasan": "Asma’ul Khamsah ketika nashab ditandai dengan alif."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: إِنَّ اللهَ غَفُورٌ. Tanda I’rab Nashab pada lafadz اللهَ adalah...",
+          "opsi": ["Dhammah", "Kasrah", "Ya’", "Fathah"],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "Fathah",
+          "penjelasan": "Isim إِنَّ dibaca nashab dengan tanda fathah."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: شَاهَدْتُ الْمُسْلِمِيْنَ. Tanda I‘rab Nashab pada kata الْمُسْلِمِيْنَ adalah...",
+          "opsi": ["Wawu", "Alif", "Ya’", "Kasrah"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Ya’",
+          "penjelasan": "Jama’ mudzakkar salim ketika nashab ditandai dengan ya’."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_irab_khafad",
+      "judul": "Latihan Soal Materi Tanda I’rab Khafad",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda asli I‘rab Khafad adalah...",
+          "opsi": ["Dhammah", "Fathah", "Kasrah", "Sukun"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Kasrah",
+          "penjelasan": "Tanda asli khafad atau jar adalah kasrah."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda I’rab Khafad dari Isim Tatsniyah adalah...",
+          "opsi": ["Fathah", "Alif", "Kasrah", "Ya’"],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "Ya’",
+          "penjelasan": "Isim tatsniyah ketika khafad ditandai dengan ya’."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: مَرَرْتُ بِأَحْمَدَ. Kenapa kata أَحْمَدَ memiliki tanda I’rab Khafad berupa fathah?",
+          "opsi": [
+            "Karena Jama’ Taksir",
+            "Karena Asma’ul Khamsah",
+            "Karena Isim Ghairu Munsharif",
+            "Karena Isim Mufrad"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Karena Isim Ghairu Munsharif",
+          "penjelasan": "Isim ghairu munsharif ketika khafad ditandai dengan fathah sebagai pengganti kasrah."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: مَرَرْتُ بِالْمُسْلِمِيْنَ. Tanda I’rab Khafad pada kata الْمُسْلِمِيْنَ adalah...",
+          "opsi": ["Dhammah", "Alif", "Ya’", "Fathah"],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Ya’",
+          "penjelasan": "Jama’ mudzakkar salim ketika khafad ditandai dengan ya’."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: رُبَّ طَالِبٍ مُجْتَهِدٍ. Harakat yang tepat pada akhir kata طَالِب adalah...",
+          "opsi": ["طَالِبَ", "طَالِبِ", "طَالِبُ", "طَالِبٍ"],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "طَالِبٍ",
+          "penjelasan": "Kata طَالِبٍ dibaca kasrah/tanwin kasrah karena didahului huruf jar رُبَّ."
+        }
+      ]
+    },
+    {
+      "materi_id": "tanda_irab_jazm",
+      "judul": "Latihan Soal Materi Tanda I’rab Jazm",
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda asli I‘rab Jazm adalah...",
+          "opsi": [
+            "Hadzfu Harfi Illat atau membuang huruf illat",
+            "Hadzfu Nun atau membuang nun",
+            "Kasrah",
+            "Sukun"
+          ],
+          "jawaban_benar_index": 3,
+          "jawaban_benar": "Sukun",
+          "penjelasan": "Tanda asli jazm adalah sukun."
+        },
+        {
+          "id": 2,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Tanda I’rab Jazm dari Fi’il Mudhari’ Mu’tal Akhir adalah...",
+          "opsi": [
+            "Sukun",
+            "Hadzfu Harfi Illat atau membuang huruf illat",
+            "Hadzfu Nun atau membuang nun",
+            "Ya’"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Hadzfu Harfi Illat atau membuang huruf illat",
+          "penjelasan": "Fi’il mudhari’ mu’tal akhir ketika jazm ditandai dengan membuang huruf illat."
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: لَمْ يَعْمَلْ. Kenapa kata يَعْمَلْ memiliki tanda I’rab Jazm berupa sukun?",
+          "opsi": [
+            "Karena Af’alul Khamsah",
+            "Karena Fi’il Mudhari’ Shahih Akhir",
+            "Karena Isim Ghairu Munsharif",
+            "Karena Fi’il Mudhari’ Mu’tal Akhir"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Karena Fi’il Mudhari’ Shahih Akhir",
+          "penjelasan": "Fi’il mudhari’ shahih akhir ketika jazm ditandai dengan sukun."
+        },
+        {
+          "id": 4,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: لَمْ يَكْتُبُوا الدَّرْسَ. Tanda I’rab Jazm pada kata يَكْتُبُوا adalah...",
+          "opsi": [
+            "Sukun",
+            "Wawu",
+            "Hadzfu Nun atau membuang nun",
+            "Hadzfu Huruf Illat atau membuang huruf illat"
+          ],
+          "jawaban_benar_index": 2,
+          "jawaban_benar": "Hadzfu Nun atau membuang nun",
+          "penjelasan": "Af’alul Khamsah ketika jazm ditandai dengan membuang nun."
+        },
+        {
+          "id": 5,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Perhatikan kalimat berikut: لَمْ يَدْعُ الْمُؤَذِّنُ. Tanda I’rab Jazm pada kata يَدْعُ adalah...",
+          "opsi": [
+            "Sukun",
+            "Hadzfu Harfi Illat atau membuang huruf illat",
+            "Dhammah",
+            "Hadzfu Nun atau membuang nun"
+          ],
+          "jawaban_benar_index": 1,
+          "jawaban_benar": "Hadzfu Harfi Illat atau membuang huruf illat",
+          "penjelasan": "Kata يَدْعُ berasal dari fi’il mudhari’ mu’tal akhir, sehingga saat jazm huruf illatnya dibuang."
+        }
+      ]
+    }
+  ]
+}

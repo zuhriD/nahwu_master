@@ -26,10 +26,15 @@ class HomeController extends GetxController {
   final RxInt _refreshTrigger = 0.obs;
 
   // Newly unlocked achievements (for showing popup)
-  final RxList<Map<String, dynamic>> newAchievements = <Map<String, dynamic>>[].obs;
+  final RxList<Map<String, dynamic>> newAchievements =
+      <Map<String, dynamic>>[].obs;
 
   List<Bab> get babList => materi.value?.bab ?? [];
   int get totalBab => babList.length;
+  int get totalMateri => babList.fold(
+        0,
+        (sum, bab) => sum + (bab.subBab?.length ?? 0),
+      );
 
   @override
   void onInit() {
@@ -61,9 +66,10 @@ class HomeController extends GetxController {
   void refreshStats() {
     if (babList.isEmpty) return;
 
-    completedBab.value = _storage.getCompletedBabCount(totalBab);
-    readBab.value = _storage.getReadBabCount(totalBab);
-    progressPercent.value = totalBab > 0 ? completedBab.value / totalBab : 0.0;
+    completedBab.value = _completedMateriCount;
+    readBab.value = _readMateriCount;
+    progressPercent.value =
+        totalMateri > 0 ? completedBab.value / totalMateri : 0.0;
     currentStreak.value = _storage.getCurrentStreak();
     totalXp.value = _storage.getTotalXp();
 
@@ -80,13 +86,27 @@ class HomeController extends GetxController {
     // ignore: unused_local_variable
     final _ = _refreshTrigger.value; // Subscribe ke Obx
     if (bab.id == null) return true;
-    return _storage.isBabUnlocked(bab.id!, bab.totalLatihan);
+    if (bab.id! <= 1) return true;
+
+    final previousBab =
+        babList.firstWhereOrNull((item) => item.id == bab.id! - 1);
+    if (previousBab == null) {
+      return _storage.isBabUnlocked(bab.id!, bab.totalLatihan);
+    }
+    return isBabComplete(previousBab);
   }
 
   /// Cek apakah bab sudah dibaca
   bool isBabRead(int babId) {
     // ignore: unused_local_variable
     final _ = _refreshTrigger.value;
+    final bab = babList.firstWhereOrNull((item) => item.id == babId);
+    if (bab?.subBab?.isNotEmpty ?? false) {
+      return bab!.subBab!.every((sub) {
+        final progressId = sub.progressId;
+        return progressId != null && _storage.isBabRead(progressId);
+      });
+    }
     return _storage.isBabRead(babId);
   }
 
@@ -94,6 +114,8 @@ class HomeController extends GetxController {
   bool isQuizDone(int babId) {
     // ignore: unused_local_variable
     final _ = _refreshTrigger.value;
+    final bab = babList.firstWhereOrNull((item) => item.id == babId);
+    if (bab != null) return isBabComplete(bab);
     return _storage.isQuizDone(babId);
   }
 
@@ -102,6 +124,63 @@ class HomeController extends GetxController {
     // ignore: unused_local_variable
     final _ = _refreshTrigger.value;
     return _storage.getBestScore(babId);
+  }
+
+  bool isSubBabReadByProgressId(int? progressId) {
+    if (progressId == null) return false;
+    // ignore: unused_local_variable
+    final _ = _refreshTrigger.value;
+    return _storage.isBabRead(progressId);
+  }
+
+  bool isSubBabQuizDoneByProgressId(int? progressId) {
+    if (progressId == null) return false;
+    // ignore: unused_local_variable
+    final _ = _refreshTrigger.value;
+    return _storage.isQuizDone(progressId);
+  }
+
+  bool isBabComplete(Bab bab) {
+    final subBab = bab.subBab ?? [];
+    if (subBab.isEmpty) {
+      return bab.id != null &&
+          _storage.isBabRead(bab.id!) &&
+          _storage.isQuizDone(bab.id!);
+    }
+
+    return subBab.every((sub) {
+      final progressId = sub.progressId;
+      if (progressId == null) return false;
+      final hasQuiz = (sub.latihan?.isNotEmpty ?? false);
+      return _storage.isBabRead(progressId) &&
+          (!hasQuiz || _storage.isQuizDone(progressId));
+    });
+  }
+
+  int get _readMateriCount {
+    var total = 0;
+    for (final bab in babList) {
+      for (final sub in bab.subBab ?? []) {
+        if (isSubBabReadByProgressId(sub.progressId)) total++;
+      }
+    }
+    return total;
+  }
+
+  int get _completedMateriCount {
+    var total = 0;
+    for (final bab in babList) {
+      for (final sub in bab.subBab ?? []) {
+        final progressId = sub.progressId;
+        if (progressId == null) continue;
+        final hasQuiz = sub.latihan?.isNotEmpty ?? false;
+        if (_storage.isBabRead(progressId) &&
+            (!hasQuiz || _storage.isQuizDone(progressId))) {
+          total++;
+        }
+      }
+    }
+    return total;
   }
 
   /// Hitung jumlah total soal latihan yang tersedia

@@ -38,7 +38,8 @@ class QuizController extends GetxController {
   final RxList<String> availableRightItems = <String>[].obs;
 
   // Achievement popup
-  final RxList<Map<String, dynamic>> newAchievements = <Map<String, dynamic>>[].obs;
+  final RxList<Map<String, dynamic>> newAchievements =
+      <Map<String, dynamic>>[].obs;
 
   List<Latihan> get questions {
     if (isBab) {
@@ -211,8 +212,7 @@ class QuizController extends GetxController {
     if (allCorrect) {
       score.value++;
       answerStatus.value = AnswerStatus.correct;
-      feedbackMessage.value =
-          question.penjelasan ?? 'Semua pasangan benar! 🎉';
+      feedbackMessage.value = question.penjelasan ?? 'Semua pasangan benar! 🎉';
     } else {
       answerStatus.value = AnswerStatus.incorrect;
       // Bangun pesan koreksi
@@ -253,7 +253,7 @@ class QuizController extends GetxController {
     if (isBab) {
       dataId = (data as Bab).id;
     } else if (isSubBab) {
-      dataId = (data as SubBab).id;
+      dataId = (data as SubBab).progressId;
     } else {
       dataId = null;
     }
@@ -263,6 +263,7 @@ class QuizController extends GetxController {
       final beforeUnlocked = _storage.getUnlockedAchievements().toSet();
 
       _storage.saveQuizResult(dataId, score.value, totalQuestions);
+      _refreshProgressControllers();
 
       // Cek achievement baru
       final afterUnlocked = _storage.getUnlockedAchievements().toSet();
@@ -278,6 +279,12 @@ class QuizController extends GetxController {
         }
       }
     }
+  }
+
+  void _refreshProgressControllers() {
+    try {
+      Get.find<HomeController>().refreshStats();
+    } catch (_) {}
   }
 
   void restartQuiz() {

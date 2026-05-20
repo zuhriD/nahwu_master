@@ -1,0 +1,329 @@
+{
+  "judul": "Bab I’rab",
+  "deskripsi": "Materi definisi i’rab, pembagiannya, serta i’rab yang berlaku pada isim dan fi’il.",
+  "icon": "📗",
+  "sub_bab": [
+    {
+      "id": 1,
+      "judul": "I’rab dan Pembagiannya",
+      "icon": "🔄",
+      "teks_inti": [
+        {
+          "arab": "الْإِعْرَابُ هُوَ تَغْيِيْرُ أَوَاخِرِ الْكَلِمِ لِاخْتِلَافِ الْعَوَامِلِ الدَّاخِلَةِ عَلَيْهَا لَفْظًا أَوْ تَقْدِيْرًا",
+          "latin": "Al-i'rābu huwa taghyīru awākhiril kalimi likhtilāfil 'awāmilid-dākhilati 'alayhā lafẓan aw taqdīran",
+          "terjemahan": "I’rab ialah perubahan akhir kalimah karena perbedaan amil yang mendahuluinya, baik secara lafadz ataupun perkiraan.",
+          "sumber": "Kitab Jurumiyah"
+        },
+        {
+          "arab": "وَأَقْسَامُهُ أَرْبَعَةٌ رَفْعٌ، وَنَصْبٌ، وَخَفْضٌ، وَجَزْمٌ",
+          "latin": "Wa aqsāmuhu arba'atun: raf'un, wa naṣbun, wa khafḍun, wa jazmun",
+          "terjemahan": "I’rab terbagi menjadi empat macam: rafa’, nashab, khafadh/jar, dan jazm.",
+          "sumber": "Kitab Jurumiyah"
+        }
+      ],
+      "video": {
+        "title": "Video Materi I’rab dan Pembagiannya",
+        "youtube_id": "",
+        "asset_path": "assets/video/irab_dan_pembagiannya.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi I’rab dan Pembagiannya",
+        "asset_path": "assets/audio/irab_dan_pembagiannya.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan I’rab dan Pembagiannya",
+        "audio_path": "assets/audio/lagu_irab_dan_pembagiannya.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping I’rab dan Pembagiannya",
+        "image_path": "assets/images/mindmap/irab_dan_pembagiannya.png",
+        "alt": "Mind map materi I’rab dan Pembagiannya"
+      },
+      "keterangan": "I’rab mengubah syakal akhir kalimah sesuai fungsi amil yang mempengaruhinya. Perubahan bisa tampak jelas atau diperkirakan.",
+      "tabel_perubahan": {
+        "headers": [
+          "kategori",
+          "contoh_ayat",
+          "keterangan"
+        ],
+        "rows": [
+          {
+            "kategori": "Perubahan tampak jelas",
+            "contoh_ayat": "وَلَلْاٰخِرَةُ خَيْرٌ — QS. Ad-Duha Ayat 4",
+            "keterangan": "Lafadz خَيْرٌ berakhir dhammah tampak jelas"
+          },
+          {
+            "kategori": "Perubahan tampak jelas",
+            "contoh_ayat": "اِنَّ اللّٰهَ كَانَ عَلَيْكُمْ رَقِيْبًا — QS. An-Nisa Ayat 1",
+            "keterangan": "Lafadz اللّٰهَ berakhir fathah tampak jelas"
+          },
+          {
+            "kategori": "Perubahan diperkirakan",
+            "contoh_ayat": "قُلْ اِنَّ هُدَى اللّٰهِ هُوَ الْهُدٰىۗ — QS. Al-Baqarah Ayat 120",
+            "keterangan": "Lafadz الْهُدٰىۗ memiliki dhammah yang diperkirakan"
+          },
+          {
+            "kategori": "Perubahan diperkirakan",
+            "contoh_ayat": "وَاَجَلٌ مُّسَمًّى عِنْدَهٗ — QS. Al-An’am Ayat 2",
+            "keterangan": "Lafadz مُّسَمًّى memiliki perubahan yang diperkirakan"
+          }
+        ]
+      },
+      "tabel_pembagian": {
+        "headers": [
+          "irab",
+          "tanda_asal",
+          "berlaku_pada",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "tanda_asal": "Dhammah (ـُ)",
+            "berlaku_pada": "Isim & Fi‘il",
+            "contoh": "اِذَا جَاۤءَ نَصْرُ اللّٰهِ — QS. An-Nashr Ayat 1"
+          },
+          {
+            "irab": "Nashab",
+            "tanda_asal": "Fathah (ـَ)",
+            "berlaku_pada": "Isim & Fi‘il",
+            "contoh": "إِنَّ مَعَ الْعُسْرِ يُسْرًا — QS. Al-Insyirah Ayat 6"
+          },
+          {
+            "irab": "Jar/Khafadh",
+            "tanda_asal": "Kasrah (ـِ)",
+            "berlaku_pada": "Hanya isim",
+            "contoh": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ — QS. Al-Fatihah Ayat 1"
+          },
+          {
+            "irab": "Jazm",
+            "tanda_asal": "Sukun (ـْ)",
+            "berlaku_pada": "Hanya fi‘il",
+            "contoh": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ — QS. Al-Ikhlas Ayat 3"
+          }
+        ]
+      },
+      "contoh_visual": [
+        {
+          "irab": "Rafa‘",
+          "color": "blue",
+          "image_path": "assets/images/irab/rafa.png",
+          "kalimat": "جَاءَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا",
+          "arti": "Siswa telah datang ke sekolah pagi hari"
+        },
+        {
+          "irab": "Nashab",
+          "color": "red",
+          "image_path": "assets/images/irab/nashab.png",
+          "kalimat": "قَرَأْتُ الكِتَابَ فِي الْمَكْتَبَةِ",
+          "arti": "Saya telah membaca buku di perpustakaan"
+        },
+        {
+          "irab": "Jar",
+          "color": "green",
+          "image_path": "assets/images/irab/jar.png",
+          "kalimat": "جَلَسْتُ فِي الفَصْلِ",
+          "arti": "Saya duduk di kelas"
+        },
+        {
+          "irab": "Jazm",
+          "color": "yellow",
+          "image_path": "assets/images/irab/jazm.png",
+          "kalimat": "إِنْ يَجْتَهِدِ الطَّالِبُ يَنْجَحْ",
+          "arti": "Jika siswa bersungguh-sungguh maka akan sukses"
+        }
+      ],
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "I’rab adalah perubahan akhir kalimah karena perbedaan amil.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Jar berlaku pada fi'il.",
+          "jawaban": false,
+          "penjelasan": "Jar/khafadh hanya berlaku pada isim."
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Jazm tanda asalnya adalah sukun.",
+          "jawaban": true,
+          "penjelasan": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "judul": "I’rab yang Berlaku pada Isim",
+      "icon": "🏷️",
+      "teks_inti": {
+        "arab": "وَلِلْأَسْمَاءِ مِنَ الْإِعْرَابِ: الرَّفْعُ، وَالنَّصْبُ، وَالْخَفْضُ، وَلَا جَزْمَ فِيْهَا",
+        "latin": "Wa lil-asmā'i minal-i'rābi: ar-raf'u, wan-naṣbu, wal-khafḍu, wa lā jazma fīhā",
+        "terjemahan": "I’rab yang berlaku pada isim adalah rafa’, nashab, dan khafadh. Jazm tidak berlaku pada isim.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi I’rab yang Berlaku pada Isim",
+        "youtube_id": "",
+        "asset_path": "assets/video/irab_pada_isim.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi I’rab yang Berlaku pada Isim",
+        "asset_path": "assets/audio/irab_pada_isim.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan I’rab yang Berlaku pada Isim",
+        "audio_path": "assets/audio/lagu_irab_pada_isim.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping I’rab yang Berlaku pada Isim",
+        "image_path": "assets/images/mindmap/irab_pada_isim.png",
+        "alt": "Mind map materi I’rab yang Berlaku pada Isim"
+      },
+      "keterangan": "Isim selamanya tidak didahului oleh amil yang menjazmkan.",
+      "tabel": {
+        "headers": [
+          "irab",
+          "tanda",
+          "fungsi",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "tanda": "Dhammah (ـُ)",
+            "fungsi": "Pelaku",
+            "contoh": "المُعَلِّمُ شَرَحَ الدَّرْسَ — Guru menjelaskan pelajaran"
+          },
+          {
+            "irab": "Nashab",
+            "tanda": "Fathah (ـَ)",
+            "fungsi": "Objek",
+            "contoh": "أَكَلَ الطُّلَّابُ التُّفَّاحَ — Siswa makan apel"
+          },
+          {
+            "irab": "Jar",
+            "tanda": "Kasrah (ـِ)",
+            "fungsi": "Setelah huruf jar",
+            "contoh": "ذَهَبْتُ إِلَى السُّوقِ — Saya pergi ke pasar"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "I’rab jazm tidak berlaku pada isim.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Isim dapat beri’rab rafa’, nashab, dan khafadh.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Khafadh berlaku pada fi'il, bukan isim.",
+          "jawaban": false,
+          "penjelasan": "Khafadh berlaku pada isim."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "judul": "I’rab yang Berlaku pada Fi’il",
+      "icon": "⚡",
+      "teks_inti": {
+        "arab": "وَلِلْأَفْعَالِ مِنَ ذلِكَ: الرَّفْعُ، وَالنَّصْبُ، وَالْجَزْمُ، وَلَا خَفْضَ فِيْهَا",
+        "latin": "Wa lil-af'āli min dzālika: ar-raf'u, wan-naṣbu, wal-jazmu, wa lā khafḍa fīhā",
+        "terjemahan": "I’rab yang berlaku pada fi’il adalah rafa’, nashab, dan jazm. Khafadh tidak berlaku pada fi’il.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi I’rab yang Berlaku pada Fi’il",
+        "youtube_id": "",
+        "asset_path": "assets/video/irab_pada_fiil.mp4"
+      },
+      "audio": {
+        "title": "Audio Materi I’rab yang Berlaku pada Fi’il",
+        "asset_path": "assets/audio/irab_pada_fiil.mp3"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan I’rab yang Berlaku pada Fi’il",
+        "audio_path": "assets/audio/lagu_irab_pada_fiil.mp3",
+        "lirik": []
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping I’rab yang Berlaku pada Fi’il",
+        "image_path": "assets/images/mindmap/irab_pada_fiil.png",
+        "alt": "Mind map materi I’rab yang Berlaku pada Fi’il"
+      },
+      "keterangan": "Rafa’kanlah fi’il mudhari’ yang tidak didahului amil nashab dan jazm.",
+      "tabel": {
+        "headers": [
+          "irab",
+          "amil",
+          "tanda",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "amil": "Tidak ada amil nashab/jazm",
+            "tanda": "ـُ",
+            "contoh": "وَاللّٰهُ يَعْلَمُ مَا تَصْنَعُوْنَ — QS. Al-'Ankabut Ayat 45"
+          },
+          {
+            "irab": "Nashab",
+            "amil": "Didahului amil nashab: لَنْ",
+            "tanda": "ـَ",
+            "contoh": "قَالُوْا لَنْ نَّبْرَحَ عَلَيْهِ عٰكِفِيْنَ — QS. Taha Ayat 91"
+          },
+          {
+            "irab": "Jazm",
+            "amil": "Didahului amil jazm: لَمْ",
+            "tanda": "ـْ",
+            "contoh": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ — QS. Al-Ikhlas Ayat 3"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Khafadh tidak berlaku pada fi'il.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "لَنْ dapat menjadi amil nashab pada fi'il mudhari'.",
+          "jawaban": true,
+          "penjelasan": ""
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "لَمْ adalah amil rafa’.",
+          "jawaban": false,
+          "penjelasan": "لَمْ adalah amil jazm."
+        }
+      ]
+    }
+  ]
+}

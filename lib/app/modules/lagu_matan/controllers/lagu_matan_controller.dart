@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart' hide PlayerState;
+import 'package:youtube_player_flutter/youtube_player_flutter.dart'
+    hide PlayerState;
 
 import '../../../data/models/sub_bab_model.dart';
 
@@ -27,7 +28,8 @@ class LaguMatanController extends GetxController {
   String? get audioPath => subBab.lagu?.audio;
   String? get youtubeId => subBab.lagu?.youtubeId;
   bool get hasYoutube => youtubeId != null && youtubeId!.isNotEmpty;
-  bool get hasSong => (audioPath != null || hasYoutube) && lirik.isNotEmpty;
+  bool get hasLocalAudio => audioPath != null && audioPath!.isNotEmpty;
+  bool get hasSong => (hasLocalAudio || hasYoutube) && lirik.isNotEmpty;
 
   @override
   void onInit() {
@@ -39,7 +41,7 @@ class LaguMatanController extends GetxController {
   @override
   void onClose() {
     _audioPlayer?.dispose();
-    ytController?.close();
+    ytController?.dispose();
     super.onClose();
   }
 
@@ -48,15 +50,21 @@ class LaguMatanController extends GetxController {
     if (_ytInitialized || !hasYoutube) return;
     try {
       isLoading.value = true;
+
+      final videoId = YoutubePlayer.convertUrlToId(
+            'https://www.youtube.com/watch?v=$youtubeId',
+          ) ??
+          youtubeId!;
+
       ytController = YoutubePlayerController(
-        params: const YoutubePlayerParams(
-          showControls: true,
+        initialVideoId: videoId,
+        flags: const YoutubePlayerFlags(
+          autoPlay: false,
           mute: false,
-          showFullscreenButton: true,
-          playsInline: true,
+          enableCaption: false,
         ),
       );
-      ytController!.loadVideoById(videoId: youtubeId!);
+
       isLoading.value = false;
       isYoutubeReady.value = true;
       _ytInitialized = true;
@@ -81,7 +89,8 @@ class LaguMatanController extends GetxController {
         if (state == PlayerState.playing) {
           isPlaying.value = true;
           isLoading.value = false;
-        } else if (state == PlayerState.stopped || state == PlayerState.completed) {
+        } else if (state == PlayerState.stopped ||
+            state == PlayerState.completed) {
           isPlaying.value = false;
           if (state == PlayerState.completed) {
             currentLineIndex.value = 0;
@@ -104,11 +113,11 @@ class LaguMatanController extends GetxController {
       await _audioPlayer!
           .setSource(AssetSource(audioPath!.replaceFirst('assets/', '')))
           .timeout(
-            const Duration(seconds: 10),
-            onTimeout: () {
-              throw Exception('Audio loading timeout');
-            },
-          );
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw Exception('Audio loading timeout');
+        },
+      );
       isLoading.value = false;
     } catch (e) {
       isLoading.value = false;

@@ -19,7 +19,7 @@ dependencies:
   share_plus: ^10.1.4
   path_provider: ^2.1.5
   audioplayers: ^6.1.0
-  youtube_player_iframe: ^5.2.2
+  youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
   flutter_test:
@@ -46,3 +46,17 @@ flutter:
     - assets/data/
     - assets/icon/
     - assets/audio/
+    - assets/profile/
+    - assets/mindmapping/mind_map_irab_dan_pembagiannya.png
+    - assets/mindmapping/mind_map_irab_pada_fiil.png
+    - assets/mindmapping/mind_map_irab_pada_isim.png
+    - assets/mindmapping/mind_map_isim_ghairu_munsarif.png
+    - assets/mindmapping/mind_map_kalam.png
+    - assets/mindmapping/mind_map_pembagian_kalimat.png
+    - assets/mindmapping/mind_map_tanda_fiil.png
+    - assets/mindmapping/mind_map_tanda_huruf.png
+    - assets/mindmapping/mind_map_tanda_irab_jazm.png
+    - assets/mindmapping/mind_map_tanda_irab_khafd.png
+    - assets/mindmapping/mind_map_tanda_irab_nashab.png
+    - assets/mindmapping/mind_map_tanda_irab_rafa.png
+    - assets/mindmapping/mind_map_tanda_isim.png
