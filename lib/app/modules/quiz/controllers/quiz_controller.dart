@@ -14,6 +14,22 @@ class QuizController extends GetxController {
   dynamic data;
   bool get isBab => data is Bab;
   bool get isSubBab => data is SubBab;
+  bool get isMixed => data is Map && data['mode'] == 'mix';
+
+  String get sessionTitle {
+    if (isMixed) {
+      return data['title'] as String? ?? 'Latihan Campuran';
+    }
+    if (isBab) {
+      final bab = data as Bab;
+      return bab.judul ?? 'Bab ${bab.id ?? ''}';
+    }
+    if (isSubBab) {
+      final subBab = data as SubBab;
+      return subBab.judul ?? 'Sub Bab ${subBab.id ?? ''}';
+    }
+    return 'Latihan';
+  }
 
   final StorageService _storage = Get.find<StorageService>();
 
@@ -42,6 +58,17 @@ class QuizController extends GetxController {
       <Map<String, dynamic>>[].obs;
 
   List<Latihan> get questions {
+    if (isMixed) {
+      final mixedQuestions = data['questions'];
+      if (mixedQuestions is List<Latihan>) {
+        return mixedQuestions;
+      }
+      if (mixedQuestions is List) {
+        return mixedQuestions.whereType<Latihan>().toList();
+      }
+      return [];
+    }
+
     if (isBab) {
       final bab = data as Bab;
       final result = <Latihan>[];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart'
     hide PlayerState;
 
@@ -11,6 +12,10 @@ class LaguMatanController extends GetxController {
 
   // Audio player (for local audio)
   AudioPlayer? _audioPlayer;
+
+  // TTS fallback when no local audio exists
+  final FlutterTts _tts = FlutterTts();
+  bool _ttsReady = false;
 
   // YouTube player controller
   YoutubePlayerController? ytController;
@@ -29,20 +34,48 @@ class LaguMatanController extends GetxController {
   String? get youtubeId => subBab.lagu?.youtubeId;
   bool get hasYoutube => youtubeId != null && youtubeId!.isNotEmpty;
   bool get hasLocalAudio => audioPath != null && audioPath!.isNotEmpty;
-  bool get hasSong => (hasLocalAudio || hasYoutube) && lirik.isNotEmpty;
+  bool get hasSong => lirik.isNotEmpty;
+  bool get hasTextNarration => hasSong && !hasLocalAudio && !hasYoutube;
 
   @override
   void onInit() {
     super.onInit();
     subBab = Get.arguments as SubBab;
-    // Lazy init YouTube/audio - only when actually needed
+    _initTts();
   }
 
   @override
   void onClose() {
     _audioPlayer?.dispose();
+    if (_ttsReady) {
+      _tts.stop().catchError((_) {});
+    }
     ytController?.dispose();
     super.onClose();
+  }
+
+  Future<void> _initTts() async {
+    try {
+      await _tts.setLanguage('ar');
+      await _tts.setSpeechRate(0.45);
+      await _tts.setVolume(1.0);
+      await _tts.setPitch(1.0);
+
+      _tts.setCompletionHandler(() {
+        isPlaying.value = false;
+        isLoading.value = false;
+      });
+
+      _tts.setErrorHandler((_) {
+        isPlaying.value = false;
+        isLoading.value = false;
+      });
+
+      _ttsReady = true;
+    } catch (e) {
+      _ttsReady = false;
+      debugPrint('TTS not available: $e');
+    }
   }
 
   /// Initialize YouTube player - lazy init
@@ -128,6 +161,11 @@ class LaguMatanController extends GetxController {
 
   /// Play/pause toggle (lazy init audio)
   Future<void> playPause() async {
+    if (hasTextNarration) {
+      await _toggleNarration();
+      return;
+    }
+
     // Lazy init audio if needed
     if (_audioPlayer == null) {
       await _ensureAudioInitialized();
@@ -148,6 +186,11 @@ class LaguMatanController extends GetxController {
 
   /// Play from beginning (lazy init audio)
   Future<void> play() async {
+    if (hasTextNarration) {
+      await _playNarration();
+      return;
+    }
+
     // Lazy init audio if needed
     if (_audioPlayer == null) {
       await _ensureAudioInitialized();
@@ -166,6 +209,13 @@ class LaguMatanController extends GetxController {
 
   /// Stop playback (lazy init audio)
   Future<void> stop() async {
+    if (hasTextNarration) {
+      await _tts.stop();
+      isPlaying.value = false;
+      isLoading.value = false;
+      return;
+    }
+
     // Lazy init audio if needed
     if (_audioPlayer == null) {
       await _ensureAudioInitialized();
@@ -183,6 +233,8 @@ class LaguMatanController extends GetxController {
 
   /// Seek to position (lazy init audio)
   Future<void> seek(Duration position) async {
+    if (hasTextNarration) return;
+
     // Lazy init audio if needed
     if (_audioPlayer == null) {
       await _ensureAudioInitialized();
@@ -220,6 +272,28 @@ class LaguMatanController extends GetxController {
   String get currentLine => currentLineIndex.value < lirik.length
       ? lirik[currentLineIndex.value]
       : '';
+
+  Future<void> _toggleNarration() async {
+    if (!_ttsReady || lirik.isEmpty) return;
+
+    if (isPlaying.value) {
+      await _tts.pause();
+      isPlaying.value = false;
+      return;
+    }
+
+    await _playNarration();
+  }
+
+  Future<void> _playNarration() async {
+    if (!_ttsReady || lirik.isEmpty) return;
+
+    await _tts.stop();
+    isLoading.value = true;
+    isPlaying.value = true;
+    currentLineIndex.value = 0;
+    await _tts.speak(lirik.join('\n'));
+  }
 
   double get progress {
     if (totalDuration.value == 0) return 0;

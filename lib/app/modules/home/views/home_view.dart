@@ -591,80 +591,123 @@ class _BabListItem extends StatelessWidget {
 
   Widget _buildSubBabPreview() {
     final subBabList = bab.subBab ?? [];
+    final firstSubBab = subBabList.first;
+    final materiSummary = firstSubBab.teksInti?.terjemahan ??
+        firstSubBab.rawJson['keterangan'] as String?;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Preview teks Arab dari sub-bab pertama
-        if (subBabList.first.teksInti?.arab != null) ...[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                child: Text(
-                  subBabList.first.teksInti!.arab!,
-                  textDirection: TextDirection.rtl,
-                  style: GoogleFonts.amiri(
-                    color: HomeView.primary.withValues(alpha: 0.8),
-                    fontSize: 26,
-                    height: 1.8,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16),
-              if (isRead && !isQuizDone) ...[
-                SizedBox(
-                  width: 48,
-                  height: 48,
-                  child: Stack(
-                    alignment: Alignment.center,
+        GestureDetector(
+          onTap: () => Get.toNamed(Routes.SUB_BAB, arguments: firstSubBab),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: HomeView.surfaceContainerLow,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: HomeView.surfaceVariant),
+            ),
+            child: Column(
+              children: [
+                if (firstSubBab.teksInti?.arab != null) ...[
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      CircularProgressIndicator(
-                        value: bestScore > 0
-                            ? bestScore / (totalLatihan > 0 ? totalLatihan : 1)
-                            : 0.25,
-                        strokeWidth: 3,
-                        color: HomeView.secondary,
-                        backgroundColor: HomeView.surfaceContainerHigh,
+                      Expanded(
+                        child: Text(
+                          firstSubBab.teksInti!.arab!,
+                          textDirection: TextDirection.rtl,
+                          style: GoogleFonts.amiri(
+                            color: HomeView.primary.withValues(alpha: 0.8),
+                            fontSize: 26,
+                            height: 1.8,
+                          ),
+                        ),
                       ),
-                      const Icon(
-                        Icons.play_circle_filled_rounded,
-                        color: HomeView.secondary,
-                        size: 32,
-                      ),
+                      const SizedBox(width: 16),
+                      if (isRead && !isQuizDone) ...[
+                        SizedBox(
+                          width: 48,
+                          height: 48,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              CircularProgressIndicator(
+                                value: bestScore > 0
+                                    ? bestScore /
+                                        (totalLatihan > 0 ? totalLatihan : 1)
+                                    : 0.25,
+                                strokeWidth: 3,
+                                color: HomeView.secondary,
+                                backgroundColor:
+                                    HomeView.surfaceContainerHigh,
+                              ),
+                              const Icon(
+                                Icons.play_circle_filled_rounded,
+                                color: HomeView.secondary,
+                                size: 32,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ] else if (!isRead) ...[
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: const BoxDecoration(
+                            color: HomeView.surfaceContainerHigh,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.chevron_right_rounded,
+                            color: HomeView.primary,
+                          ),
+                        ),
+                      ] else ...[
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: const BoxDecoration(
+                            color: HomeView.primaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.check_rounded,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ],
                   ),
-                ),
-              ] else if (!isRead) ...[
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: const BoxDecoration(
-                    color: HomeView.surfaceContainerHigh,
-                    shape: BoxShape.circle,
+                ],
+                if (materiSummary != null && materiSummary.trim().isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Materi',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: HomeView.secondary,
+                        letterSpacing: 1,
+                      ),
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.chevron_right_rounded,
-                    color: HomeView.primary,
+                  const SizedBox(height: 6),
+                  Text(
+                    materiSummary.trim(),
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      height: 1.6,
+                      color: HomeView.onSurfaceVariant,
+                    ),
                   ),
-                ),
-              ] else ...[
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: const BoxDecoration(
-                    color: HomeView.primaryContainer,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.check_rounded,
-                    color: Colors.white,
-                  ),
-                ),
+                ],
               ],
-            ],
+            ),
           ),
-        ],
+        ),
         const SizedBox(height: 16),
         // Daftar sub-bab
         ...subBabList.asMap().entries.map((entry) {

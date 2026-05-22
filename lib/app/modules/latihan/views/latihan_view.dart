@@ -47,7 +47,7 @@ class LatihanView extends StatelessWidget {
                 return ListView(
                   padding: const EdgeInsets.fromLTRB(24, 16, 24, 120),
                   children: [
-                    _buildCampuranCard(homeCtrl, unlockedBabs),
+                    _buildCampuranCard(unlockedBabs),
                     const SizedBox(height: 24),
                     Text(
                       'Latihan Spesifik per Bab',
@@ -58,7 +58,7 @@ class LatihanView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    ...unlockedBabs.map((bab) => _buildBabCard(bab)).toList(),
+                    ...unlockedBabs.map((bab) => _buildBabCard(bab)),
                   ],
                 );
               }),
@@ -135,23 +135,14 @@ class LatihanView extends StatelessWidget {
     );
   }
 
-  Widget _buildCampuranCard(HomeController homeCtrl, List<Bab> unlockedBabs) {
-    // Kumpulkan semua latihan dari sub_bab
+  Widget _buildCampuranCard(List<Bab> unlockedBabs) {
     final allLatihan = <Latihan>[];
     for (final bab in unlockedBabs) {
       for (final sub in bab.subBab ?? []) {
         allLatihan.addAll(sub.latihan ?? []);
       }
     }
-    // Acak soal
     allLatihan.shuffle();
-    final mixedLatihan = allLatihan.take(10).toList(); // Ambil 10 soal acak
-
-    // Buat objek Bab dummy untuk mode campuran
-    final dummyBab = Bab(
-      id: null, // id null -> tidak akan menyimpan progress ke specific bab, tapi tetap masuk XP jika ditambahkan
-      judul: 'Latihan Campuran (Mix)',
-    );
 
     return Container(
       width: double.infinity,
@@ -197,7 +188,7 @@ class LatihanView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${mixedLatihan.length} Soal Acak (Pilihan Ganda & Benar-Salah) dari materi yang sudah Anda pelajari.',
+            '${allLatihan.length} soal acak dari seluruh sub-bab yang sudah Anda pelajari.',
             style: GoogleFonts.plusJakartaSans(
               fontSize: 13,
               color: const Color(0xFF7FBDA5),
@@ -209,7 +200,11 @@ class LatihanView extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                Get.toNamed(Routes.QUIZ, arguments: dummyBab);
+                  Get.toNamed(Routes.QUIZ, arguments: {
+                    'mode': 'mix',
+                    'title': 'Latihan Campuran',
+                    'questions': allLatihan,
+                  });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: surfaceContainerLow,

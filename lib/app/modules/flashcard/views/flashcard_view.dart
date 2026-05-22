@@ -43,39 +43,49 @@ class FlashcardView extends GetView<FlashcardController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => Get.back(),
-                child: const Icon(Icons.arrow_back_rounded, color: primary),
-              ),
-              const SizedBox(width: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'FLASHCARD',
-                    style: GoogleFonts.plusJakartaSans(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                      color: secondary,
-                    ),
+          Expanded(
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: const Icon(Icons.arrow_back_rounded, color: primary),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'FLASHCARD',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          color: secondary,
+                        ),
+                      ),
+                      Text(
+                        controller.isBab
+                            ? 'Bab ${controller.data.id}: ${controller.data.judul ?? ""}'
+                            : 'Sub Bab ${controller.data.id}: ${controller.data.judul ?? ""}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.manrope(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: primary,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    controller.isBab
-                        ? 'Bab ${controller.data.id}: ${controller.data.judul ?? ""}'
-                        : 'Sub Bab ${controller.data.id}: ${controller.data.judul ?? ""}',
-                    style: GoogleFonts.manrope(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: primary,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
+          const SizedBox(width: 12),
           Obx(() {
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -103,6 +113,9 @@ class FlashcardView extends GetView<FlashcardController> {
       final progress = controller.totalCards > 0
           ? (controller.currentIndex.value + 1) / controller.totalCards
           : 0.0;
+      final currentCardNumber = controller.totalCards > 0
+          ? controller.currentIndex.value + 1
+          : 0;
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
@@ -110,15 +123,22 @@ class FlashcardView extends GetView<FlashcardController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Kartu ${controller.currentIndex.value + 1} dari ${controller.totalCards}',
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: 12,
-                    color: onSurfaceVariant,
+                Expanded(
+                  child: Text(
+                    'Kartu $currentCardNumber dari ${controller.totalCards}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      color: onSurfaceVariant,
+                    ),
                   ),
                 ),
+                const SizedBox(width: 12),
                 Text(
                   '${controller.masteredCount.value} dikuasai',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -161,6 +181,115 @@ class FlashcardView extends GetView<FlashcardController> {
             style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               color: onSurfaceVariant,
+            ),
+          ),
+        );
+      }
+
+      if (controller.isCompleted.value) {
+        return Padding(
+          padding: const EdgeInsets.all(24),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(28),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: [
+                BoxShadow(
+                  color: onBackground.withValues(alpha: 0.08),
+                  blurRadius: 24,
+                  offset: const Offset(0, 12),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 72,
+                  height: 72,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE2E9E6),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: const Icon(
+                    Icons.celebration_rounded,
+                    color: primaryContainer,
+                    size: 36,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'Semua kartu selesai',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.manrope(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: primary,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Kamu sudah meninjau semua flashcard pada materi ini.',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 14,
+                    height: 1.6,
+                    color: onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: controller.resetAll,
+                        child: Container(
+                          height: 52,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE2E9E6),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Ulangi',
+                              style: GoogleFonts.manrope(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: primaryContainer,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () => Get.back(),
+                        child: Container(
+                          height: 52,
+                          decoration: BoxDecoration(
+                            color: surfaceContainerLow,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Kembali',
+                              style: GoogleFonts.manrope(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         );

@@ -74,7 +74,7 @@ class QuizView extends GetView<QuizController> {
               ),
               const SizedBox(width: 16),
               Text(
-                'Latihan: ${controller.isBab ? "Bab" : "Sub Bab"} ${controller.data.id}',
+                'Latihan: ${controller.sessionTitle}',
                 style: GoogleFonts.manrope(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -802,7 +802,7 @@ class QuizView extends GetView<QuizController> {
                 ),
               ),
               Text(
-                controller.data.judul ?? 'Materi',
+                controller.sessionTitle,
                 style: GoogleFonts.manrope(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -1081,9 +1081,9 @@ class QuizView extends GetView<QuizController> {
             onPressed: () {
               final score = controller.score.value;
               final total = controller.totalQuestions;
-              final bab = controller.data.judul ?? '';
+              final title = controller.sessionTitle;
               Share.share(
-                '🌟 Saya mendapat skor $score/$total di Bab "$bab" pada aplikasi Nahwu Master! Ayo belajar ilmu Nahwu bersama! 📚',
+                '🌟 Saya mendapat skor $score/$total di "$title" pada aplikasi Nahwu Tutor! Ayo belajar ilmu Nahwu bersama! 📚',
               );
             },
             style: OutlinedButton.styleFrom(

@@ -44,9 +44,10 @@ class LaguMatanView extends GetView<LaguMatanController> {
                 ],
               ),
             ),
-            // Show audio controls only if using local audio (no YouTube)
             if (controller.hasLocalAudio && !controller.hasYoutube)
               _buildPlayerControls(),
+            if (controller.hasTextNarration && !controller.hasYoutube)
+              _buildNarrationControls(),
           ],
         ),
       ),
@@ -326,7 +327,7 @@ class LaguMatanView extends GetView<LaguMatanController> {
             Text(
               controller.hasLocalAudio
                   ? 'Dengarkan dan hapalkan lirik lagu ini untuk mengingat point-point penting dari materinya.'
-                  : 'Hafalkan lirik ini untuk mengingat point-point penting dari materinya.',
+                  : 'Tekan tombol putar untuk mendengarkan hafalan dari lirik ini.',
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 13,
                 color: onPrimaryContainer.withValues(alpha: 0.9),
@@ -335,6 +336,79 @@ class LaguMatanView extends GetView<LaguMatanController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildNarrationControls() {
+    final lirik = controller.subBab.lagu?.lirik ?? [];
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
+      decoration: BoxDecoration(
+        color: bgBackground,
+        boxShadow: [
+          BoxShadow(
+            color: onBackground.withValues(alpha: 0.05),
+            blurRadius: 20,
+            offset: const Offset(0, -8),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Obx(() {
+              final isPlaying = controller.isPlaying.value;
+              return GestureDetector(
+                onTap: controller.playPause,
+                child: Container(
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: primaryContainer,
+                    borderRadius: BorderRadius.circular(18),
+                    boxShadow: [
+                      BoxShadow(
+                        color: primaryContainer.withValues(alpha: 0.25),
+                        blurRadius: 12,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        isPlaying ? 'Jeda Hafalan' : 'Putar Hafalan',
+                        style: GoogleFonts.manrope(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ),
+          if (lirik.isNotEmpty) ...[
+            const SizedBox(width: 12),
+            _buildControlButton(
+              icon: Icons.replay_rounded,
+              onTap: controller.play,
+              size: 64,
+              color: surfaceVariant,
+              iconColor: primary,
+            ),
+          ],
+        ],
       ),
     );
   }

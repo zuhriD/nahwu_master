@@ -811,10 +811,10 @@ class SubBabView extends GetView<SubBabController> {
         ],
         if (penjelasan.poinPoin != null)
           ...penjelasan.poinPoin!.map((poin) => _buildPoinCard(poin)),
-        if (penjelasan.contoh != null) ...[
-          const SizedBox(height: 12),
-          _buildContohCard(penjelasan.contoh!),
-        ],
+        // if (penjelasan.contoh != null) ...[
+        //   const SizedBox(height: 12),
+        //   _buildContohCard(penjelasan.contoh!),
+        // ],
       ],
     );
   }
@@ -1024,7 +1024,9 @@ class SubBabView extends GetView<SubBabController> {
       if (value is List && value.isNotEmpty) {
         sections.add(_buildSectionHeader(_labelFromKey(key)));
         sections.add(const SizedBox(height: 16));
-        sections.add(_buildGenericCardList(value));
+        sections.add(key == 'contoh_visual'
+            ? _buildVisualExampleCardList(value)
+            : _buildGenericCardList(value));
         sections.add(const SizedBox(height: 32));
       }
     }
@@ -1231,6 +1233,15 @@ class SubBabView extends GetView<SubBabController> {
         _firstString(item, ['definisi', 'keterangan', 'arti', 'ringkasan']);
     final fungsi = item['fungsi'];
     final examples = item['contoh'];
+    final exampleMeanings = item['contoh_arti'];
+    final hasVisualFields = item.containsKey('contoh_kalimat') ||
+        item.containsKey('kalimat') ||
+        item.containsKey('keterangan') ||
+        item.containsKey('image_path');
+
+    if (hasVisualFields) {
+      return _buildVisualExampleCard(item);
+    }
 
     return Container(
       width: double.infinity,
@@ -1308,8 +1319,180 @@ class SubBabView extends GetView<SubBabController> {
           ..._buildStringChips(item, ['ciri', 'syarat', 'bukan_contoh']),
           if (examples != null) ...[
             const SizedBox(height: 12),
-            _buildExamples(examples),
+            if (_toStringList(exampleMeanings).isNotEmpty)
+              _buildPairedExamples(examples, exampleMeanings)
+            else
+              _buildExamples(examples),
           ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVisualExampleCardList(List<dynamic> items) {
+    return Column(
+      children: items
+          .whereType<Map<String, dynamic>>()
+          .map((item) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _buildVisualExampleCard(item),
+              ))
+          .toList(),
+    );
+  }
+
+  Widget _buildVisualExampleCard(Map<String, dynamic> item) {
+    final title = _firstString(item, ['irab', 'nama', 'judul']) ?? 'Contoh';
+    final colorLabel = _firstString(item, ['color']) ?? '';
+    final contohKalimat = _firstString(item, ['contoh_kalimat']);
+    final arab = _firstString(item, ['arab']);
+    final keterangan = _firstString(item, ['keterangan']);
+    final kalimat = _firstString(item, ['kalimat']);
+    final arti = _firstString(item, ['arti']);
+
+    String? colorText;
+    switch (colorLabel.toLowerCase()) {
+      case 'blue':
+        colorText = 'Biru';
+        break;
+      case 'red':
+        colorText = 'Merah';
+        break;
+      case 'green':
+        colorText = 'Hijau';
+        break;
+      case 'yellow':
+        colorText = 'Kuning';
+        break;
+      default:
+        colorText = colorLabel.isNotEmpty ? colorLabel : null;
+    }
+
+    final cardFields = <Widget>[
+      if (contohKalimat != null) _buildVisualField('Contoh Kalimat', contohKalimat),
+      if (arab != null) ...[
+        const SizedBox(height: 12),
+        _buildVisualArabicPanel('Arab', arab),
+      ],
+      if (keterangan != null) ...[
+        const SizedBox(height: 12),
+        _buildVisualField('Keterangan', keterangan),
+      ],
+      if (kalimat != null) ...[
+        const SizedBox(height: 12),
+        _buildVisualField('Kalimat', kalimat),
+      ],
+      if (arti != null) ...[
+        const SizedBox(height: 12),
+        _buildVisualField('Arti', arti),
+      ],
+    ];
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: onBackground.withValues(alpha: 0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: primaryContainer.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(Icons.auto_stories_rounded,
+                    color: primaryContainer, size: 20),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  title,
+                  style: GoogleFonts.manrope(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: primary,
+                  ),
+                ),
+              ),
+              if (colorText != null)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: secondaryContainer.withValues(alpha: 0.55),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    colorText,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: secondary,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          if (cardFields.isNotEmpty) ...[
+            const SizedBox(height: 14),
+            ...cardFields,
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVisualField(String label, String value) {
+    return _buildFieldBlock(
+      label: label,
+      value: value,
+      accent: surfaceContainerLow,
+    );
+  }
+
+  Widget _buildVisualArabicPanel(String label, String value) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: surfaceContainerLow,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: primary,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            value,
+            textDirection: TextDirection.rtl,
+            style: GoogleFonts.amiri(
+              fontSize: 24,
+              height: 1.7,
+              color: primary,
+            ),
+          ),
         ],
       ),
     );
@@ -1496,6 +1679,67 @@ class SubBabView extends GetView<SubBabController> {
     );
   }
 
+  Widget _buildPairedExamples(dynamic examples, dynamic meanings) {
+    final exampleList = _toStringList(examples);
+    final meaningList = _toStringList(meanings);
+    if (exampleList.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(exampleList.length, (index) {
+        final example = exampleList[index];
+        final meaning = index < meaningList.length ? meaningList[index] : null;
+        final isArabic = RegExp(r'[؀-ۿ]').hasMatch(example);
+
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: index == exampleList.length - 1 ? 0 : 8,
+          ),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: surfaceContainerLow,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  example,
+                  textDirection:
+                      isArabic ? TextDirection.rtl : TextDirection.ltr,
+                  style: isArabic
+                      ? GoogleFonts.amiri(
+                          fontSize: 20,
+                          height: 1.5,
+                          color: primary,
+                        )
+                      : GoogleFonts.plusJakartaSans(
+                          fontSize: 12,
+                          height: 1.5,
+                          color: onSurfaceVariant,
+                        ),
+                ),
+                if (meaning != null && meaning.trim().isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    meaning,
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 12,
+                      height: 1.5,
+                      color: onSurfaceVariant.withValues(alpha: 0.9),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
   String? _firstString(Map<String, dynamic> item, List<String> keys) {
     for (final key in keys) {
       final value = item[key];
@@ -1505,6 +1749,7 @@ class SubBabView extends GetView<SubBabController> {
   }
 
   String _labelFromKey(String key) {
+    if (key == 'contoh_visual') return 'Contoh';
     final normalized = key
         .replaceAll('tabel_', '')
         .replaceAll('_', ' ')

@@ -29,7 +29,7 @@
       "lagu": {
         "title": "Lagu Hafalan Tanda-Tanda I’rab Rafa’",
         "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
-        "audio_path": "assets/audio/Audio Tanda I_rab Rafa_.m4a",
+        "audio_path": null,
         "lirik": [
           "Rafa' punya empat tanda tidak kurang",
           "Dhammah, Wawu, Alif, Nun tidak terbuang",
@@ -72,10 +72,6 @@
           "contoh": [
             "كِتَابٌ",
             "زَهْرَةٌ"
-          ],
-          "contoh_arti": [
-            "sebuah buku",
-            "setangkai bunga"
           ],
           "sumber": "Kitab Al-Nahwu Al-Wadhih"
         },
@@ -214,6 +210,267 @@
           }
         ]
       },
+      "contoh_visual": [
+        {
+          "irab": "Rafa‘",
+          "color": "blue",
+          "label_warna": "🟦 Biru",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_rafa.png",
+            "image_path": "assets/images/irab/contoh_visual_rafa.png",
+            "alt": "Ilustrasi siswa datang ke sekolah untuk contoh i’rab rafa‘"
+          },
+          "contoh_kalimat": "جَاءَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا",
+          "kalimat": "جَاءَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا",
+          "arti": "Siswa telah datang ke sekolah pagi hari",
+          "kata_fokus": "الطَّالِبُ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ب",
+            "harakat_akhir": "dhammah / ـُ",
+            "tanda_irab": "Rafa‘",
+            "alasan": "Kata الطَّالِبُ menjadi fa‘il/pelaku dari fi‘il جَاءَ, sehingga akhirnya dibaca dhammah.",
+            "cara_membaca": "ath-thālibu",
+            "bagian_kata": [
+              {
+                "teks": "ال",
+                "nama": "alif lam",
+                "fungsi": "tanda ma‘rifah pada isim"
+              },
+              {
+                "teks": "ط",
+                "nama": "tha’",
+                "fungsi": "huruf awal kata"
+              },
+              {
+                "teks": "ا",
+                "nama": "alif",
+                "fungsi": "pemanjang bunyi setelah tha’"
+              },
+              {
+                "teks": "ل",
+                "nama": "lam",
+                "fungsi": "huruf tengah kata"
+              },
+              {
+                "teks": "بُ",
+                "nama": "ba’ ber-dhammah",
+                "fungsi": "huruf akhir yang menunjukkan rafa‘"
+              }
+            ]
+          }
+        },
+        {
+          "irab": "Nashab",
+          "color": "red",
+          "label_warna": "🟥 Merah",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_nashab.png",
+            "image_path": "assets/images/irab/contoh_visual_nashab.png",
+            "alt": "Ilustrasi siswa membaca buku di perpustakaan untuk contoh i’rab nashab"
+          },
+          "contoh_kalimat": "قَرَأْتُ الكِتَابَ فِي الْمَكْتَبَةِ",
+          "kalimat": "قَرَأْتُ الكِتَابَ فِي الْمَكْتَبَةِ",
+          "arti": "Saya telah membaca buku di perpustakaan",
+          "kata_fokus": "الكِتَابَ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ب",
+            "harakat_akhir": "fathah / ـَ",
+            "tanda_irab": "Nashab",
+            "alasan": "Kata الكِتَابَ menjadi maf‘ul bih/objek dari fi‘il قَرَأْتُ, sehingga akhirnya dibaca fathah.",
+            "cara_membaca": "al-kitāba",
+            "bagian_kata": [
+              {
+                "teks": "ال",
+                "nama": "alif lam",
+                "fungsi": "tanda ma‘rifah pada isim"
+              },
+              {
+                "teks": "كِ",
+                "nama": "kaf ber-kasrah",
+                "fungsi": "huruf awal kata"
+              },
+              {
+                "teks": "تَ",
+                "nama": "ta’ ber-fathah",
+                "fungsi": "huruf tengah kata"
+              },
+              {
+                "teks": "ا",
+                "nama": "alif",
+                "fungsi": "pemanjang bunyi"
+              },
+              {
+                "teks": "بَ",
+                "nama": "ba’ ber-fathah",
+                "fungsi": "huruf akhir yang menunjukkan nashab"
+              }
+            ]
+          }
+        },
+        {
+          "irab": "Jar",
+          "color": "green",
+          "label_warna": "🟩 Hijau",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_jar.png",
+            "image_path": "assets/images/irab/contoh_visual_jar.png",
+            "alt": "Ilustrasi siswa duduk di kelas untuk contoh i’rab jar"
+          },
+          "contoh_kalimat": "جَلَسْتُ فِي الفَصْلِ",
+          "kalimat": "جَلَسْتُ فِي الفَصْلِ",
+          "arti": "Saya duduk di kelas",
+          "kata_fokus": "الفَصْلِ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ل",
+            "harakat_akhir": "kasrah / ـِ",
+            "tanda_irab": "Jar/Khafadh",
+            "alasan": "Kata الفَصْلِ didahului huruf jar فِي, sehingga akhirnya dibaca kasrah.",
+            "cara_membaca": "al-faṣli",
+            "bagian_kata": [
+              {
+                "teks": "ال",
+                "nama": "alif lam",
+                "fungsi": "tanda ma‘rifah pada isim"
+              },
+              {
+                "teks": "فَ",
+                "nama": "fa’ ber-fathah",
+                "fungsi": "huruf awal kata"
+              },
+              {
+                "teks": "صْ",
+                "nama": "shad bersukun",
+                "fungsi": "huruf tengah kata"
+              },
+              {
+                "teks": "لِ",
+                "nama": "lam ber-kasrah",
+                "fungsi": "huruf akhir yang menunjukkan jar"
+              }
+            ]
+          }
+        },
+        {
+          "irab": "Jazm",
+          "color": "yellow",
+          "label_warna": "🟨 Kuning",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_jazm.png",
+            "image_path": "assets/images/irab/contoh_visual_jazm.png",
+            "alt": "Ilustrasi siswa berhasil karena bersungguh-sungguh untuk contoh i’rab jazm"
+          },
+          "contoh_kalimat": "إِنْ يَجْتَهِدِ الطَّالِبُ يَنْجَحْ",
+          "kalimat": "إِنْ يَجْتَهِدِ الطَّالِبُ يَنْجَحْ",
+          "arti": "Jika siswa bersungguh-sungguh maka akan sukses",
+          "kata_fokus": "يَنْجَحْ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ح",
+            "harakat_akhir": "sukun / ـْ",
+            "tanda_irab": "Jazm",
+            "alasan": "Fi‘il mudhari‘ يَنْجَحْ menjadi jawab syarat dari إِنْ, sehingga akhirnya dibaca sukun sebagai tanda jazm.",
+            "cara_membaca": "yanjaḥ",
+            "bagian_kata": [
+              {
+                "teks": "يَ",
+                "nama": "ya’ ber-fathah",
+                "fungsi": "huruf mudhara‘ah/awalan fi‘il mudhari‘"
+              },
+              {
+                "teks": "نْ",
+                "nama": "nun bersukun",
+                "fungsi": "huruf tengah kata"
+              },
+              {
+                "teks": "جَ",
+                "nama": "jim ber-fathah",
+                "fungsi": "huruf tengah kata"
+              },
+              {
+                "teks": "حْ",
+                "nama": "ha’ bersukun",
+                "fungsi": "huruf akhir yang menunjukkan jazm"
+              }
+            ]
+          }
+        }
+      ],
+      "tabel_contoh_visual": {
+        "title": "Tabel Contoh Visual I’rab",
+        "headers": [
+          "irab",
+          "contoh_ilustrasi",
+          "contoh_dalam_kalimat",
+          "kata_fokus",
+          "huruf_akhir",
+          "penjelasan"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_rafa.png",
+              "image_path": "assets/images/irab/contoh_visual_rafa.png",
+              "alt": "Ilustrasi siswa datang ke sekolah untuk contoh i’rab rafa‘"
+            },
+            "contoh_dalam_kalimat": "جَاءَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا",
+            "arti": "Siswa telah datang ke sekolah pagi hari",
+            "kata_fokus": "الطَّالِبُ",
+            "huruf_akhir": "ب",
+            "harakat_akhir": "dhammah / ـُ",
+            "penjelasan": "Kata الطَّالِبُ menjadi fa‘il/pelaku dari fi‘il جَاءَ, sehingga akhirnya dibaca dhammah."
+          },
+          {
+            "irab": "Nashab",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_nashab.png",
+              "image_path": "assets/images/irab/contoh_visual_nashab.png",
+              "alt": "Ilustrasi siswa membaca buku di perpustakaan untuk contoh i’rab nashab"
+            },
+            "contoh_dalam_kalimat": "قَرَأْتُ الكِتَابَ فِي الْمَكْتَبَةِ",
+            "arti": "Saya telah membaca buku di perpustakaan",
+            "kata_fokus": "الكِتَابَ",
+            "huruf_akhir": "ب",
+            "harakat_akhir": "fathah / ـَ",
+            "penjelasan": "Kata الكِتَابَ menjadi maf‘ul bih/objek dari fi‘il قَرَأْتُ, sehingga akhirnya dibaca fathah."
+          },
+          {
+            "irab": "Jar",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_jar.png",
+              "image_path": "assets/images/irab/contoh_visual_jar.png",
+              "alt": "Ilustrasi siswa duduk di kelas untuk contoh i’rab jar"
+            },
+            "contoh_dalam_kalimat": "جَلَسْتُ فِي الفَصْلِ",
+            "arti": "Saya duduk di kelas",
+            "kata_fokus": "الفَصْلِ",
+            "huruf_akhir": "ل",
+            "harakat_akhir": "kasrah / ـِ",
+            "penjelasan": "Kata الفَصْلِ didahului huruf jar فِي, sehingga akhirnya dibaca kasrah."
+          },
+          {
+            "irab": "Jazm",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_jazm.png",
+              "image_path": "assets/images/irab/contoh_visual_jazm.png",
+              "alt": "Ilustrasi siswa berhasil karena bersungguh-sungguh untuk contoh i’rab jazm"
+            },
+            "contoh_dalam_kalimat": "إِنْ يَجْتَهِدِ الطَّالِبُ يَنْجَحْ",
+            "arti": "Jika siswa bersungguh-sungguh maka akan sukses",
+            "kata_fokus": "يَنْجَحْ",
+            "huruf_akhir": "ح",
+            "harakat_akhir": "sukun / ـْ",
+            "penjelasan": "Fi‘il mudhari‘ يَنْجَحْ menjadi jawab syarat dari إِنْ, sehingga akhirnya dibaca sukun sebagai tanda jazm."
+          }
+        ]
+      },
       "latihan": [
         {
           "id": 1,
@@ -267,7 +524,7 @@
       "lagu": {
         "title": "Lagu Hafalan Tanda-Tanda I’rab Nashab",
         "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
-        "audio_path": "assets/audio/Audio Tanda I_rab Nashab.m4a",
+        "audio_path": null,
         "lirik": [
           "Tanda Nashab ada lima tidak kurang",
           "Fathah, Alif, Kasrah, Ya’, Nun yang terbuang",
@@ -493,7 +750,7 @@
       "lagu": {
         "title": "Lagu Hafalan Tanda-Tanda I’rab Khafadh/Jar",
         "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
-        "audio_path": "assets/audio/Audio Tanda I_rab Khafad.m4a",
+        "audio_path": null,
         "lirik": [
           "Tanda Khafad ada tiga bilanganya",
           "Kasrah, Ya’, Fathah tiada yang lainya",
@@ -721,7 +978,7 @@
       "lagu": {
         "title": "Lagu Hafalan Tanda-Tanda I’rab Jazm",
         "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
-        "audio_path": "assets/audio/Audio Tanda I_rab Jazm.m4a",
+        "audio_path": null,
         "lirik": [
           "Tanda Jazm tiga pertamanya Sukun",
           "Terbuangnya Huruf ‘Ilat dan juga Nun",
@@ -844,6 +1101,6 @@
       ]
     }
   ],
-  "versi_schema": "1.1",
-  "catatan_update": "Video memakai youtube_id/youtube_url/embed_url; mind mapping memakai nama file Drive; lagu memakai lirik dari dokumen Lirik Lagu Audio dan Link Youtube."
+  "versi_schema": "1.3",
+  "catatan_update": "Melengkapi penjelasan_unsur pada sub bab Tanda-Tanda I’rab Khafadh/Jar dan Tanda-Tanda I’rab Jazm berdasarkan file Word materi asli, termasuk arab, definisi, contoh, arti contoh, dan sumber."
 }

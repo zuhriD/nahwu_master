@@ -32,6 +32,7 @@ class FlashcardController extends GetxController {
   final RxInt currentIndex = 0.obs;
   final RxBool isFlipped = false.obs;
   final RxBool isSpeaking = false.obs;
+  final RxBool isCompleted = false.obs;
   final RxList<FlashcardData> cards = <FlashcardData>[].obs;
   final RxInt masteredCount = 0.obs;
 
@@ -45,6 +46,7 @@ class FlashcardController extends GetxController {
     data = Get.arguments;
     _generateCards();
     _updateMasteredCount();
+    isCompleted.value = totalCards > 0 && currentIndex.value >= totalCards;
     _initTts();
   }
 
@@ -181,6 +183,11 @@ class FlashcardController extends GetxController {
     _storage.incrementFlashcardReviewed();
     _storage.addXp(3, 'Flashcard mastered');
     _updateMasteredCount();
+    if (currentIndex.value >= totalCards - 1) {
+      isCompleted.value = true;
+      isFlipped.value = false;
+      return;
+    }
     nextCard();
   }
 
@@ -190,6 +197,11 @@ class FlashcardController extends GetxController {
     _storage.setFlashcardStatus(dataId!, currentIndex.value, false);
     _storage.incrementFlashcardReviewed();
     _updateMasteredCount();
+    if (currentIndex.value >= totalCards - 1) {
+      isCompleted.value = true;
+      isFlipped.value = false;
+      return;
+    }
     nextCard();
   }
 
@@ -223,6 +235,7 @@ class FlashcardController extends GetxController {
     }
     currentIndex.value = 0;
     isFlipped.value = false;
+    isCompleted.value = false;
     _updateMasteredCount();
   }
 }
