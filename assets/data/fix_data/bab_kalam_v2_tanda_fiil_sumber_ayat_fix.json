@@ -1116,41 +1116,6 @@
         "warna_tanda_default": "red",
         "hex_tanda_default": "#FF0000",
         "cara_render_flutter": "Gunakan field arab_segments atau tanda_berwarna untuk membuat RichText; segmen dengan is_tanda_huruf=true diberi warna merah."
-      },
-      "tabel_contoh_berwarna": {
-        "headers": [
-          "contoh_ayat",
-          "tanda_yang_diwarna",
-          "warna",
-          "rujukan",
-          "keterangan"
-        ],
-        "rows": [
-          {
-            "contoh_ayat": "مِنْ شَرِّ الْوَسْوَاسِ",
-            "tanda_yang_diwarna": "مِنْ",
-            "warna": "#FF0000",
-            "rujukan": "QS. An-Nas Ayat 4",
-            "keterangan": "مِنْ adalah huruf jar; pada contoh Word diberi warna merah sebagai tanda huruf.",
-            "sumber": "Al-Qur’an; contoh tanda huruf disusun dari materi Word Bab Kalam"
-          },
-          {
-            "contoh_ayat": "وَلَا تَقْرَبُوا الزِّنٰىٓ",
-            "tanda_yang_diwarna": "وَ",
-            "warna": "#FF0000",
-            "rujukan": "QS. Al-Isra’ Ayat 32",
-            "keterangan": "وَ adalah huruf ‘athaf; pada contoh Word diberi warna merah sebagai tanda huruf.",
-            "sumber": "Al-Qur’an; contoh tanda huruf disusun dari materi Word Bab Kalam"
-          },
-          {
-            "contoh_ayat": "وَالْعَصْرِ",
-            "tanda_yang_diwarna": "وَ",
-            "warna": "#FF0000",
-            "rujukan": "QS. Al-‘Ashr Ayat 1",
-            "keterangan": "وَ adalah huruf qasam; pada contoh Word diberi warna merah sebagai tanda huruf.",
-            "sumber": "Al-Qur’an; contoh tanda huruf disusun dari materi Word Bab Kalam"
-          }
-        ]
       }
     }
   ],
