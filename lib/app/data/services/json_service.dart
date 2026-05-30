@@ -5,9 +5,9 @@ import '../models/materi_model.dart';
 /// Service untuk membaca dan mem-parse data dari file JSON lokal
 class JsonService {
   static const List<String> _babV2Paths = [
-    'assets/data/bab_kalam_v2.json',
-    'assets/data/bab_irab_v2.json',
-    'assets/data/bab_mengetahui_tanda_tanda_irab_v2.json',
+    'assets/data/fix_data/bab_kalam_v2_tanda_fiil_sumber_ayat_fix.json',
+    'assets/data/fix_data/bab_irab_v2_sumber_lengkap.json',
+    'assets/data/fix_data/bab_mengetahui_tanda_tanda_irab_v3_tabel_nashab_khafadh_fix.json',
   ];
   static const String _latihanPath = 'assets/data/latihan.json';
 

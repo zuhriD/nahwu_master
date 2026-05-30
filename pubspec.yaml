@@ -44,6 +44,7 @@ flutter:
 
   assets:
     - assets/data/
+    - assets/data/fix_data/
     - assets/icon/
     - assets/audio/
     - assets/profile/

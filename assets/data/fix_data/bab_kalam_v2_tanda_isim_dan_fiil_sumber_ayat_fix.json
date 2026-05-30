@@ -1,0 +1,1039 @@
+{
+  "judul": "Bab Kalam",
+  "deskripsi": "Materi pengantar kalam, pembagian kata, dan tanda-tanda isim, fi'il, serta huruf berdasarkan Jurumiyah.",
+  "icon": "📘",
+  "sub_bab": [
+    {
+      "id": 1,
+      "judul": "Kalam",
+      "icon": "📖",
+      "teks_inti": {
+        "arab": "الكَلَامُ هُوَ اللَّفْظُ المُرَكَّبُ المُفِيْدُ بِالْوَضْعِ",
+        "latin": "Al-kalāmu huwa al-lafẓu al-murakkabu al-mufīdu bil-waḍ'i",
+        "terjemahan": "Kalam ialah lafadz yang tersusun dan bermakna lengkap.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Kalam",
+        "type": "youtube",
+        "youtube_id": "UV3VaFbpbvQ",
+        "youtube_url": "https://youtu.be/UV3VaFbpbvQ?si=HgQNCBuDPe34X3gh",
+        "embed_url": "https://www.youtube.com/embed/UV3VaFbpbvQ?si=HgQNCBuDPe34X3gh",
+        "thumbnail_url": "https://img.youtube.com/vi/UV3VaFbpbvQ/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi Kalam",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio Kalam.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Kalam",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": "assets/audio/lagu_kalam.m4a",
+        "lirik": [
+          "Kalam itu Lafadz yang sudah tersusun",
+          "Berfaidah disengaja Ja’a Zaidun",
+          "Lafadz yaitu suara hijaiyah",
+          "Tersusun dari beberapa Kalimah",
+          "Berfaidah memahamkan si pendengar",
+          "Disengaja mengucapkan dengan sadar",
+          "Itulah syarat komponen pada Kalam",
+          "Yang harus dihafal secara mendalam."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Kalam",
+        "file_name": "mind_map_kalam.png",
+        "image_path": "assets/mindmapping/mind_map_kalam.png",
+        "drive_file_id": "146yBlMOM2h471Q5aaX7q8sBmkxunq2_D",
+        "drive_url": "https://drive.google.com/file/d/146yBlMOM2h471Q5aaX7q8sBmkxunq2_D/view?usp=drivesdk",
+        "alt": "Mind map materi Kalam"
+      },
+      "unsur": [
+        {
+          "id": "lafadz",
+          "judul": "اللَّفْظُ",
+          "nama": "Lafadz",
+          "definisi": "Ucapan yang mengandung sebagian huruf hijaiyah.",
+          "contoh": [
+            {
+              "arab": "اَلْحَمْدُ",
+              "arti": "Segala puji",
+              "rujukan": "QS. Al-Fatihah Ayat 2",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "اقْرَأْ",
+              "arti": "Bacalah!",
+              "rujukan": "QS. Al-‘Alaq Ayat 1",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "bukan_contoh": [
+            "suara petir",
+            "suara mesin",
+            "bunyi hewan"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_bukan_contoh": "Disusun dari penjelasan unsur Kalam berdasarkan Kitab Jurumiyah"
+        },
+        {
+          "id": "murakkab",
+          "judul": "المُرَكَّبُ",
+          "nama": "Murakkab",
+          "definisi": "Ucapan yang tersusun atas dua kata atau lebih.",
+          "contoh": [
+            {
+              "arab": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَۙ",
+              "arti": "Segala puji bagi Allah Tuhan semesta alam.",
+              "rujukan": "QS. Al-Fatihah Ayat 2",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ",
+              "arti": "Sesungguhnya Allah Maha Pengampun lagi Maha Penyayang.",
+              "rujukan": "QS. Al-Baqarah Ayat 173",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "bukan_contoh": [
+            "رَحِيمٌ",
+            "اَلْحَمْدُ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_bukan_contoh": "Disusun dari penjelasan unsur Kalam berdasarkan Kitab Jurumiyah"
+        },
+        {
+          "id": "mufid",
+          "judul": "الْمُفِيْدُ",
+          "nama": "Mufid",
+          "definisi": "Ungkapan yang bermakna sempurna dan membuat pendengar merasa cukup/paham.",
+          "contoh": [
+            {
+              "arab": "اللَّهُ أَحَدٌ",
+              "arti": "Allah Maha Esa",
+              "rujukan": "QS. Al-Ikhlas Ayat 1",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ",
+              "arti": "Allah pemberi cahaya langit dan bumi.",
+              "rujukan": "QS. An-Nur Ayat 35",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "bukan_contoh": [
+            "زَيْدٌ",
+            "إِنْ قَامَ زَيْدٌ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_bukan_contoh": "Disusun dari penjelasan unsur Kalam berdasarkan Kitab Jurumiyah"
+        },
+        {
+          "id": "wadha",
+          "judul": "بِالْوَضْعِ",
+          "nama": "Wadha'",
+          "definisi": "Lafadz yang menunjukkan makna dan disengaja dengan bahasa Arab.",
+          "contoh": [
+            {
+              "arab": "إِيَّاكَ نَعْبُدُ",
+              "arti": "Hanya kepada-Mu kami menyembah.",
+              "rujukan": "QS. Al-Fatihah Ayat 5",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "الرَّحْمَٰنُ عَلَّمَ الْقُرْآنَ",
+              "arti": "Allah Yang Maha Pengasih telah mengajarkan Al-Qur’an.",
+              "rujukan": "QS. Ar-Rahman Ayat 1–2",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "bukan_contoh": [
+            "kata buatan sendiri",
+            "bahasa isyarat tanpa lafadz"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_bukan_contoh": "Disusun dari penjelasan unsur Kalam berdasarkan Kitab Jurumiyah"
+        }
+      ],
+      "tabel_non_kalam": {
+        "headers": [
+          "contoh",
+          "alasan"
+        ],
+        "rows": [
+          {
+            "contoh": "زَيْدٌ",
+            "alasan": "Tidak murakkab/tidak tersusun dari dua kalimah atau lebih",
+            "sumber": "Kitab Jurumiyah"
+          },
+          {
+            "contoh": "إِنْ ذَهَبَ",
+            "alasan": "Tidak mufid/bermakna sempurna",
+            "sumber": "Kitab Jurumiyah"
+          },
+          {
+            "contoh": "آه",
+            "alasan": "Bukan lafaz",
+            "sumber": "Kitab Jurumiyah"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Kalam harus memenuhi unsur lafadz, murakkab, mufid, dan bil-wadh'i.",
+          "jawaban": true,
+          "penjelasan": "Empat unsur ini disebut dalam redaksi inti Kalam.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "زَيْدٌ saja sudah termasuk kalam sempurna.",
+          "jawaban": false,
+          "penjelasan": "زَيْدٌ belum murakkab dan belum memberi makna lengkap.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Yang dimaksud murakkab adalah tersusun dari dua kata atau lebih.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "judul": "Pembagian Kata",
+      "icon": "📚",
+      "teks_inti": {
+        "arab": "وَأَقْسَامُهُ ثَلَاثَةٌ: اِسْمٌ، وَفِعْلٌ، وَحَرْفٌ جَاءَ لِمَعْنًى",
+        "latin": "Wa aqsāmuhu tsalātsatun: ismun, wa fi'lun, wa ḥarfun jā'a li-ma'nā",
+        "terjemahan": "Kata terbagi menjadi tiga jenis, yaitu: Isim, Fi’il, dan Huruf",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Pembagian Kalimah",
+        "type": "youtube",
+        "youtube_id": "2wF91ZAQmj4",
+        "youtube_url": "https://youtu.be/2wF91ZAQmj4?si=X2CQ5kmhyKyQMm61",
+        "embed_url": "https://www.youtube.com/embed/2wF91ZAQmj4?si=mj45SLrq1IxUJ-ah",
+        "thumbnail_url": "https://img.youtube.com/vi/2wF91ZAQmj4/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi Pembagian Kata",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio Pembagian Kalimah.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Pembagian Kata",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": "assets/audio/lagu_pembagian_kalimat.m4a",
+        "lirik": [
+          "Kalimah itu lafadz bermakna satu",
+          "Seperti lafadz Qad, Futihal, Ilmu",
+          "Kalimah itu ada tiga macamnya",
+          "Isim, Fi’il, Huruf yang ada maknanya",
+          "Isim itu yang bermakna tak berzaman",
+          "Fi’il itu yang bermakna dan berzaman",
+          "Huruf itu takkan sempurna maknanya",
+          "Jika tak disambung Kalimah lainnya."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Pembagian Kata",
+        "file_name": "mind_map_pembagian_kalimat.png",
+        "image_path": "assets/mindmapping/mind_map_pembagian_kalimat.png",
+        "drive_file_id": "1a3pHXcR7Gjs2V7J-NYoOVRaT3w2vbwIo",
+        "drive_url": "https://drive.google.com/file/d/1a3pHXcR7Gjs2V7J-NYoOVRaT3w2vbwIo/view?usp=drivesdk",
+        "alt": "Mind map materi Pembagian Kata"
+      },
+      "jenis_kata": [
+        {
+          "id": "isim",
+          "arab": "الْاِسْمُ",
+          "nama": "Isim",
+          "definisi_arab": "كُلُّ لَفْظٍ يُسَمَّى بِهِ إِنْسَانٌ، أَوْ حَيَوَانٌ، أَوْ نَبَاتٌ، أَوْ جَمَادٌ أَوْ أَيُّ شَيْءٍ آخَرَ",
+          "definisi": "Setiap kata yang digunakan untuk menamai manusia, hewan, tumbuhan, benda mati, atau segala sesuatu lainnya.",
+          "keterangan": "Menunjukkan makna pada dirinya sendiri dan tidak terikat waktu.",
+          "ciri": [
+            "Menerima tanwin",
+            "Menerima alif lam (ال)",
+            "Didahului huruf jar"
+          ],
+          "contoh": [
+            {
+              "arab": "خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ",
+              "arti": "Dia menciptakan manusia dari segumpal darah.",
+              "rujukan": "QS. Al-‘Alaq Ayat 2",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "اَلرَّحْمٰنُۙ عَلَّمَ الْقُرْاٰنَۗ",
+              "arti": "Yang Maha Pengasih telah mengajarkan Al-Qur'an.",
+              "rujukan": "QS. Ar-Rahman Ayat 1–2",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "fiil",
+          "arab": "الْفِعْلُ",
+          "nama": "Fi'il",
+          "definisi_arab": "كُلُّ لَفْظٍ يَدُلُّ عَلَى حُصُوْلِ عَمَلٍ فِيْ زَمَنٍ خَاصٍّ.",
+          "definisi": "Setiap kata yang menunjukkan terjadinya suatu perbuatan pada waktu tertentu.",
+          "keterangan": "Menunjukkan makna pada dirinya sendiri dan terikat waktu.",
+          "macam": [
+            {
+              "nama": "Madhi",
+              "arti": "Lampau",
+              "contoh": "كَتَبَ",
+              "sumber": "Kitab Al-Nahwu Al-Wadhih"
+            },
+            {
+              "nama": "Mudhari'",
+              "arti": "Sekarang/akan datang",
+              "contoh": "يَكْتُبُ",
+              "sumber": "Kitab Al-Nahwu Al-Wadhih"
+            },
+            {
+              "nama": "Amr",
+              "arti": "Perintah",
+              "contoh": "اُكْتُبْ",
+              "sumber": "Kitab Al-Nahwu Al-Wadhih"
+            }
+          ],
+          "contoh": [
+            {
+              "arab": "خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ",
+              "arti": "Dia menciptakan manusia dari segumpal darah.",
+              "rujukan": "QS. Al-‘Alaq Ayat 2",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "اكتبْ",
+              "arti": "Tulislah!",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        },
+        {
+          "id": "huruf",
+          "arab": "الْحَرْفُ",
+          "nama": "Huruf",
+          "definisi_arab": "كُلُّ لَفْظٍ لَا يَظْهَرُ مَعْنَاهُ كَامِلًا إِلَّا مَعَ غَيْرِهِ",
+          "definisi": "Setiap kata yang maknanya tidak tampak sempurna kecuali jika bersama dengan kata lain.",
+          "keterangan": "Tidak dapat berdiri sendiri; makna sempurna muncul ketika digabungkan dengan kata lain.",
+          "contoh": [
+            {
+              "arab": "مِنْ",
+              "arti": "dari",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "عَلَى",
+              "arti": "di atas",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "فِيْ",
+              "arti": "di/dalam",
+              "sumber": "Al-Qur’an"
+            }
+          ],
+          "sumber": "Kitab Al-Nahwu Al-Wadhih"
+        }
+      ],
+      "tabel_ringkasan": {
+        "headers": [
+          "no",
+          "jenis_kata",
+          "ciri_utama",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "no": "1",
+            "jenis_kata": "Kata benda (الْاِسْمُ)",
+            "ciri_utama": "Tidak terikat waktu",
+            "contoh": "زَيْدٌ، كِتَابٌ",
+            "sumber": "Kitab Jurumiyah dan Kitab Al-Nahwu Al-Wadhih"
+          },
+          {
+            "no": "2",
+            "jenis_kata": "Kata kerja (الْفِعْلُ)",
+            "ciri_utama": "Terikat waktu",
+            "contoh": "كَتَبَ، يَكْتُبُ، اُكْتُبْ",
+            "sumber": "Kitab Jurumiyah dan Kitab Al-Nahwu Al-Wadhih"
+          },
+          {
+            "no": "3",
+            "jenis_kata": "Huruf (الْحَرْفُ)",
+            "ciri_utama": "Tidak bermakna sendiri",
+            "contoh": "فِيْ، مِنْ، إِلَى",
+            "sumber": "Kitab Jurumiyah dan Kitab Al-Nahwu Al-Wadhih"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Kata dalam bahasa Arab terbagi menjadi isim, fi'il, dan huruf.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Fi'il adalah kata yang tidak terikat waktu.",
+          "jawaban": false,
+          "penjelasan": "Fi'il justru terikat waktu.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "pilihan_ganda",
+          "pertanyaan": "Manakah contoh huruf?",
+          "opsi": [
+            "زَيْدٌ",
+            "كَتَبَ",
+            "مِنْ",
+            "كِتَابٌ"
+          ],
+          "jawaban_benar_index": 2,
+          "penjelasan": "مِنْ termasuk huruf jar.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "judul": "Tanda-Tanda Isim",
+      "icon": "🏷️",
+      "teks_inti": {
+        "arab": "فَالْاِسْمُ يُعْرَفُ بِالْخَفْضِ، وَالتَّنْوِيْنِ، وَدُخُوْلِ الْأَلِفِ وَاللَّامِ، وَحُرُوْفِ الْخَفْضِ",
+        "latin": "Fal-ismu yu'rafu bil-khafḍi, wat-tanwīni, wa dukhūlil alifi wal-lāmi, wa ḥurūfil khafḍi",
+        "terjemahan": "Isim dapat diketahui dengan khafadh, tanwin, masuknya alif-lam, dan huruf khafadh.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda Tanda Isim",
+        "type": "youtube",
+        "youtube_id": "-WLc8E8p1Hc",
+        "youtube_url": "https://youtu.be/-WLc8E8p1Hc?si=VGPbC76nXDeNmZeS",
+        "embed_url": "https://www.youtube.com/embed/-WLc8E8p1Hc?si=v6tjhp94uGlmHwTX",
+        "thumbnail_url": "https://img.youtube.com/vi/-WLc8E8p1Hc/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda Isim",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio Tanda-Tanda Isim.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda Isim",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": "assets/audio/lagu_tanda_isim.m4a",
+        "lirik": [
+          "Isim itu tandanya dii’rabi Jar",
+          "Kemasukan Tanwin, Al juga Huruf Jar",
+          "Huruf Jar yaitu Min, Fi, 'An dan 'Ala",
+          "Rubba, Ba’, Kaf, Lam dan juga Huruf Ila",
+          "Huruf Qasam termasuk Kalimah Huruf",
+          "Huruf untuk sumpah ada tiga Huruf",
+          "Wawu, Ba’, Ta’ itulah macam Hurufnya",
+          "Wallahi, Billahi, Tallahi contohnya."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda Isim",
+        "file_name": "mind_map_tanda_isim.png",
+        "image_path": "assets/mindmapping/mind_map_tanda_isim.png",
+        "drive_file_id": "1pZazFqNeFi-__JYSAErJoNOlWCnoHcMM",
+        "drive_url": "https://drive.google.com/file/d/1pZazFqNeFi-__JYSAErJoNOlWCnoHcMM/view?usp=drivesdk",
+        "alt": "Mind map materi Tanda-Tanda Isim"
+      },
+      "tanda": [
+        {
+          "arab": "الخَفْضُ",
+          "nama": "Khafadh/Jar",
+          "fungsi": "Isim dapat menjadi majrur/berharakat kasrah karena amil jar.",
+          "contoh": [
+            "خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ",
+            "إِنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an dan Syair Arab sesuai contoh pada materi Word",
+          "contoh_ayat": [
+            {
+              "arab": "خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ",
+              "rujukan": "QS. Al-‘Alaq Ayat 2",
+              "arti": "Dia menciptakan manusia dari segumpal darah.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "إِنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+              "rujukan": "QS. Al-Baqarah Ayat 20",
+              "arti": "Sesungguhnya Allah Mahakuasa atas segala sesuatu.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        },
+        {
+          "arab": "التَّنْوِيْنُ",
+          "nama": "Tanwin",
+          "fungsi": "Isim dapat menerima bunyi akhir an, in, atau un.",
+          "bentuk": [
+            "ـٌ",
+            "ـً",
+            "ـٍ"
+          ],
+          "contoh": [
+            "وُجُوهٌ يَوْمَئِذٍ نَاضِرَةٌ",
+            "كِتٰبًا مُّتَشَابِهًا"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an dan Syair Arab sesuai contoh pada materi Word",
+          "contoh_ayat": [
+            {
+              "arab": "وُجُوهٌ يَوْمَئِذٍ نَاضِرَةٌ",
+              "rujukan": "QS. Al-Qiyamah Ayat 22",
+              "arti": "Wajah-wajah orang mukmin pada hari itu berseri-seri.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "اللّٰهُ نَزَّلَ أَحْسَنَ الْحَدِيْثِ كِتٰبًا مُّتَشَابِهًا",
+              "rujukan": "QS. Az-Zumar Ayat 23",
+              "arti": "Allah telah menurunkan perkataan yang terbaik, yaitu Kitab Al-Qur’an yang serupa ayat-ayatnya.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        },
+        {
+          "arab": "دُخُوْلُ الْأَلِفِ وَاللَّامِ",
+          "nama": "Alif Lam",
+          "fungsi": "Isim dapat didahului ال sebagai tanda ma'rifah.",
+          "contoh": [
+            "الْقَارِعَةُ",
+            "الْحَمْدُ لِلَّهِ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an dan Syair Arab sesuai contoh pada materi Word",
+          "contoh_ayat": [
+            {
+              "arab": "الْقَارِعَةُ",
+              "rujukan": "QS. Al-Qari‘ah Ayat 1",
+              "arti": "Hari Kiamat.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "الْحَمْدُ لِلّٰهِ",
+              "rujukan": "QS. Al-Fatihah Ayat 2",
+              "arti": "Segala puji bagi Allah SWT.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        },
+        {
+          "arab": "حُرُوْفُ الْخَفْضِ",
+          "nama": "Huruf Khafadh/Jar",
+          "fungsi": "Isim dapat didahului huruf jar.",
+          "contoh": [
+            "مِنْ",
+            "إِلَى",
+            "عَنْ",
+            "عَلَى",
+            "فِي",
+            "رُبَّ",
+            "بِ",
+            "كَ",
+            "لِ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an dan Syair Arab sesuai contoh pada materi Word",
+          "contoh_ayat": [
+            {
+              "huruf_jar": "مِنْ",
+              "arab": "خَلَقَ الْاِنْسَانَ مِنْ عَلَقٍۚ",
+              "rujukan": "QS. Al-‘Alaq Ayat 2",
+              "arti": "Dia menciptakan manusia dari segumpal darah.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "إِلَى",
+              "arab": "اِلَى الْمَسْجِدِ الْاَقْصَا الَّذِيْ",
+              "rujukan": "QS. Al-Isra’ Ayat 1",
+              "arti": "Ke Masjidil Aqsa.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "عَنْ",
+              "arab": "عَنِ النَّبَاِ الْعَظِيْمِۙ",
+              "rujukan": "QS. An-Naba’ Ayat 2",
+              "arti": "Tentang berita yang besar.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "عَلَى",
+              "arab": "وَعَلَى اللّٰهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُوْنَ",
+              "rujukan": "QS. Ibrahim Ayat 11",
+              "arti": "Dan hanya kepada Allah hendaknya orang-orang mukmin bertawakal.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "فِي",
+              "arab": "وَفِى السَّمَاۤءِ رِزْقُكُمْ وَمَا تُوْعَدُوْنَ",
+              "rujukan": "QS. Adz-Dzariyat Ayat 22",
+              "arti": "Dan di langit terdapat rezekimu dan apa yang dijanjikan kepadamu.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "رُبَّ",
+              "arab": "أَلَا رُبَّ مَوْلُوْدٍ وَلَيْسَ لَهُ أَبٌ",
+              "rujukan": "Syair Arab",
+              "arti": "Ketahuilah, banyak anak yang dilahirkan tetapi tidak memiliki ayah.",
+              "sumber": "Syair Arab"
+            },
+            {
+              "huruf_jar": "بِ",
+              "arab": "اِذْهَبْ بِّكِتٰبِيْ هٰذَا",
+              "rujukan": "QS. An-Naml Ayat 28",
+              "arti": "Pergilah dengan membawa suratku ini.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "كَ",
+              "arab": "لَيْسَ كَمِثْلِهٖ شَيْءٌۚ",
+              "rujukan": "QS. Asy-Syura Ayat 11",
+              "arti": "Tidak ada sesuatu pun yang serupa dengan-Nya.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "huruf_jar": "لِ",
+              "arab": "هُدًى لِّلْمُتَّقِيْنَۙ",
+              "rujukan": "QS. Al-Baqarah Ayat 2",
+              "arti": "Petunjuk bagi orang-orang yang bertakwa.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        }
+      ],
+      "tabel_huruf_jar": {
+        "headers": [
+          "huruf_jar",
+          "arti_umum",
+          "contoh_potongan_ayat",
+          "keterangan"
+        ],
+        "rows": [
+          {
+            "huruf_jar": "مِنْ",
+            "arti_umum": "dari",
+            "contoh_potongan_ayat": "خَلَقَ الْاِنْسَانَ مِنْ عَلَقٍۚ",
+            "keterangan": "QS. Al-'Alaq Ayat 2",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "إِلَى",
+            "arti_umum": "ke",
+            "contoh_potongan_ayat": "اِلَى الۡمَسۡجِدِ الۡاَقۡصَا الَّذِىۡ",
+            "keterangan": "QS. Al-Isra' Ayat 1",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "عَنْ",
+            "arti_umum": "dari/tentang",
+            "contoh_potongan_ayat": "عَنِ النَّبَاِ الْعَظِيْمِۙ",
+            "keterangan": "QS. An-Naba' Ayat 2",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "عَلَى",
+            "arti_umum": "di atas",
+            "contoh_potongan_ayat": "وَعَلَى اللّٰهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُوْنَ",
+            "keterangan": "QS. Ibrahim Ayat 11",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "فِي",
+            "arti_umum": "di/dalam",
+            "contoh_potongan_ayat": "وَفِى السَّمَاۤءِ رِزْقُكُمْ وَمَا تُوْعَدُوْنَ",
+            "keterangan": "QS. Adz-Dzariyat Ayat 22",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "رُبَّ",
+            "arti_umum": "banyak/sedikit",
+            "contoh_potongan_ayat": "أَلَا رُبَّ مَوْلُوْدٍ وَلَيْسَ لَهُ أَبٌ",
+            "keterangan": "Syair",
+            "sumber": "Kitab Jurumiyah; contoh dari Syair Arab"
+          },
+          {
+            "huruf_jar": "بِ",
+            "arti_umum": "dengan",
+            "contoh_potongan_ayat": "اِذْهَبْ بِّكِتٰبِيْ هٰذَا",
+            "keterangan": "QS. An-Naml Ayat 28",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "كَ",
+            "arti_umum": "seperti",
+            "contoh_potongan_ayat": "لَيْسَ كَمِثْلِه شَيْءٌۚ",
+            "keterangan": "QS. Asy-Syura Ayat 11",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_jar": "لِ",
+            "arti_umum": "untuk/milik",
+            "contoh_potongan_ayat": "هُدًى لِّلْمُتَّقِيْنَۙ",
+            "keterangan": "QS. Al-Baqarah Ayat 2",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          }
+        ]
+      },
+      "tabel_huruf_qasam": {
+        "headers": [
+          "huruf_qasam",
+          "dibaca",
+          "contoh",
+          "keterangan"
+        ],
+        "rows": [
+          {
+            "huruf_qasam": "وَ",
+            "dibaca": "Wa",
+            "contoh": "فَوَرَبِّكَ لَنَسْـَٔلَنَّهُمْ اَجْمَعِيْنَۙ",
+            "keterangan": "QS. Al-Hijr Ayat 92",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_qasam": "بِ",
+            "dibaca": "Bi",
+            "contoh": "بِاللَّهِ",
+            "keterangan": "Demi Allah",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "huruf_qasam": "تَ",
+            "dibaca": "Ta",
+            "contoh": "قَالُوْا تَاللّٰهِ لَقَدْ اٰثَرَكَ اللّٰهُ عَلَيْنَا",
+            "keterangan": "QS. Yusuf Ayat 91",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Tanwin termasuk salah satu tanda isim.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Huruf jar menjadikan isim setelahnya majrur.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "سَوْفَ termasuk tanda isim.",
+          "jawaban": false,
+          "penjelasan": "سَوْفَ adalah tanda fi'il.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "judul": "Tanda-Tanda Fi’il",
+      "icon": "⚡",
+      "teks_inti": {
+        "arab": "وَالْفِعْلُ يُعْرَفُ بِقَدْ وَالسِّيْنِ وَسَوْفَ وَتَاءِ التَّأْنِيْثِ السّاكِنَةِ.",
+        "latin": "Wal-fi'lu yu'rafu bi qad was-sīni wa sawfa wa tā'it-ta'nītsis-sākinah",
+        "terjemahan": "Fi’il dapat diketahui dengan qad, sin, saufa, dan ta’ ta’nits yang disukun.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda Tanda Fi’il",
+        "type": "youtube",
+        "youtube_id": "o4as-6tudbc",
+        "youtube_url": "https://youtu.be/o4as-6tudbc?si=0TAX8HzwymWc4Za6",
+        "embed_url": "https://www.youtube.com/embed/o4as-6tudbc?si=3FcbroCfNyiT5QKM",
+        "thumbnail_url": "https://img.youtube.com/vi/o4as-6tudbc/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda Fi’il",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio Tanda-Tanda Fi_il.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda Fi’il",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": "assets/audio/lagu_tanda_fiil.m4a",
+        "lirik": [
+          "Fiil itu mempunyai tanda empat",
+          "Sin, Saufa, Qad, Ta' tanis tanpa Harakat."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda Fi’il",
+        "file_name": "mind_map_tanda_fiil.png",
+        "image_path": "assets/mindmapping/mind_map_tanda_fiil.png",
+        "drive_file_id": "19_3WwQxJJ_kBsgNweWjvHVI-vzQDN36w",
+        "drive_url": "https://drive.google.com/file/d/19_3WwQxJJ_kBsgNweWjvHVI-vzQDN36w/view?usp=drivesdk",
+        "alt": "Mind map materi Tanda-Tanda Fi’il"
+      },
+      "tanda": [
+        {
+          "arab": "قَدْ",
+          "nama": "Qad",
+          "fungsi": [
+            "Menunjukkan penegasan pada fi'il madhi",
+            "Menunjukkan kemungkinan pada fi'il mudhari'"
+          ],
+          "contoh": [
+            "قَدْ أَفْلَحَ الْمُؤْمِنُونَ",
+            "قَدْ يَعْلَمُ اللَّهُ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an; rujukan ayat tercantum pada setiap contoh_ayat",
+          "contoh_ayat": [
+            {
+              "arab": "قَدْ أَفْلَحَ الْمُؤْمِنُونَ",
+              "rujukan": "QS. Al-Mu’minun Ayat 1",
+              "arti": "Sungguh beruntung orang-orang yang beriman.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "قَدْ يَعْلَمُ اللَّهُ",
+              "rujukan": "QS. An-Nur Ayat 64",
+              "arti": "Dia benar-benar mengetahui.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        },
+        {
+          "arab": "سَ",
+          "nama": "Sin",
+          "fungsi": [
+            "Menunjukkan waktu akan datang dekat",
+            "Masuk pada fi'il mudhari'"
+          ],
+          "contoh": [
+            "سَيَقُولُ السُّفَهَاءُ",
+            "سَنُرِيهِمْ آيَاتِنَا"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an; rujukan ayat tercantum pada setiap contoh_ayat",
+          "contoh_ayat": [
+            {
+              "arab": "سَيَقُولُ السُّفَهَاءُ",
+              "rujukan": "QS. Al-Baqarah Ayat 142",
+              "arti": "Orang-orang yang kurang akal di antara manusia akan berkata.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "سَنُرِيهِمْ آيَاتِنَا",
+              "rujukan": "QS. Fussilat Ayat 53",
+              "arti": "Kami akan memperlihatkan kepada mereka tanda-tanda kebesaran Kami.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        },
+        {
+          "arab": "سَوْفَ",
+          "nama": "Saufa",
+          "fungsi": [
+            "Menunjukkan waktu akan datang yang lebih jauh daripada سَ"
+          ],
+          "contoh": [
+            "سَوْفَ يُؤْتِيْهِمْ اُجُوْرَهُمْۗ",
+            "ثُمَّ كَلَّا سَوْفَ تَعْلَمُوْنَ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an; rujukan ayat tercantum pada setiap contoh_ayat",
+          "contoh_ayat": [
+            {
+              "arab": "سَوْفَ يُؤْتِيْهِمْ اُجُوْرَهُمْۗ",
+              "rujukan": "QS. An-Nisa’ Ayat 152",
+              "arti": "Kelak Allah akan memberikan pahala kepada mereka.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "ثُمَّ كَلَّا سَوْفَ تَعْلَمُوْنَ",
+              "rujukan": "QS. At-Takatsur Ayat 4",
+              "arti": "Sekali-kali tidak; kelak kamu akan mengetahui akibatnya.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        },
+        {
+          "arab": "تَاءُ التَّأْنِيْثِ السَّاكِنَةِ",
+          "nama": "Ta’ Ta’nits Sakinah",
+          "fungsi": [
+            "Menunjukkan pelaku perempuan pada fi'il madhi",
+            "Huruf تْ mati di akhir fi'il madhi"
+          ],
+          "contoh": [
+            "قَالَتِ امْرَاَتُ الْعَزِيْزِ",
+            "كَذَّبَتْ ثَمُوْدُ بِطَغْوٰىهَآۖ"
+          ],
+          "sumber": "Kitab Jurumiyah",
+          "sumber_contoh": "Al-Qur’an; rujukan ayat tercantum pada setiap contoh_ayat",
+          "contoh_ayat": [
+            {
+              "arab": "قَالَتِ امْرَاَتُ الْعَزِيْزِ",
+              "rujukan": "QS. Yusuf Ayat 51",
+              "arti": "Istri Al-Aziz berkata.",
+              "sumber": "Al-Qur’an"
+            },
+            {
+              "arab": "كَذَّبَتْ ثَمُوْدُ بِطَغْوٰىهَآۖ",
+              "rujukan": "QS. Asy-Syams Ayat 11",
+              "arti": "Kaum Samud telah mendustakan rasulnya karena mereka melampaui batas.",
+              "sumber": "Al-Qur’an"
+            }
+          ]
+        }
+      ],
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "قَدْ dapat masuk pada fi'il madhi dan fi'il mudhari'.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "سَ dan سَوْفَ menunjukkan makna masa lampau.",
+          "jawaban": false,
+          "penjelasan": "Keduanya menunjukkan masa akan datang.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Ta' ta'nits sakinah menjadi tanda fi'il madhi dengan pelaku perempuan.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ],
+      "catatan_update": "Bagian tanda Fi’il telah dilengkapi rujukan nama surah dan nomor ayat Al-Qur’an pada setiap contoh sesuai materi Word."
+    },
+    {
+      "id": 5,
+      "judul": "Tanda-Tanda Huruf",
+      "icon": "🔗",
+      "teks_inti": {
+        "arab": "وَالْحَرْفُ مَا لَا يَصْلُحُ مَعَهُ دَلِيْلُ الْاِسْمِ وَلَا دَلِيْلُ الْفِعْلِ",
+        "latin": "Wal-ḥarfu mā lā yaṣluḥu ma'ahu dalīlul-ismi wa lā dalīlul-fi'li",
+        "terjemahan": "Huruf adalah lafadz yang tidak layak disertai tanda isim dan tanda fi’il.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi Tanda Tanda Huruf",
+        "type": "youtube",
+        "youtube_id": "jTHrpELE34U",
+        "youtube_url": "https://youtu.be/jTHrpELE34U?si=fVaPTwxBUqPiEFIV",
+        "embed_url": "https://www.youtube.com/embed/jTHrpELE34U?si=d0VTOEcrEVI0QaEB",
+        "thumbnail_url": "https://img.youtube.com/vi/jTHrpELE34U/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi Tanda-Tanda Huruf",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio Tanda-Tanda Huruf.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan Tanda-Tanda Huruf",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": "assets/audio/lagu_tanda_huruf.m4a",
+        "lirik": [
+          "Huruf itu tak pantas ada tandanya",
+          "Tanda Isim, Fi'il bukanlah untuknya."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping Tanda-Tanda Huruf",
+        "file_name": "mind_map_tanda_huruf.png",
+        "image_path": "assets/mindmapping/mind_map_tanda_huruf.png",
+        "drive_file_id": "1SMNB2yavrVd1uIfH_8efufEcX_tubhmY",
+        "drive_url": "https://drive.google.com/file/d/1SMNB2yavrVd1uIfH_8efufEcX_tubhmY/view?usp=drivesdk",
+        "alt": "Mind map materi Tanda-Tanda Huruf"
+      },
+      "keterangan": [
+        "Huruf tidak memiliki tanda isim, seperti tidak menerima tanwin.",
+        "Huruf tidak memiliki tanda fi'il, seperti tidak didahului qad, sin, atau saufa.",
+        "Huruf tidak bermakna sempurna kecuali bergabung dengan kata lain."
+      ],
+      "contoh": [
+        {
+          "arab": "مِنْ شَرِّ الْوَسْوَاسِ",
+          "rujukan": "QS. An-Nas Ayat 4",
+          "sumber": "Kitab Jurumiyah"
+        },
+        {
+          "arab": "وَلَا تَقْرَبُوا الزِّنٰىٓ",
+          "rujukan": "QS. Al-Isra’ Ayat 32",
+          "sumber": "Kitab Jurumiyah"
+        },
+        {
+          "arab": "وَالْعَصْرِ",
+          "rujukan": "QS. Al-‘Ashr Ayat 1",
+          "sumber": "Kitab Jurumiyah"
+        }
+      ],
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Huruf bisa menerima tanwin seperti isim.",
+          "jawaban": false,
+          "penjelasan": "Huruf tidak menerima tanda isim.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Huruf tidak bermakna sempurna kecuali bergabung dengan kata lain.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "مِنْ termasuk contoh huruf.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ],
+      "sumber_keterangan": "Kitab Jurumiyah"
+    }
+  ],
+  "versi_schema": "1.1",
+  "catatan_update": "Video memakai youtube_id/youtube_url/embed_url; mind mapping memakai nama file Drive; lagu memakai lirik dari dokumen Lirik Lagu Audio dan Link Youtube.",
+  "catatan_update_sumber": "Sumber ditambahkan pada bagian penjelasan unsur, keterangan, contoh/row tabel yang relevan, mengacu pada file materi Word."
+}

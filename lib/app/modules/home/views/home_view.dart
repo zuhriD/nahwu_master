@@ -23,6 +23,7 @@ class HomeView extends GetView<HomeController> {
   static const Color surfaceContainerLow = Color(0xFFF5F3EF);
   static const Color surfaceContainerHigh = Color(0xFFEAE8E4);
   static const Color surfaceVariant = Color(0xFFE4E2DE);
+  static const Color surfaceContainerHighest = Color(0xFFE3E1DB);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,6 @@ class HomeView extends GetView<HomeController> {
         children: [
           Row(
             children: [
-              
               Text(
                 'Nahwu Tutor',
                 style: GoogleFonts.manrope(
@@ -86,36 +86,52 @@ class HomeView extends GetView<HomeController> {
           ),
           Row(
             children: [
-              Obx(() => Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        controller.levelName.value,
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: secondary,
-                        ),
+              Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      controller.levelName.value,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: secondary,
                       ),
-                      Text(
-                        controller.levelTitle.value,
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 10,
-                          color: onSurfaceVariant,
-                        ),
+                    ),
+                    Text(
+                      controller.levelTitle.value,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 10,
+                        color: onSurfaceVariant,
                       ),
-                    ],
-                  )),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(width: 12),
               Container(
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: secondaryContainer, width: 2),
+                  border: Border.all(color: secondary, width: 2),
+                  color: surfaceContainerHighest,
                   image: const DecorationImage(
                     image: AssetImage('assets/icon/logo_new.jpeg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: secondary, width: 1),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/icon/logo_um.jpeg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -128,54 +144,55 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildHeroWelcome() {
-    return Obx(() => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Ahlan wa Sahlan,',
-              style: GoogleFonts.manrope(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: primary,
-                letterSpacing: -0.5,
-              ),
+    return Obx(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Ahlan wa Sahlan,',
+            style: GoogleFonts.manrope(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: primary,
+              letterSpacing: -0.5,
             ),
-            const SizedBox(height: 4),
-            Text(
-              'Mari lanjutkan perjalanan ilmu Nahwu Anda hari ini.',
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 14,
-                color: onSurfaceVariant,
-              ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Mari lanjutkan perjalanan ilmu Nahwu Anda hari ini.',
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 14,
+              color: onSurfaceVariant,
             ),
-            if (controller.currentStreak.value > 0) ...[
-              const SizedBox(height: 12),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: secondaryContainer.withValues(alpha: 0.4),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('🔥', style: TextStyle(fontSize: 16)),
-                    const SizedBox(width: 6),
-                    Text(
-                      'Streak ${controller.currentStreak.value} hari!',
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: secondary,
-                      ),
+          ),
+          if (controller.currentStreak.value > 0) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: secondaryContainer.withValues(alpha: 0.4),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('🔥', style: TextStyle(fontSize: 16)),
+                  const SizedBox(width: 6),
+                  Text(
+                    'Streak ${controller.currentStreak.value} hari!',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                      color: secondary,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ],
-        ));
+        ],
+      ),
+    );
   }
 
   Widget _buildStatsBentoGrid() {
@@ -223,8 +240,10 @@ class HomeView extends GetView<HomeController> {
                   ),
                   child: FractionallySizedBox(
                     alignment: Alignment.centerLeft,
-                    widthFactor:
-                        controller.progressPercent.value.clamp(0.0, 1.0),
+                    widthFactor: controller.progressPercent.value.clamp(
+                      0.0,
+                      1.0,
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         color: secondaryContainer,
@@ -263,8 +282,11 @@ class HomeView extends GetView<HomeController> {
                     color: secondary.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.quiz_rounded,
-                      color: secondary, size: 32),
+                  child: const Icon(
+                    Icons.quiz_rounded,
+                    color: secondary,
+                    size: 32,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -291,7 +313,9 @@ class HomeView extends GetView<HomeController> {
                     backgroundColor: primary,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 12),
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -383,9 +407,7 @@ class HomeView extends GetView<HomeController> {
   Widget _buildBabSliver() {
     if (controller.isLoading.value) {
       return const SliverToBoxAdapter(
-        child: Center(
-          child: CircularProgressIndicator(color: primary),
-        ),
+        child: Center(child: CircularProgressIndicator(color: primary)),
       );
     }
     if (controller.errorMessage.value.isNotEmpty) {
@@ -394,27 +416,23 @@ class HomeView extends GetView<HomeController> {
       );
     }
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final bab = controller.babList[index];
-          final isUnlocked = controller.isBabUnlocked(bab);
-          final isRead = bab.id != null ? controller.isBabRead(bab.id!) : false;
-          final isQuizDone =
-              bab.id != null ? controller.isQuizDone(bab.id!) : false;
-          final bestScore =
-              bab.id != null ? controller.getBestScore(bab.id!) : 0;
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final bab = controller.babList[index];
+        final isUnlocked = controller.isBabUnlocked(bab);
+        final isRead = bab.id != null ? controller.isBabRead(bab.id!) : false;
+        final isQuizDone =
+            bab.id != null ? controller.isQuizDone(bab.id!) : false;
+        final bestScore = bab.id != null ? controller.getBestScore(bab.id!) : 0;
 
-          return _BabListItem(
-            bab: bab,
-            index: index,
-            isUnlocked: isUnlocked,
-            isRead: isRead,
-            isQuizDone: isQuizDone,
-            bestScore: bestScore,
-          );
-        },
-        childCount: controller.babList.length,
-      ),
+        return _BabListItem(
+          bab: bab,
+          index: index,
+          isUnlocked: isUnlocked,
+          isRead: isRead,
+          isQuizDone: isQuizDone,
+          bestScore: bestScore,
+        );
+      }, childCount: controller.babList.length),
     );
   }
 
@@ -441,10 +459,7 @@ class HomeView extends GetView<HomeController> {
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
             onTap: () {},
-            child: const Icon(
-              Icons.auto_stories_rounded,
-              color: Colors.white,
-            ),
+            child: const Icon(Icons.auto_stories_rounded, color: Colors.white),
           ),
         ),
       ),
@@ -501,8 +516,11 @@ class _BabListItem extends StatelessWidget {
                   ),
                   child: Center(
                     child: isUnlocked && isRead && isQuizDone
-                        ? const Icon(Icons.check_rounded,
-                            color: Colors.white, size: 24)
+                        ? const Icon(
+                            Icons.check_rounded,
+                            color: Colors.white,
+                            size: 24,
+                          )
                         : Text(
                             (index + 1).toString().padLeft(2, '0'),
                             style: GoogleFonts.plusJakartaSans(
@@ -582,7 +600,7 @@ class _BabListItem extends StatelessWidget {
                   ),
                 ],
               ),
-            ]
+            ],
           ],
         ),
       ),
@@ -639,8 +657,7 @@ class _BabListItem extends StatelessWidget {
                                     : 0.25,
                                 strokeWidth: 3,
                                 color: HomeView.secondary,
-                                backgroundColor:
-                                    HomeView.surfaceContainerHigh,
+                                backgroundColor: HomeView.surfaceContainerHigh,
                               ),
                               const Icon(
                                 Icons.play_circle_filled_rounded,
@@ -680,7 +697,8 @@ class _BabListItem extends StatelessWidget {
                     ],
                   ),
                 ],
-                if (materiSummary != null && materiSummary.trim().isNotEmpty) ...[
+                if (materiSummary != null &&
+                    materiSummary.trim().isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -773,10 +791,7 @@ class _BabListItem extends StatelessWidget {
 }
 
 class _SubBabChip extends StatelessWidget {
-  const _SubBabChip({
-    required this.subBab,
-    required this.index,
-  });
+  const _SubBabChip({required this.subBab, required this.index});
 
   final SubBab subBab;
   final int index;
@@ -794,9 +809,10 @@ class _SubBabChip extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(
-              subBab.icon ?? '📖',
-              style: const TextStyle(fontSize: 16),
+            const Icon(
+              Icons.menu_book_rounded,
+              color: HomeView.primary,
+              size: 20,
             ),
             const SizedBox(width: 12),
             Expanded(

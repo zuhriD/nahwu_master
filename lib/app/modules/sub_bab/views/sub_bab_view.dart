@@ -40,6 +40,10 @@ class SubBabView extends GetView<SubBabController> {
                   delegate: SliverChildListDelegate([
                     _buildMatanCard(),
                     const SizedBox(height: 24),
+                    if (subBab.teksInti?.terjemahan != null) ...[
+                      _buildTranslationSection(),
+                      const SizedBox(height: 32),
+                    ],
                     if (subBab.materialAudioPath != null) ...[
                       _buildMaterialAudioButton(),
                       const SizedBox(height: 24),
@@ -52,10 +56,7 @@ class SubBabView extends GetView<SubBabController> {
                       _buildMindMapSection(),
                       const SizedBox(height: 32),
                     ],
-                    if (subBab.teksInti?.terjemahan != null) ...[
-                      _buildTranslationSection(),
-                      const SizedBox(height: 32),
-                    ],
+
                     if (subBab.teksInti?.penjelasan != null) ...[
                       _buildExplanationSection(),
                       const SizedBox(height: 32),
@@ -1039,20 +1040,30 @@ class SubBabView extends GetView<SubBabController> {
           value['rows'] is List) {
         final headers =
             (value['headers'] as List).map((e) => e.toString()).toList();
+        final hasSourceColumn = (value['rows'] as List).any(
+          (row) =>
+              row is Map &&
+              _firstString(row.cast<String, dynamic>(), ['sumber']) != null,
+        );
+        final tableHeaders = hasSourceColumn ? [...headers, 'sumber'] : headers;
         final rows = (value['rows'] as List).map<List<String>>((row) {
           if (row is Map) {
-            return headers
-                .map((header) => row[header]?.toString() ?? '')
+            final rowMap = row.cast<String, dynamic>();
+            return tableHeaders
+                .map((header) => rowMap[header]?.toString() ?? '')
                 .toList();
           }
-          if (row is List) return row.map((e) => e.toString()).toList();
+          if (row is List) {
+            final values = row.map((e) => e.toString()).toList();
+            return hasSourceColumn ? [...values, ''] : values;
+          }
           return [row.toString()];
         }).toList();
         sections.add(_buildSectionHeader(_labelFromKey(entry.key)));
         sections.add(const SizedBox(height: 16));
         sections.add(SimpleDataTable(
           title: '',
-          headers: headers.map(_labelFromKey).toList(),
+          headers: tableHeaders.map(_labelFromKey).toList(),
           rows: rows,
           headerBgColor: secondaryContainer.withValues(alpha: 0.7),
           headerTextColor: primary,
@@ -1136,8 +1147,14 @@ class SubBabView extends GetView<SubBabController> {
 
   Widget _buildReferenceExampleCard(Map<String, dynamic> item) {
     final arab = _firstString(item, ['arab']);
+    final arabSegments = item['arab_segments'];
     final reference = _firstString(item, ['rujukan', 'keterangan']);
     final meaning = _firstString(item, ['arti', 'terjemahan', 'makna']);
+    final source = _firstString(item, ['sumber']);
+    final highlight = item['tanda_berwarna'];
+    final highlightDescription = highlight is Map
+        ? _firstString(highlight.cast<String, dynamic>(), ['keterangan'])
+        : null;
 
     return Container(
       width: double.infinity,
@@ -1167,7 +1184,9 @@ class SubBabView extends GetView<SubBabController> {
             ),
             const SizedBox(height: 8),
           ],
-          if (arab != null) ...[
+          if (_hasArabicSegments(arabSegments)) ...[
+            _buildArabicSegmentsText(arabSegments, fontSize: 24),
+          ] else if (arab != null) ...[
             Text(
               arab,
               textDirection: TextDirection.rtl,
@@ -1175,6 +1194,17 @@ class SubBabView extends GetView<SubBabController> {
                 fontSize: 24,
                 height: 1.7,
                 color: primary,
+              ),
+            ),
+          ],
+          if (highlightDescription != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              highlightDescription,
+              style: GoogleFonts.plusJakartaSans(
+                fontSize: 11,
+                height: 1.5,
+                color: onSurfaceVariant.withValues(alpha: 0.88),
               ),
             ),
           ],
@@ -1189,6 +1219,11 @@ class SubBabView extends GetView<SubBabController> {
               ),
             ),
           ],
+          if (source != null) ...[
+            const SizedBox(height: 12),
+            _buildSourceLabel(source),
+          ],
+          ..._buildAdditionalSourceLabels(item, ['sumber_bukan_contoh']),
         ],
       ),
     );
@@ -1233,7 +1268,10 @@ class SubBabView extends GetView<SubBabController> {
         _firstString(item, ['definisi', 'keterangan', 'arti', 'ringkasan']);
     final fungsi = item['fungsi'];
     final examples = item['contoh'];
+    final verseExamples = item['contoh_ayat'];
     final exampleMeanings = item['contoh_arti'];
+    final translatedExamples = item['contoh_terjemahan'];
+    final source = _firstString(item, ['sumber']);
     final hasVisualFields = item.containsKey('contoh_kalimat') ||
         item.containsKey('kalimat') ||
         item.containsKey('keterangan') ||
@@ -1316,14 +1354,37 @@ class SubBabView extends GetView<SubBabController> {
               accent: secondaryContainer,
             ),
           ],
-          ..._buildStringChips(item, ['ciri', 'syarat', 'bukan_contoh']),
+          ..._buildStringChips(item, ['ciri', 'syarat']),
           if (examples != null) ...[
             const SizedBox(height: 12),
-            if (_toStringList(exampleMeanings).isNotEmpty)
+            if (_hasTranslatedExamples(translatedExamples))
+              _buildTranslatedExamples(translatedExamples)
+            else if (_toStringList(exampleMeanings).isNotEmpty)
               _buildPairedExamples(examples, exampleMeanings)
             else
               _buildExamples(examples),
           ],
+          if (verseExamples != null) ...[
+            const SizedBox(height: 12),
+            _buildExampleBlock(
+              label: 'Contoh Ayat',
+              examples: verseExamples,
+            ),
+          ],
+          if (_toStringList(item['bukan_contoh']).isNotEmpty) ...[
+            const SizedBox(height: 12),
+            _buildMarkedTextList(
+              label: 'Bukan Contoh',
+              value: item['bukan_contoh'],
+              icon: Icons.close_rounded,
+              iconColor: const Color(0xFFB3261E),
+            ),
+          ],
+          if (source != null) ...[
+            const SizedBox(height: 12),
+            _buildSourceLabel(source),
+          ],
+          ..._buildAdditionalSourceLabels(item, ['sumber_contoh']),
         ],
       ),
     );
@@ -1349,6 +1410,7 @@ class SubBabView extends GetView<SubBabController> {
     final keterangan = _firstString(item, ['keterangan']);
     final kalimat = _firstString(item, ['kalimat']);
     final arti = _firstString(item, ['arti']);
+    final source = _firstString(item, ['sumber']);
 
     String? colorText;
     switch (colorLabel.toLowerCase()) {
@@ -1369,7 +1431,8 @@ class SubBabView extends GetView<SubBabController> {
     }
 
     final cardFields = <Widget>[
-      if (contohKalimat != null) _buildVisualField('Contoh Kalimat', contohKalimat),
+      if (contohKalimat != null)
+        _buildVisualField('Contoh Kalimat', contohKalimat),
       if (arab != null) ...[
         const SizedBox(height: 12),
         _buildVisualArabicPanel('Arab', arab),
@@ -1451,6 +1514,116 @@ class SubBabView extends GetView<SubBabController> {
             const SizedBox(height: 14),
             ...cardFields,
           ],
+          if (source != null) ...[
+            const SizedBox(height: 12),
+            _buildSourceLabel(source),
+          ],
+          ..._buildNestedSourceLabels(item, ['penjelasan_huruf_arab']),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildNestedSourceLabels(
+    Map<String, dynamic> item,
+    List<String> keys,
+  ) {
+    final widgets = <Widget>[];
+    for (final key in keys) {
+      final value = item[key];
+      final labels = _collectSourceLabels(value, [_labelFromKey(key)]);
+      for (final label in labels) {
+        widgets.add(const SizedBox(height: 8));
+        widgets.add(_buildSourceLabel(label));
+      }
+    }
+    return widgets;
+  }
+
+  List<Widget> _buildAdditionalSourceLabels(
+    Map<String, dynamic> item,
+    List<String> keys,
+  ) {
+    final widgets = <Widget>[];
+    for (final key in keys) {
+      final source = _firstString(item, [key]);
+      if (source == null) continue;
+      widgets.add(const SizedBox(height: 8));
+      widgets.add(_buildSourceLabel('${_labelFromKey(key)}: $source'));
+    }
+    return widgets;
+  }
+
+  List<String> _collectSourceLabels(dynamic value, List<String> path) {
+    if (value is Map) {
+      final item = value.cast<String, dynamic>();
+      final labels = <String>[];
+      final source = _firstString(item, ['sumber']);
+      if (source != null) {
+        labels.add('${path.join(' > ')}: $source');
+      }
+      for (final entry in item.entries) {
+        if (entry.key == 'sumber') continue;
+        if (entry.value is Map || entry.value is List) {
+          labels.addAll(
+            _collectSourceLabels(
+                entry.value, [...path, _labelFromKey(entry.key)]),
+          );
+        }
+      }
+      return labels;
+    }
+    if (value is List) {
+      final labels = <String>[];
+      for (var index = 0; index < value.length; index++) {
+        final item = value[index];
+        final itemTitle = item is Map
+            ? _firstString(item.cast<String, dynamic>(), [
+                  'teks',
+                  'nama',
+                  'judul',
+                  'arab',
+                ]) ??
+                '${index + 1}'
+            : '${index + 1}';
+        labels.addAll(_collectSourceLabels(item, [...path, itemTitle]));
+      }
+      return labels;
+    }
+    return const [];
+  }
+
+  Widget _buildSourceLabel(String source) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: primaryContainer.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: primaryContainer.withValues(alpha: 0.12),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(
+            Icons.source_rounded,
+            size: 14,
+            color: primaryContainer,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'Sumber: $source',
+              style: GoogleFonts.plusJakartaSans(
+                fontSize: 11,
+                height: 1.4,
+                fontWeight: FontWeight.w600,
+                color: onSurfaceVariant,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -1640,19 +1813,256 @@ class SubBabView extends GetView<SubBabController> {
     return widgets;
   }
 
+  Widget _buildMarkedTextList({
+    required String label,
+    required dynamic value,
+    required IconData icon,
+    required Color iconColor,
+  }) {
+    final entries = _toStringList(value);
+    if (entries.isEmpty) return const SizedBox.shrink();
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: surfaceContainerLow,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: GoogleFonts.plusJakartaSans(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: primary,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ...entries.map(
+            (entry) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildStatusIcon(icon: icon, color: iconColor),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      entry,
+                      style: _containsArabic(entry)
+                          ? GoogleFonts.amiri(
+                              fontSize: 18,
+                              height: 1.5,
+                              color: primary,
+                            )
+                          : GoogleFonts.plusJakartaSans(
+                              fontSize: 13,
+                              height: 1.5,
+                              color: onSurfaceVariant,
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatusIcon({
+    required IconData icon,
+    required Color color,
+  }) {
+    return Container(
+      width: 22,
+      height: 22,
+      margin: const EdgeInsets.only(top: 1),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        shape: BoxShape.circle,
+      ),
+      child: Icon(icon, color: color, size: 15),
+    );
+  }
+
+  Widget _buildExampleBlock({
+    required String label,
+    required dynamic examples,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: GoogleFonts.plusJakartaSans(
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+            color: primary,
+          ),
+        ),
+        const SizedBox(height: 8),
+        _buildExamples(examples),
+      ],
+    );
+  }
+
+  bool _hasArabicSegments(dynamic value) {
+    return value is List && value.whereType<Map>().isNotEmpty;
+  }
+
+  Widget _buildArabicSegmentsText(
+    dynamic value, {
+    required double fontSize,
+  }) {
+    final segments = value is List
+        ? value
+            .whereType<Map>()
+            .map((segment) => segment.cast<String, dynamic>())
+            .toList()
+        : const <Map<String, dynamic>>[];
+    if (segments.isEmpty) return const SizedBox.shrink();
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: RichText(
+        textAlign: TextAlign.right,
+        text: TextSpan(
+          children: segments.map((segment) {
+            final text = _firstString(segment, ['teks']) ?? '';
+            final color = _colorFromHex(segment['hex'] as String?);
+            final isHighlighted = segment['is_tanda_huruf'] == true;
+            final isBold = segment['bold'] == true || isHighlighted;
+
+            return TextSpan(
+              text: text,
+              style: GoogleFonts.amiri(
+                fontSize: fontSize,
+                height: 1.7,
+                color: color ?? primary,
+                fontWeight: isBold ? FontWeight.w700 : FontWeight.w500,
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+
+  Color? _colorFromHex(String? hex) {
+    if (hex == null || hex.trim().isEmpty) return null;
+    final normalized = hex.replaceAll('#', '').trim();
+    if (normalized.length != 6 && normalized.length != 8) return null;
+    final value = int.tryParse(
+      normalized.length == 6 ? 'FF$normalized' : normalized,
+      radix: 16,
+    );
+    return value == null ? null : Color(value);
+  }
+
   Widget _buildExamples(dynamic examples) {
     final list = examples is List ? examples : [examples];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: list.map<Widget>((example) {
-        final text = example is Map
-            ? [
-                example['arab'],
-                example['arti'],
-                example['rujukan'],
-              ].whereType<Object>().map((e) => e.toString()).join(' - ')
-            : example.toString();
-        final isArabic = RegExp(r'[؀-ۿ]').hasMatch(text);
+        if (example is Map) {
+          final item = example.cast<String, dynamic>();
+          final arab = _firstString(item, ['arab']);
+          final arabSegments = item['arab_segments'];
+          final meaning = _firstString(item, ['arti', 'terjemahan', 'makna']);
+          final reference = _firstString(item, ['rujukan', 'keterangan']);
+          final highlight = item['tanda_berwarna'];
+          final highlightDescription = highlight is Map
+              ? _firstString(highlight.cast<String, dynamic>(), ['keterangan'])
+              : null;
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              decoration: BoxDecoration(
+                color: surfaceContainerLow,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      _buildStatusIcon(
+                        icon: Icons.check_rounded,
+                        color: primaryContainer,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Contoh',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          color: primaryContainer,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  if (reference != null) ...[
+                    Text(
+                      reference,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: secondary,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                  ],
+                  if (_hasArabicSegments(arabSegments))
+                    _buildArabicSegmentsText(arabSegments, fontSize: 20)
+                  else if (arab != null)
+                    Text(
+                      arab,
+                      textDirection: TextDirection.rtl,
+                      style: GoogleFonts.amiri(
+                        fontSize: 20,
+                        height: 1.5,
+                        color: primary,
+                      ),
+                    ),
+                  if (highlightDescription != null) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      highlightDescription,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 11,
+                        height: 1.5,
+                        color: onSurfaceVariant.withValues(alpha: 0.88),
+                      ),
+                    ),
+                  ],
+                  if (meaning != null) ...[
+                    if (arab != null || _hasArabicSegments(arabSegments))
+                      const SizedBox(height: 6),
+                    Text(
+                      meaning,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 12,
+                        height: 1.5,
+                        color: onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          );
+        }
+        final text = example.toString();
+        final isArabic = _containsArabic(text);
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: Container(
@@ -1662,16 +2072,121 @@ class SubBabView extends GetView<SubBabController> {
               color: surfaceContainerLow,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Text(
-              text,
-              textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-              style: isArabic
-                  ? GoogleFonts.amiri(fontSize: 20, height: 1.5, color: primary)
-                  : GoogleFonts.plusJakartaSans(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildStatusIcon(
+                  icon: Icons.check_rounded,
+                  color: primaryContainer,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    text,
+                    textDirection:
+                        isArabic ? TextDirection.rtl : TextDirection.ltr,
+                    style: isArabic
+                        ? GoogleFonts.amiri(
+                            fontSize: 20,
+                            height: 1.5,
+                            color: primary,
+                          )
+                        : GoogleFonts.plusJakartaSans(
+                            fontSize: 12,
+                            height: 1.5,
+                            color: onSurfaceVariant,
+                          ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  bool _containsArabic(String text) {
+    return RegExp(r'[؀-ۿ]').hasMatch(text);
+  }
+
+  bool _hasTranslatedExamples(dynamic examples) {
+    if (examples is! List) return false;
+    return examples.whereType<Map>().any((example) {
+      final item = example.cast<String, dynamic>();
+      return _firstString(item, ['arab']) != null &&
+          _firstString(item, ['terjemahan', 'arti', 'makna']) != null;
+    });
+  }
+
+  Widget _buildTranslatedExamples(dynamic examples) {
+    final items = examples is List
+        ? examples
+            .whereType<Map>()
+            .map((example) => example.cast<String, dynamic>())
+            .toList()
+        : const <Map<String, dynamic>>[];
+    if (items.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: items.map<Widget>((item) {
+        final arab = _firstString(item, ['arab']);
+        final translation = _firstString(item, ['terjemahan', 'arti', 'makna']);
+        if (arab == null && translation == null) return const SizedBox.shrink();
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: surfaceContainerLow,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    _buildStatusIcon(
+                      icon: Icons.check_rounded,
+                      color: primaryContainer,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Contoh',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: primaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                if (arab != null)
+                  Text(
+                    arab,
+                    textDirection: TextDirection.rtl,
+                    style: GoogleFonts.amiri(
+                      fontSize: 20,
+                      height: 1.5,
+                      color: primary,
+                    ),
+                  ),
+                if (translation != null) ...[
+                  if (arab != null) const SizedBox(height: 6),
+                  Text(
+                    translation,
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 12,
                       height: 1.5,
-                      color: onSurfaceVariant,
+                      color: onSurfaceVariant.withValues(alpha: 0.9),
                     ),
+                  ),
+                ],
+              ],
             ),
           ),
         );
@@ -1689,7 +2204,7 @@ class SubBabView extends GetView<SubBabController> {
       children: List.generate(exampleList.length, (index) {
         final example = exampleList[index];
         final meaning = index < meaningList.length ? meaningList[index] : null;
-        final isArabic = RegExp(r'[؀-ۿ]').hasMatch(example);
+        final isArabic = _containsArabic(example);
 
         return Padding(
           padding: EdgeInsets.only(
@@ -1705,6 +2220,24 @@ class SubBabView extends GetView<SubBabController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    _buildStatusIcon(
+                      icon: Icons.check_rounded,
+                      color: primaryContainer,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Contoh',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: primaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
                 Text(
                   example,
                   textDirection:

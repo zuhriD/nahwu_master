@@ -1,0 +1,652 @@
+{
+  "judul": "Bab I’rab",
+  "deskripsi": "Materi definisi i’rab, pembagiannya, serta i’rab yang berlaku pada isim dan fi’il.",
+  "icon": "📗",
+  "sub_bab": [
+    {
+      "id": 1,
+      "judul": "I’rab dan Pembagiannya",
+      "icon": "🔄",
+      "teks_inti": [
+        {
+          "arab": "الْإِعْرَابُ هُوَ تَغْيِيْرُ أَوَاخِرِ الْكَلِمِ لِاخْتِلَافِ الْعَوَامِلِ الدَّاخِلَةِ عَلَيْهَا لَفْظًا أَوْ تَقْدِيْرًا",
+          "latin": "Al-i'rābu huwa taghyīru awākhiril kalimi likhtilāfil 'awāmilid-dākhilati 'alayhā lafẓan aw taqdīran",
+          "terjemahan": "I’rab ialah perubahan akhir kalimah (Kata) karena perbedaan amil yang mendahuluinya, baik eksplisit (secara lafadz) ataupun implisit (perkiraan).",
+          "sumber": "Kitab Jurumiyah"
+        },
+        {
+          "arab": "وَأَقْسَامُهُ أَرْبَعَةٌ رَفْعٌ، وَنَصْبٌ، وَخَفْضٌ، وَجَزْمٌ",
+          "latin": "Wa aqsāmuhu arba'atun: raf'un, wa naṣbun, wa khafḍun, wa jazmun",
+          "terjemahan": "I’rab terbagi menjadi empat macam: rafa’, nashab, khafadh/jar, dan jazm.",
+          "sumber": "Kitab Jurumiyah"
+        }
+      ],
+      "video": {
+        "title": "Video Materi I’rab dan Pembagiannya",
+        "type": "youtube",
+        "youtube_id": "n3ag6s4mmmI",
+        "youtube_url": "https://youtu.be/n3ag6s4mmmI?si=VIlEH4pTThcZsMk3",
+        "embed_url": "https://www.youtube.com/embed/n3ag6s4mmmI?si=LB29_tjTGvQsrI2t",
+        "thumbnail_url": "https://img.youtube.com/vi/n3ag6s4mmmI/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi I’rab dan Pembagiannya",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio I_rab dan Pembagiannya.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan I’rab dan Pembagiannya",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": null,
+        "lirik": [
+          "I'rab perubahannya akhir Kalimah",
+          "Sebab 'Amil yang masuk pada Kalimah",
+          "Terkadang berubahnya terlihat Lafzan",
+          "Terkadang hanya kira-kira Taqdiran",
+          "I'rab itu ada empat bagianya",
+          "Rafa' Nashab Khafad dan Jazm jenisnya."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping I’rab dan Pembagiannya",
+        "file_name": "mind_map_irab_dan_pembagiannya.png",
+        "image_path": "assets/mindmapping/mind_map_irab_dan_pembagiannya.png",
+        "drive_file_id": "1XU-d2FQykiNS8jAJWd4ICHgbuW3p4p3q",
+        "drive_url": "https://drive.google.com/file/d/1XU-d2FQykiNS8jAJWd4ICHgbuW3p4p3q/view?usp=drivesdk",
+        "alt": "Mind map materi I’rab dan Pembagiannya"
+      },
+      "keterangan": "I’rab mengubah syakal akhir kalimah sesuai fungsi amil yang mempengaruhinya. Perubahan bisa tampak jelas atau diperkirakan.",
+      "tabel_perubahan": {
+        "headers": [
+          "kategori",
+          "contoh_ayat",
+          "keterangan"
+        ],
+        "rows": [
+          {
+            "kategori": "Perubahan tampak jelas",
+            "contoh_ayat": "وَلَلْاٰخِرَةُ خَيْرٌ — QS. Ad-Duha Ayat 4",
+            "keterangan": "Lafadz خَيْرٌ berakhir dhammah tampak jelas",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "kategori": "Perubahan tampak jelas",
+            "contoh_ayat": "اِنَّ اللّٰهَ كَانَ عَلَيْكُمْ رَقِيْبًا — QS. An-Nisa Ayat 1",
+            "keterangan": "Lafadz اللّٰهَ berakhir fathah tampak jelas",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "kategori": "Perubahan diperkirakan",
+            "contoh_ayat": "قُلْ اِنَّ هُدَى اللّٰهِ هُوَ الْهُدٰىۗ — QS. Al-Baqarah Ayat 120",
+            "keterangan": "Lafadz الْهُدٰىۗ memiliki dhammah yang diperkirakan",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "kategori": "Perubahan diperkirakan",
+            "contoh_ayat": "وَاَجَلٌ مُّسَمًّى عِنْدَهٗ — QS. Al-An’am Ayat 2",
+            "keterangan": "Lafadz مُّسَمًّى memiliki perubahan yang diperkirakan",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          }
+        ]
+      },
+      "tabel_pembagian": {
+        "headers": [
+          "irab",
+          "tanda_asal",
+          "berlaku_pada",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "tanda_asal": "Dhammah (ـُ)",
+            "berlaku_pada": "Isim & Fi‘il",
+            "contoh": "اِذَا جَاۤءَ نَصْرُ اللّٰهِ — QS. An-Nashr Ayat 1",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Nashab",
+            "tanda_asal": "Fathah (ـَ)",
+            "berlaku_pada": "Isim & Fi‘il",
+            "contoh": "إِنَّ مَعَ الْعُسْرِ يُسْرًا — QS. Al-Insyirah Ayat 6",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Jar/Khafadh",
+            "tanda_asal": "Kasrah (ـِ)",
+            "berlaku_pada": "Hanya isim",
+            "contoh": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ — QS. Al-Fatihah Ayat 1",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Jazm",
+            "tanda_asal": "Sukun (ـْ)",
+            "berlaku_pada": "Hanya fi‘il",
+            "contoh": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ — QS. Al-Ikhlas Ayat 3",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          }
+        ]
+      },
+      "contoh_visual": [
+        {
+          "irab": "Rafa‘",
+          "color": "blue",
+          "label_warna": "🟦 Biru",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_rafa.png",
+            "image_path": "assets/images/irab/contoh_visual_rafa.png",
+            "alt": "Ilustrasi siswa datang ke sekolah untuk contoh i’rab rafa‘"
+          },
+          "kalimat": "جَاءَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا",
+          "arti": "Siswa telah datang ke sekolah pagi hari",
+          "kata_fokus": "الطَّالِبُ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ب",
+            "harakat_akhir": "dhammah / ـُ",
+            "tanda_irab": "Rafa‘",
+            "alasan": "Kata الطَّالِبُ menjadi fa‘il/pelaku dari fi‘il جَاءَ, sehingga akhirnya dibaca dhammah.",
+            "cara_membaca": "ath-thālibu",
+            "bagian_kata": [
+              {
+                "teks": "ال",
+                "nama": "alif lam",
+                "fungsi": "tanda ma‘rifah pada isim",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "ط",
+                "nama": "tha’",
+                "fungsi": "huruf awal kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "ا",
+                "nama": "alif",
+                "fungsi": "pemanjang bunyi setelah tha’",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "ل",
+                "nama": "lam",
+                "fungsi": "huruf tengah kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "بُ",
+                "nama": "ba’ ber-dhammah",
+                "fungsi": "huruf akhir yang menunjukkan rafa‘",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              }
+            ],
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+        },
+        {
+          "irab": "Nashab",
+          "color": "red",
+          "label_warna": "🟥 Merah",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_nashab.png",
+            "image_path": "assets/images/irab/contoh_visual_nashab.png",
+            "alt": "Ilustrasi siswa membaca buku di perpustakaan untuk contoh i’rab nashab"
+          },
+          "kalimat": "قَرَأْتُ الكِتَابَ فِي الْمَكْتَبَةِ",
+          "arti": "Saya telah membaca buku di perpustakaan",
+          "kata_fokus": "الكِتَابَ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ب",
+            "harakat_akhir": "fathah / ـَ",
+            "tanda_irab": "Nashab",
+            "alasan": "Kata الكِتَابَ menjadi maf‘ul bih/objek dari fi‘il قَرَأْتُ, sehingga akhirnya dibaca fathah.",
+            "cara_membaca": "al-kitāba",
+            "bagian_kata": [
+              {
+                "teks": "ال",
+                "nama": "alif lam",
+                "fungsi": "tanda ma‘rifah pada isim",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "كِ",
+                "nama": "kaf ber-kasrah",
+                "fungsi": "huruf awal kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "تَ",
+                "nama": "ta’ ber-fathah",
+                "fungsi": "huruf tengah kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "ا",
+                "nama": "alif",
+                "fungsi": "pemanjang bunyi",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "بَ",
+                "nama": "ba’ ber-fathah",
+                "fungsi": "huruf akhir yang menunjukkan nashab",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              }
+            ],
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+        },
+        {
+          "irab": "Jar",
+          "color": "green",
+          "label_warna": "🟩 Hijau",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_jar.png",
+            "image_path": "assets/images/irab/contoh_visual_jar.png",
+            "alt": "Ilustrasi siswa duduk di kelas untuk contoh i’rab jar"
+          },
+          "kalimat": "جَلَسْتُ فِي الفَصْلِ",
+          "arti": "Saya duduk di kelas",
+          "kata_fokus": "الفَصْلِ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ل",
+            "harakat_akhir": "kasrah / ـِ",
+            "tanda_irab": "Jar/Khafadh",
+            "alasan": "Kata الفَصْلِ didahului huruf jar فِي, sehingga akhirnya dibaca kasrah.",
+            "cara_membaca": "al-faṣli",
+            "bagian_kata": [
+              {
+                "teks": "ال",
+                "nama": "alif lam",
+                "fungsi": "tanda ma‘rifah pada isim",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "فَ",
+                "nama": "fa’ ber-fathah",
+                "fungsi": "huruf awal kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "صْ",
+                "nama": "shad bersukun",
+                "fungsi": "huruf tengah kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "لِ",
+                "nama": "lam ber-kasrah",
+                "fungsi": "huruf akhir yang menunjukkan jar",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              }
+            ],
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+        },
+        {
+          "irab": "Jazm",
+          "color": "yellow",
+          "label_warna": "🟨 Kuning",
+          "image": {
+            "type": "asset",
+            "file_name": "contoh_visual_jazm.png",
+            "image_path": "assets/images/irab/contoh_visual_jazm.png",
+            "alt": "Ilustrasi siswa berhasil karena bersungguh-sungguh untuk contoh i’rab jazm"
+          },
+          "kalimat": "إِنْ يَجْتَهِدِ الطَّالِبُ يَنْجَحْ",
+          "arti": "Jika siswa bersungguh-sungguh maka akan sukses",
+          "kata_fokus": "يَنْجَحْ",
+          "penjelasan_huruf_arab": {
+            "huruf_akhir": "ح",
+            "harakat_akhir": "sukun / ـْ",
+            "tanda_irab": "Jazm",
+            "alasan": "Fi‘il mudhari‘ يَنْجَحْ menjadi jawab syarat dari إِنْ, sehingga akhirnya dibaca sukun sebagai tanda jazm.",
+            "cara_membaca": "yanjaḥ",
+            "bagian_kata": [
+              {
+                "teks": "يَ",
+                "nama": "ya’ ber-fathah",
+                "fungsi": "huruf mudhara‘ah/awalan fi‘il mudhari‘",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "نْ",
+                "nama": "nun bersukun",
+                "fungsi": "huruf tengah kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "جَ",
+                "nama": "jim ber-fathah",
+                "fungsi": "huruf tengah kata",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              },
+              {
+                "teks": "حْ",
+                "nama": "ha’ bersukun",
+                "fungsi": "huruf akhir yang menunjukkan jazm",
+                "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+              }
+            ],
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+        }
+      ],
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "I’rab adalah perubahan akhir kalimah karena perbedaan amil.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Jar berlaku pada fi'il.",
+          "jawaban": false,
+          "penjelasan": "Jar/khafadh hanya berlaku pada isim.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Jazm tanda asalnya adalah sukun.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ],
+      "tabel_contoh_visual": {
+        "title": "Tabel Contoh Visual I’rab",
+        "headers": [
+          "irab",
+          "contoh_ilustrasi",
+          "contoh_dalam_kalimat",
+          "kata_fokus",
+          "huruf_akhir",
+          "penjelasan"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_rafa.png",
+              "image_path": "assets/images/irab/contoh_visual_rafa.png",
+              "alt": "Ilustrasi siswa datang ke sekolah untuk contoh i’rab rafa‘"
+            },
+            "contoh_dalam_kalimat": "جَاءَ الطَّالِبُ إِلَى الْمَدْرَسَةِ صَبَاحًا",
+            "arti": "Siswa telah datang ke sekolah pagi hari",
+            "kata_fokus": "الطَّالِبُ",
+            "huruf_akhir": "ب",
+            "harakat_akhir": "dhammah / ـُ",
+            "penjelasan": "Kata الطَّالِبُ menjadi fa‘il/pelaku dari fi‘il جَاءَ, sehingga akhirnya dibaca dhammah.",
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          {
+            "irab": "Nashab",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_nashab.png",
+              "image_path": "assets/images/irab/contoh_visual_nashab.png",
+              "alt": "Ilustrasi siswa membaca buku di perpustakaan untuk contoh i’rab nashab"
+            },
+            "contoh_dalam_kalimat": "قَرَأْتُ الكِتَابَ فِي الْمَكْتَبَةِ",
+            "arti": "Saya telah membaca buku di perpustakaan",
+            "kata_fokus": "الكِتَابَ",
+            "huruf_akhir": "ب",
+            "harakat_akhir": "fathah / ـَ",
+            "penjelasan": "Kata الكِتَابَ menjadi maf‘ul bih/objek dari fi‘il قَرَأْتُ, sehingga akhirnya dibaca fathah.",
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          {
+            "irab": "Jar",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_jar.png",
+              "image_path": "assets/images/irab/contoh_visual_jar.png",
+              "alt": "Ilustrasi siswa duduk di kelas untuk contoh i’rab jar"
+            },
+            "contoh_dalam_kalimat": "جَلَسْتُ فِي الفَصْلِ",
+            "arti": "Saya duduk di kelas",
+            "kata_fokus": "الفَصْلِ",
+            "huruf_akhir": "ل",
+            "harakat_akhir": "kasrah / ـِ",
+            "penjelasan": "Kata الفَصْلِ didahului huruf jar فِي, sehingga akhirnya dibaca kasrah.",
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          },
+          {
+            "irab": "Jazm",
+            "contoh_ilustrasi": {
+              "type": "asset",
+              "file_name": "contoh_visual_jazm.png",
+              "image_path": "assets/images/irab/contoh_visual_jazm.png",
+              "alt": "Ilustrasi siswa berhasil karena bersungguh-sungguh untuk contoh i’rab jazm"
+            },
+            "contoh_dalam_kalimat": "إِنْ يَجْتَهِدِ الطَّالِبُ يَنْجَحْ",
+            "arti": "Jika siswa bersungguh-sungguh maka akan sukses",
+            "kata_fokus": "يَنْجَحْ",
+            "huruf_akhir": "ح",
+            "harakat_akhir": "sukun / ـْ",
+            "penjelasan": "Fi‘il mudhari‘ يَنْجَحْ menjadi jawab syarat dari إِنْ, sehingga akhirnya dibaca sukun sebagai tanda jazm.",
+            "sumber": "Disusun dari materi sub bab berdasarkan Kitab Jurumiyah"
+          }
+        ]
+      },
+      "sumber_keterangan": "Kitab Jurumiyah"
+    },
+    {
+      "id": 2,
+      "judul": "I’rab yang Berlaku pada Isim",
+      "icon": "🏷️",
+      "teks_inti": {
+        "arab": "وَلِلْأَسْمَاءِ مِنَ الْإِعْرَابِ: الرَّفْعُ، وَالنَّصْبُ، وَالْخَفْضُ، وَلَا جَزْمَ فِيْهَا",
+        "latin": "Wa lil-asmā'i minal-i'rābi: ar-raf'u, wan-naṣbu, wal-khafḍu, wa lā jazma fīhā",
+        "terjemahan": "I’rab yang berlaku pada isim adalah rafa’, nashab, dan khafadh. Jazm tidak berlaku pada isim.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi I’rab yang Berlaku pada Isim",
+        "type": "youtube",
+        "youtube_id": "x8Pz9R5AY9o",
+        "youtube_url": "https://youtu.be/x8Pz9R5AY9o?si=mw_I8wt-opKN9Rya",
+        "embed_url": "https://www.youtube.com/embed/x8Pz9R5AY9o?si=C12N5WjIR2Pv28aI",
+        "thumbnail_url": "https://img.youtube.com/vi/x8Pz9R5AY9o/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi I’rab yang Berlaku pada Isim",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio I_rab bagi Isim.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan I’rab yang Berlaku pada Isim",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": null,
+        "lirik": [
+          "Rafa', Nashab, Khafad, I'rab bagi Isim",
+          "Rafa', Nashab, Jazm, I'rab bagi Fi'il."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping I’rab yang Berlaku pada Isim",
+        "file_name": "mind_map_irab_pada_isim.png",
+        "image_path": "assets/mindmapping/mind_map_irab_pada_isim.png",
+        "drive_file_id": "1cC7-n5OqNDuvY4Cq95_AULmUGGW0I0l6",
+        "drive_url": "https://drive.google.com/file/d/1cC7-n5OqNDuvY4Cq95_AULmUGGW0I0l6/view?usp=drivesdk",
+        "alt": "Mind map materi I’rab yang Berlaku pada Isim"
+      },
+      "keterangan": "Isim selamanya tidak didahului oleh amil yang menjazmkan.",
+      "tabel": {
+        "headers": [
+          "irab",
+          "tanda",
+          "fungsi",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "tanda": "Dhammah (ـُ)",
+            "fungsi": "Pelaku",
+            "contoh": "المُعَلِّمُ شَرَحَ الدَّرْسَ — Guru menjelaskan pelajaran",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Nashab",
+            "tanda": "Fathah (ـَ)",
+            "fungsi": "Objek",
+            "contoh": "أَكَلَ الطُّلَّابُ التُّفَّاحَ — Siswa makan apel",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Jar",
+            "tanda": "Kasrah (ـِ)",
+            "fungsi": "Setelah huruf jar",
+            "contoh": "ذَهَبْتُ إِلَى السُّوقِ — Saya pergi ke pasar",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "I’rab jazm tidak berlaku pada isim.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "Isim dapat beri’rab rafa’, nashab, dan khafadh.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "Khafadh berlaku pada fi'il, bukan isim.",
+          "jawaban": false,
+          "penjelasan": "Khafadh berlaku pada isim.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ],
+      "sumber_keterangan": "Kitab Jurumiyah"
+    },
+    {
+      "id": 3,
+      "judul": "I’rab yang Berlaku pada Fi’il",
+      "icon": "⚡",
+      "teks_inti": {
+        "arab": "وَلِلْأَفْعَالِ مِنَ ذلِكَ: الرَّفْعُ، وَالنَّصْبُ، وَالْجَزْمُ، وَلَا خَفْضَ فِيْهَا",
+        "latin": "Wa lil-af'āli min dzālika: ar-raf'u, wan-naṣbu, wal-jazmu, wa lā khafḍa fīhā",
+        "terjemahan": "I’rab yang berlaku pada fi’il adalah rafa’, nashab, dan jazm. Khafadh tidak berlaku pada fi’il.",
+        "sumber": "Kitab Jurumiyah"
+      },
+      "video": {
+        "title": "Video Materi I’rab yang Berlaku pada Fi’il",
+        "type": "youtube",
+        "youtube_id": "VExb2dm-ceg",
+        "youtube_url": "https://youtu.be/VExb2dm-ceg?si=iqhGloisXhW1leyL",
+        "embed_url": "https://www.youtube.com/embed/VExb2dm-ceg?si=v9RADv7ITgDAUzz3",
+        "thumbnail_url": "https://img.youtube.com/vi/VExb2dm-ceg/hqdefault.jpg"
+      },
+      "audio": {
+        "title": "Audio Materi I’rab yang Berlaku pada Fi’il",
+        "type": "asset",
+        "asset_path": "assets/audio/Audio I_rab bagi Fi_il.m4a"
+      },
+      "lagu": {
+        "title": "Lagu Hafalan I’rab yang Berlaku pada Fi’il",
+        "source": "Nadzam Al-Ajurumiy Al-Indunisiy",
+        "audio_path": null,
+        "lirik": [
+          "Rafa', Nashab, Khafad, I'rab bagi Isim",
+          "Rafa', Nashab, Jazm, I'rab bagi Fi'il."
+        ]
+      },
+      "mind_map": {
+        "type": "image",
+        "title": "Mind Mapping I’rab yang Berlaku pada Fi’il",
+        "file_name": "mind_map_irab_pada_fiil.png",
+        "image_path": "assets/mindmapping/mind_map_irab_pada_fiil.png",
+        "drive_file_id": "172Gs8J7wMYLHqKMGzJGHQs-qVmLzJJ7-",
+        "drive_url": "https://drive.google.com/file/d/172Gs8J7wMYLHqKMGzJGHQs-qVmLzJJ7-/view?usp=drivesdk",
+        "alt": "Mind map materi I’rab yang Berlaku pada Fi’il"
+      },
+      "keterangan": "Rafa’kanlah fi’il mudhari’ yang tidak didahului amil nashab dan jazm.",
+      "tabel": {
+        "headers": [
+          "irab",
+          "amil",
+          "tanda",
+          "contoh"
+        ],
+        "rows": [
+          {
+            "irab": "Rafa‘",
+            "amil": "Tidak ada amil nashab/jazm",
+            "tanda": "ـُ",
+            "contoh": "وَاللّٰهُ يَعْلَمُ مَا تَصْنَعُوْنَ — QS. Al-'Ankabut Ayat 45",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Nashab",
+            "amil": "Didahului amil nashab: لَنْ",
+            "tanda": "ـَ",
+            "contoh": "قَالُوْا لَنْ نَّبْرَحَ عَلَيْهِ عٰكِفِيْنَ — QS. Taha Ayat 91",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          },
+          {
+            "irab": "Jazm",
+            "amil": "Didahului amil jazm: لَمْ",
+            "tanda": "ـْ",
+            "contoh": "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ — QS. Al-Ikhlas Ayat 3",
+            "sumber": "Kitab Jurumiyah; contoh ayat dari Al-Qur’an"
+          }
+        ]
+      },
+      "latihan": [
+        {
+          "id": 1,
+          "tipe": "benar_salah",
+          "pertanyaan": "Khafadh tidak berlaku pada fi'il.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 2,
+          "tipe": "benar_salah",
+          "pertanyaan": "لَنْ dapat menjadi amil nashab pada fi'il mudhari'.",
+          "jawaban": true,
+          "penjelasan": "",
+          "sumber": "Latihan disusun dari materi sub bab"
+        },
+        {
+          "id": 3,
+          "tipe": "benar_salah",
+          "pertanyaan": "لَمْ adalah amil rafa’.",
+          "jawaban": false,
+          "penjelasan": "لَمْ adalah amil jazm.",
+          "sumber": "Latihan disusun dari materi sub bab"
+        }
+      ],
+      "sumber_keterangan": "Kitab Jurumiyah"
+    }
+  ],
+  "versi_schema": "1.2",
+  "catatan_update": "Menambahkan image object, tabel_contoh_visual, kata_fokus, serta penjelasan huruf Arab/harakat akhir pada contoh visual Bab I’rab.",
+  "catatan_update_sumber": "Sumber ditambahkan pada keterangan, tabel, dan penjelasan contoh visual berdasarkan file materi Word."
+}

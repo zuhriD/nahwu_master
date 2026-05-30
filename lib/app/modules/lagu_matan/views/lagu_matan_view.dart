@@ -210,6 +210,7 @@ class LaguMatanView extends GetView<LaguMatanController> {
               ],
             ),
           ),
+          _buildSourceInfo(onDark: false),
           const SizedBox(height: 8),
           // Lyrics section header
           Padding(
@@ -334,8 +335,57 @@ class LaguMatanView extends GetView<LaguMatanController> {
                 height: 1.5,
               ),
             ),
+            _buildSourceInfo(onDark: true),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSourceInfo({required bool onDark}) {
+    final source = controller.source;
+    if (source == null || source.trim().isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final foreground = onDark ? onPrimaryContainer : onSurfaceVariant;
+    final borderColor = onDark
+        ? Colors.white.withValues(alpha: 0.16)
+        : primaryContainer.withValues(alpha: 0.14);
+    final background = onDark
+        ? Colors.white.withValues(alpha: 0.08)
+        : primaryContainer.withValues(alpha: 0.06);
+
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(top: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: borderColor),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.source_rounded,
+            size: 15,
+            color: foreground,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'Sumber: ${source.trim()}',
+              style: GoogleFonts.plusJakartaSans(
+                fontSize: 11,
+                height: 1.45,
+                fontWeight: FontWeight.w600,
+                color: foreground.withValues(alpha: onDark ? 0.9 : 1),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -379,7 +429,9 @@ class LaguMatanView extends GetView<LaguMatanController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                        isPlaying
+                            ? Icons.pause_rounded
+                            : Icons.play_arrow_rounded,
                         color: Colors.white,
                         size: 28,
                       ),

@@ -32,6 +32,7 @@ class LaguMatanController extends GetxController {
   List<String> get lirik => subBab.lagu?.lirik ?? [];
   String? get audioPath => subBab.lagu?.audio;
   String? get youtubeId => subBab.lagu?.youtubeId;
+  String? get source => subBab.lagu?.source;
   bool get hasYoutube => youtubeId != null && youtubeId!.isNotEmpty;
   bool get hasLocalAudio => audioPath != null && audioPath!.isNotEmpty;
   bool get hasSong => lirik.isNotEmpty;
